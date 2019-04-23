@@ -2,6 +2,8 @@
 
 class PersonManager {
     
+    const FORMAT_DATE_MYSQL = 'Y-m-d';
+    
   private $_db; // Instance de PDO.
 
   public function __construct($db)
@@ -17,16 +19,16 @@ class PersonManager {
         adresse, code_postal, role) VALUES(:id_personne, :nom, :prenom, :email, :mdp, :telephone, :date_naissance,
         :adresse, :code_postal, :role)');
 
-    $q->bindValue(':id_personne', $person->id_personne(), PDO::PARAM_INT);
-    $q->bindValue(':nom', $person->nom());
-    $q->bindValue(':prenom', $person->prenom());
-    $q->bindValue(':email', $person->email());
-    $q->bindValue(':mdp', $person->mdp());
-    $q->bindValue(':telephone', $person->telephone(), PDO ::PARAM_INT);
-    $q->bindValue(':date_naissance', $person->date_naissance());
-    $q->bindValue(':adresse', $person->adresse());
-    $q->bindValue(':code_postal', $person->code_postal(), PDO ::PARAM_INT);
-    $q->bindValue(':role', $person->role());
+    $q->bindValue(':id_personne', $person->getid_person(), PDO::PARAM_INT);
+    $q->bindValue(':nom', $person->getnom());
+    $q->bindValue(':prenom', $person->getprenom());
+    $q->bindValue(':email', $person->getemail());
+    $q->bindValue(':mdp', $person->getmdp());
+    $q->bindValue(':telephone', $person->gettelephone(), PDO ::PARAM_INT);
+    $q->bindValue(':date_naissance', $person->getdate_naissance()->format(self::FORMAT_DATE_MYSQL));
+    $q->bindValue(':adresse', $person->getadresse());
+    $q->bindValue(':code_postal', $person->getcode_postal(), PDO ::PARAM_INT);
+    $q->bindValue(':role', $person->getrole());
 
     $q->execute();
   }
