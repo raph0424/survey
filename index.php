@@ -148,7 +148,7 @@ define("DB_NAME", "database");
             <div class="speaker">
               <img src="img/speakers/2.jpg" alt="Speaker 2" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Maria Raphael</a></h3>
+                <h3><a href="speaker-details.html">Raphael Maria</a></h3>
                 <p>Developpeur</p>
                 <div class="social">
                   <a href=""><i class="fa fa-twitter"></i></a>
