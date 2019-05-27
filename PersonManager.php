@@ -66,6 +66,18 @@ class PersonManager {
 
     return $person;
   }
+  
+  public function verifconnexion ($email, $mdp)
+  {
+	 
+		  $requete ="select * from personne where email = :email and mdp = :mdp ;";
+		  $donnees = array(":email"=>$email, ":mdp"=>$mdp);
+		  $select = $this->_db->prepare($requete);
+		  $select->execute($donnees);
+		  $result = $select->fetch();
+		  return $result;
+
+  }
 
   public function update(Person $person)
   {

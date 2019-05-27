@@ -18,7 +18,7 @@ class EventManager {
     $q->bindValue(':id_event', $event->getId_event(), PDO::PARAM_INT);
     $q->bindValue(':designation', $event->getDesignation());
     $q->bindValue(':tarif', $event->getTarif());
-    $q->bindValue(':nbplaces', $event->getNbplaces() PDO ::PARAM_INT);
+    $q->bindValue(':nbplaces', $event->getNbplaces(), PDO ::PARAM_INT);
     $q->bindValue(':date_event', $event->getDate_event()->format(self::FORMAT_DATE_MYSQL));
     $q->bindValue(':adresse', $event->getAdresse());
     $q->bindValue(':horaires', $event->getHoraires());
@@ -62,7 +62,7 @@ class EventManager {
     $q->bindValue(':id_event', $event->getId_event(), PDO::PARAM_INT);
     $q->bindValue(':designation', $event->getDesignation());
     $q->bindValue(':tarif', $event->getTarif());
-    $q->bindValue(':nbplaces', $event->getNbplaces() PDO ::PARAM_INT);
+    $q->bindValue(':nbplaces', $event->getNbplaces(), PDO ::PARAM_INT);
     $q->bindValue(':date_event', $event->getDate_event()->format(self::FORMAT_DATE_MYSQL));
     $q->bindValue(':adresse', $event->getAdresse());
     $q->bindValue(':horaires', $event->getHoraires());

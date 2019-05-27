@@ -38,7 +38,7 @@ define("DB_NAME", "database");
           <li class="menu-active"><a href="#intro">Accueil</a></li>
           <li><a href="#about">A propos</a></li>
           <li><a href="#schedule">Boutique</a></li>
-          <li><a href="#venue">Evenement</a></li>
+          <li><a <button type="button" class="btn btn-info btn-lg"data-toggle="modal" data-target="#ModalEvent">Event</button></a></li>
           <li><a href="#hotels">Lieu</a></li>
           <li><a href="#gallery">Gallerie</a></li>
           <li><a href="#contact">Connexion</a></li>
@@ -47,7 +47,54 @@ define("DB_NAME", "database");
         </ul>
       </nav>
     </div>
+
+       
   </header>
+          
+       <!-- Modal -->
+<div id="ModalEvent" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Choisissez l'apparence de votre évènement</h4>
+      </div>
+      <div class="modal-body">
+        <p>Parmis ces différents modèles :</p>
+      </div><div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-4 col-sm-6">
+            <a href="#"><img src="img/Template1.jpg" alt="" class="img-fluid"></a>
+          </div>
+          <div class="col-4 col-sm-6">
+            <a href="#"><img src="img/Template2.jpg" alt="" class="img-fluid"></a>
+          </div>
+          <div class="col-5 col-sm-6">
+            <a href="#"><img src="img/Template3.jpg" alt="" class="img-fluid"></a>
+          </div>
+            <br/>
+          <div class="col-5 col-sm-6">
+            <a href="#"><img src="img/Template4.jpg" alt="" class="img-fluid"></a>
+          </div>
+            <style>
+  .img-fluid {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+        </div>
+      </div>
+    </div>
+             
+       
+    </div>
+
+  </div>
+</div>
   <section id="intro">
     <div class="intro-container wow fadeIn">
       <h1 class="mb-4 pb-0">video<br><span>de présentation </span></h1>
@@ -222,7 +269,7 @@ define("DB_NAME", "database");
       <div class="container">
         <div class="section-header">
           <h2>Lieu</h2>
-          <p>Lieu disponnible pour les événements</p>
+          <p>Lieu disponible pour les événements</p>
         </div>
         <div class="row">
           <div class="col-lg-4 col-md-6">
@@ -469,7 +516,7 @@ define("DB_NAME", "database");
             </ul>
           </div>
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contacter nous</h4>
+            <h4>Contactez nous</h4>
             <p>
               6 Place d'Alleray <br>
               Paris, P 75015<br>
