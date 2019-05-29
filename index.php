@@ -1,13 +1,21 @@
 <?php
 session_start();
-// Include database class  
-
-
-// Define configuration  
-define("DB_HOST", "localhost");  
-define("DB_USER", "username");  
-define("DB_PASS", "password");  
-define("DB_NAME", "database");
+if(isset($_SESSION['login']))
+    {
+      $connec ='Deconnexion';
+      $linkCon ='vue/deconnexion.php';
+      $sign = '';
+      $signe = '';
+      $event = 'vue/event.php';
+    }
+    else
+    {
+      $linkCon ='vue/connexion.php';
+      $connec ='Connexion';
+      $sign = 'vue/inscription.php';
+      $signe = 'Inscription';
+      $event = 'vue/connexion.php';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,27 +43,20 @@ define("DB_NAME", "database");
       </div>
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Accueil</a></li>
-          <li><a href="#about">A propos</a></li>
-          <li><a href="#schedule">Boutique</a></li>
+          <li class="menu-active"><a href="index.php">Accueil</a></li>
+          <li><a href="vue/boutique.php">Boutique</a></li>
           <li><a <button type="button" class="btn btn-info btn-lg"data-toggle="modal" data-target="#ModalEvent">Event</button></a></li>
-          <li><a href="#hotels">Lieu</a></li>
-          <li><a href="#gallery">Gallerie</a></li>
-          <li><a href="#contact">Connexion</a></li>
-          <li><a href="#contact">Inscription</a></li>
-          <li class="buy-tickets"><a href="#buy-tickets">Acheter ticket</a></li>
+          <li><a href="<?php echo $event; ?>">Evenement</a></li>
+          <li><a href="vue/lieu.php">Lieu</a></li>
+          <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
+          <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
+          <li class="buy-tickets"><a href="vue/ticket.php">Acheter ticket</a></li>
         </ul>
       </nav>
     </div>
-
-       
-  </header>
-          
-       <!-- Modal -->
+    </header>
 <div id="ModalEvent" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -63,41 +64,38 @@ define("DB_NAME", "database");
       </div>
       <div class="modal-body">
         <p>Parmis ces différents modèles :</p>
-      </div><div class="row">
+      </div>
+      <div class="row">
       <div class="col-sm-12">
         <div class="row">
           <div class="col-sm-6">
             <a href="#"><img src="img/Template1.jpg" alt="" class="img-fluid"></a>
-          </div>
-          <div class="col-sm-6">
-            <a href="#"><img src="img/Template2.jpg" alt="" class="img-fluid"></a>
-          </div>
+            </div>
+            <div class="col-sm-6">
+              <a href="#"><img src="img/Template2.jpg" alt="" class="img-fluid"></a>
+            </div>
           </div>
           </br>
           <div class="row">
-          <div class="col-sm-6">
-            <a href="#"><img src="img/Template3.jpg" alt="" class="img-fluid"></a>
+            <div class="col-sm-6">
+              <a href="#"><img src="img/Template3.jpg" alt="" class="img-fluid"></a>
+            </div>
+            <div class="col-sm-6">
+              <a href="#"><img src="img/Template4.jpg" alt="" class="img-fluid"></a>
+            </div>
           </div>
-            <br/>
-          <div class="col-sm-6">
-            <a href="#"><img src="img/Template4.jpg" alt="" class="img-fluid"></a>
-          </div>
-          </div>
+                      <style>
+                          .img-fluid
+                          {
+                            display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                          }
+                      </style>
+         </div>
         </div>
-            <style>
-  .img-fluid {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-</style>
         </div>
-      </div>
     </div>
-             
-       
-    </div>
-
   </div>
 </div>
   <section id="intro">
