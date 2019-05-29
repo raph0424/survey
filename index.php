@@ -66,19 +66,24 @@ define("DB_NAME", "database");
       </div><div class="row">
       <div class="col-sm-12">
         <div class="row">
-          <div class="col-4 col-sm-6">
+          <div class="col-sm-6">
             <a href="#"><img src="img/Template1.jpg" alt="" class="img-fluid"></a>
           </div>
-          <div class="col-4 col-sm-6">
+          <div class="col-sm-6">
             <a href="#"><img src="img/Template2.jpg" alt="" class="img-fluid"></a>
           </div>
-          <div class="col-5 col-sm-6">
+          </div>
+          </br>
+          <div class="row">
+          <div class="col-sm-6">
             <a href="#"><img src="img/Template3.jpg" alt="" class="img-fluid"></a>
           </div>
             <br/>
-          <div class="col-5 col-sm-6">
+          <div class="col-sm-6">
             <a href="#"><img src="img/Template4.jpg" alt="" class="img-fluid"></a>
           </div>
+          </div>
+        </div>
             <style>
   .img-fluid {
     display: block;
