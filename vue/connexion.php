@@ -1,5 +1,24 @@
 <?php
 session_start();
+require_once("../controleur/leControleur.php");
+$unControleur = new leControleur("localhost","ppe","root","");
+if(isset($_POST["Seconnecter"]))
+{
+    $resultat = $unControleur->verifCon($email, $mdp);     
+    if(isset($resultat['nom']))
+    {
+        $_SESSION['id_personne'] = $resultat['id_personne'];
+        $_SESSION['email'] = $resultat['email'];
+        $_SESSION['nom'] = $resultat['nom'];
+        $_SESSION['prenom'] = $resultat['prenom'];
+        header('location: index.php');  
+    }
+    else
+    {
+      echo" Connexion impossible ! Veuillez vérifier vos identidiants !";
+    }
+  }             
+  ?>
 ?>
 <!DOCTYPE html>
 <html lang="fr">
