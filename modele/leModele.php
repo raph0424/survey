@@ -15,7 +15,7 @@ class leModele {
             echo $exp->getMessage();
         }
     }
-}
+
 
 /*
     Insert

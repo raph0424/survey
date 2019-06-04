@@ -1,5 +1,8 @@
 <link href="css/formstyle.css" rel="stylesheet">
 <style type="text/css">
+body {
+       background-color: #262626; 
+}
 .login-page {
   width: 360px;
   padding: 8% 0 0;
@@ -92,6 +95,7 @@
   color: #EF3B3A;
 }
 </style>
+<body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div id="login_page" class="login-page">
   <div class="form">
@@ -126,6 +130,7 @@
     </form>
   </div>
 </div>
+</body>
 <script>
 $('.message a').click(function() {
   $('form').animate({
