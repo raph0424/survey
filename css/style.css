@@ -1659,8 +1659,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   #subscribe button {
     margin-top: 10px;
   }
- 
-
 }
 
-
+.nav_bar
+{
+  padding-top : 100px;
+  background-color:black;
+}
