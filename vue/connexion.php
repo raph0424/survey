@@ -4,23 +4,35 @@ require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","event","root","");
 if(isset($_POST["Seconnecter"]))
 {
+    
     $email = $_POST['email'];
     $mdp = $_POST['mdp'];
-    $resultat = $unControleur->verifCon($email, $mdp);     
-    if(isset($resultat['nom']))
-    {
-        $_SESSION['id_personne'] = $resultat['id_personne'];
-        $_SESSION['email'] = $resultat['email'];
-        $_SESSION['nom'] = $resultat['nom'];
-        $_SESSION['prenom'] = $resultat['prenom'];
-        header('location: index.php');  
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $resultat = $unControleur->verifCon($email, $mdp);
+        if (isset($resultat['nom'])) {
+            $_SESSION['id_personne'] = $resultat['id_personne'];
+            $_SESSION['email'] = $resultat['email'];
+            $_SESSION['nom'] = $resultat['nom'];
+            $_SESSION['prenom'] = $resultat['prenom'];
+            header('location: index.php');
+        } else {
+            echo" Connexion impossible ! Veuillez vérifier vos identidiants !";
+        }
+    } else {
+        $email = $accronyme;
+        $resultat = $unControleur->verifConPart($accronyme, $mdp);
+        if (isset($resultat['nom'])) {
+            $_SESSION['id_partenaire'] = $resultat['id_partenaire'];
+            $_SESSION['accronyme'] = $resultat['accronyme'];
+            $_SESSION['nom_marque'] = $resultat['nom_marque'];
+            $_SESSION['adresse'] = $resultat['adresse'];
+            header('location: index.php');
+        } else {
+            echo" Connexion impossible ! Veuillez vérifier vos identidiants !";
+        }
     }
-    else
-    {
-      echo" Connexion impossible ! Veuillez vérifier vos identidiants !";
-    }
-  }             
-  ?>
+}
+?>
 ?>
 <!DOCTYPE html>
 <html lang="fr">

@@ -33,7 +33,7 @@ class leModele {
     {
         if($this->unPdo!=null)
         {
-            $requete ="select * from personne where accronyme=:accronyme and mdp=:mdp;";
+            $requete ="select * from partenaire where accronyme=:accronyme and mdp=:mdp;";
             $donnees = array(":accronyme"=>$accronyme,":mdp"=>$mdp);
             $select = $this->unPdo->prepare($requete);
             $select->execute($donnees);

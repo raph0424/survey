@@ -4,7 +4,7 @@
         <center>
             <form class="form-group" action="" method="post">
                 <table>
-                    <tr><td>login</td><td><input  class="form-control" type="text" name="nom"></td></tr>
+                    <tr><td>login</td><td><input  class="form-control" type="text" name="email" placeholder="identifiant"></td></tr>
                     <tr><td>mdp</td><td><input  class="form-control" type="password" name="mdp"></td></tr>
                     <tr>
                         <td><input class ='btn btn-primary' type="submit" name="Seconnecter" value="Se connecter"></td>
