@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","ppe","root","");
+$unControleur = new leControleur("localhost","event","root","");
 if(isset($_POST["Seconnecter"]))
 {
     $resultat = $unControleur->verifCon($email, $mdp);     
