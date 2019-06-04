@@ -105,6 +105,7 @@
     </form>
     <form id="login_form" action="#" method="POST" class="login-form">
       <input name="accronyme" id="acronyme" type="text" placeholder="Acronyme de l'entreprise" />
+      <input type="password" name="mdp" placeholder="password" />
       <input name="nom_marque" id="nom_marque" type="text" placeholder="Nom de votre Marque" />
       <input name="mdp" id="password" type="password" placeholder="password" />
       <input type="date" id="date_debut" name="date_debut" />

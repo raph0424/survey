@@ -1,3 +1,14 @@
+<?php
+// Include database class  
+include ‘database.class.php’; 
+
+// Define configuration  
+define("DB_HOST", "localhost");  
+define("DB_USER", "username");  
+define("DB_PASS", "password");  
+define("DB_NAME", "database");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +66,7 @@
           <li><a href="#about">A propos</a></li>
           <li><a href="#speakers">Speakers</a></li>
           <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#"><button type="button" data-toggle="modal" data-target="#Modalevent"></button>Event</a></li>
+          <li><a href="#venue">Event</a></li>
           <li><a href="#hotels">Hotels</a></li>
           <li><a href="#gallery">Gallery</a></li>
           <li><a href="#supporters">Sponsors</a></li>
@@ -66,26 +77,6 @@
     </div>
   </header><!-- #header -->
 
-  <!-- Modal -->
-<div id="ModalEvent" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Choisissez l'apparence de votre évènement</h4>
-      </div>
-      <div class="modal-body">
-        <p>Parmis ces différents modèles.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
   <!--==========================
     Intro Section
   ============================-->

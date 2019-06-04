@@ -4,8 +4,8 @@
         <center>
             <form class="form-group" action="" method="post">
                 <table>
-                    <tr><td>login</td><td><input  class="form-control" type="text" name="email" placeholder="identifiant"></td></tr>
-                    <tr><td>mdp</td><td><input  class="form-control" type="password" name="mdp"></td></tr>
+                    <tr><td>Email</td><td><input  class="form-control" type="text" name="accronyme"></td></tr>
+                    <tr><td>Mdp</td><td><input  class="form-control" type="password" name="mdp"></td></tr>
                     <tr>
                         <td><input class ='btn btn-primary' type="submit" name="Seconnecter" value="Se connecter"></td>
                         <td><input class ='btn btn-primary' type="reset" name="Annuler" value="Annuler"></td>
@@ -20,13 +20,11 @@
 body {
        background-color: #262626; 
 }
-
 .login-page {
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
 }
-
 .form {
   position: relative;
   z-index: 1;
@@ -38,4 +36,3 @@ body {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 </style>
-    
