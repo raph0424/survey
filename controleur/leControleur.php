@@ -9,6 +9,11 @@ class leControleur
         $this->unModele = new leModele($server,$bdd,$user,$mdp);
     }
 
+    public function verifCon($email, $mdp)
+    {
+        // on peu controler les donnees 
+        return $this->unModele->verifCon($email, $mdp);
+    }
     public function insert($table, $tab)
       {
         $this->unModele->insert($table, $tab);
