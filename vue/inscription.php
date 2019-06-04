@@ -34,7 +34,7 @@ session_start();
           "adresse"=>$_POST['adresse']
          );
           $unControleur->insert("partenaire",$envoi);
-            if(isset($resultat['nom']))
+            if(isset($resultat['nom_marque']))
             {
                 $_SESSION['id_partenaire'] = $resultat['id_partenaire'];
                 $_SESSION['acronyme'] = $resultat['acronyme'];
