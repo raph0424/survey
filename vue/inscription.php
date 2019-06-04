@@ -1,6 +1,48 @@
 <?php
 session_start();
-?>
+      require_once("../controleur/leControleur.php");
+      $unControleur = new leControleur("localhost","ppe","root","");
+      if(isset($_POST["sinscrir"]))
+      {
+         $envoi = array ("nom"=>$_POST['nom'], 
+         "prenom"=>$_POST['prenom'],
+         "email"=>$_POST['email'],
+         "mdp"=>$_POST['mdp'], 
+         "telephone"=>$_POST['telepone'],
+         "date_naissance"=>$_POST['date_naissance'],
+         "adresse"=>$_POST['adresse'],
+         "code_postal"=>$_POST['code_postal'],
+         "role"=>$_POST['role']
+        );
+         $unControleur->insert("personne",$envoi);
+          if(isset($resultat['nom']))
+          {
+              $_SESSION['id_personne'] = $resultat['id_personne'];
+              $_SESSION['email'] = $resultat['email'];
+              $_SESSION['nom'] = $resultat['nom'];
+              $_SESSION['prenom'] = $resultat['prenom'];
+  
+          }
+          header('location: connexion.php');
+        }
+        if(isset($_POST["sinscrire"]))
+        {
+          $envoi = array ("accronyme"=>$_POST['accronyme'], 
+          "nom_marque"=>$_POST['nom_marque'],
+          "mdp"=>$_POST['mdp'], 
+          "date_debut"=>$_POST['date_debut'], 
+          "adresse"=>$_POST['adresse']
+         );
+          $unControleur->insert("partenaire",$envoi);
+            if(isset($resultat['nom']))
+            {
+                $_SESSION['id_partenaire'] = $resultat['id_partenaire'];
+                $_SESSION['acronyme'] = $resultat['acronyme'];
+                $_SESSION['nom_marque'] = $resultat['nom_marque'];
+            }
+            var_dump( $envoi);
+          }
+  ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,10 +74,17 @@ session_start();
   </header>
 <div class="nav_bar">
 </div>
-<div>
+<center><h1>Formulaire d'inscription</h1></center>
+<div class="row">
+<div class="col-sm-12">
   <?php 
+ 
       require_once("formulaire/formInscription.php");
   ?>
+  </div>
+  </div>
+<div>
+
 </div>
 <footer id="footer">
 <div class="footer-top">
