@@ -7,7 +7,7 @@ class leModele {
         
         try
         {
-            $this->unPdo = new PDO("mysql : host".$server.";dbname=".$bdd,$user,$mdp);
+            $this->unPdo = new PDO("mysql:host=".$server.";dbname=".$bdd,$user,$mdp);
         }
         catch(PDOExecption $exp)
         {
@@ -16,7 +16,31 @@ class leModele {
         }
     }
 
-
+    public function verifCon($email, $mdp)
+    {
+        if($this->unPdo!=null)
+        {
+            $requete ="select * from personne where email=:email and mdp=:mdp;";
+            $donnees = array(":email"=>$email,":mdp"=>$mdp);
+            $select = $this->unPdo->prepare($requete);
+            $select->execute($donnees);
+            $resultat = $select->fetch();
+            return $resultat;
+        }
+    }
+    
+    public function verifConPart($accronyme, $mdp)
+    {
+        if($this->unPdo!=null)
+        {
+            $requete ="select * from personne where accronyme=:accronyme and mdp=:mdp;";
+            $donnees = array(":accronyme"=>$accronyme,":mdp"=>$mdp);
+            $select = $this->unPdo->prepare($requete);
+            $select->execute($donnees);
+            $resultat = $select->fetch();
+            return $resultat;
+        }
+    }
 /*
     Insert
 */
@@ -47,6 +71,8 @@ public function insert($table, array $tab)
             implode($parametres, ', '));
             $statement = $this->unPdo->prepare($sql);
             $statement->execute($valeurs);
+           // echo $sql;
+            echo $valeurs;
 }
 
 /*
@@ -111,8 +137,13 @@ public function update($table, array $tab, array $id)
     $statement->execute($valeurs);
 }
 
-
-
+public function selectEvent()
+{
+    $requete = "select * from event where id_event = :id_event;";
+    $donnee = array(":id_event"=>$id_event);
+    $select = $this->unPdo->prepare($requete);
+    $select = $this->execute($donnee);
+}
 
 
 
