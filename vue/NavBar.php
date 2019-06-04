@@ -1,11 +1,11 @@
 <?php
-if(isset($_SESSION['login']))
+if(isset($_SESSION['mdp']))
 {
   $connec ='Deconnexion';
   $linkCon ='deconnexion.php';
   $sign = '';
   $signe = '';
-  $event = 'event.php';
+  $event = 'evenement.php';
 }
 else
 {
