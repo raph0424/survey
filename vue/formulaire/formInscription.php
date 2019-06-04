@@ -87,7 +87,7 @@ body {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div id="login_page" class="login-page">
   <div class="form">
-    <form id="register_form" class="register-form">
+    <form id="register_form" method="POST" class="register-form">
       <input type="text" name="nom" placeholder="Nom">
       <input type="text" name="prenom" placeholder="Prénom">
       <input type="text" name="email" placeholder="Adresse email" />

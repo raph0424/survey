@@ -39,10 +39,6 @@ class leModele {
             $select->execute($donnees);
             $resultat = $select->fetch();
             return $resultat;
-<<<<<<< HEAD
-=======
-            
->>>>>>> b82c203b9e79b680cd27f8ba0a444a07e2573917
         }
     }
 /*

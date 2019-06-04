@@ -45,7 +45,12 @@ if(isset($_SESSION['mdp']))
         <ul class="nav-menu">
           <li class="menu-active"><a href="index.php">Accueil</a></li>
           <li><a href="vue/boutique.php">Boutique</a></li>
-          <li><a <button type="button" class="btn btn-info btn-lg"data-toggle="modal" data-target="#ModalEvent">Event</button></a></li>
+          <?php 
+          if(isset($_SESSION['accronyme']))
+          {
+            echo "<li><a <button type='button' class='btn btn-info btn-lg'data-toggle='modal' data-target='#ModalEvent'>Event</button></a></li>";
+          }
+          ?>
           <li><a href="<?php echo $event; ?>">Evenement</a></li>
           <li><a href="vue/lieu.php">Lieu</a></li>
           <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>

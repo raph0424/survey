@@ -8,14 +8,14 @@ session_start();
          "prenom"=>$_POST['prenom'],
          "email"=>$_POST['email'],
          "mdp"=>$_POST['mdp'], 
-         "telephone"=>$_POST['telepone'],
+         "telephone"=>$_POST['telephone'],
          "date_naissance"=>$_POST['date_naissance'],
          "adresse"=>$_POST['adresse'],
          "code_postal"=>$_POST['code_postal'],
          "role"=>$_POST['role']
         );
          $unControleur->insert("personne",$envoi);
-          if(isset($resultat['email']))
+          if(isset($resultat['nom']))
           {
             $_SESSION['id_personne'] = $resultat['id_personne'];
             $_SESSION['mdp'] = $resultat['mdp'];
