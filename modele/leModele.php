@@ -39,6 +39,7 @@ class leModele {
             $select->execute($donnees);
             $resultat = $select->fetch();
             return $resultat;
+            var_dump($resultat);
         }
     }
 /*
