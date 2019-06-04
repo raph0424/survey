@@ -4,6 +4,8 @@ require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","ppe","root","");
 if(isset($_POST["Seconnecter"]))
 {
+    $email = $_POST['email'];
+    $mdp = $_POST['mdp'];
     $resultat = $unControleur->verifCon($email, $mdp);     
     if(isset($resultat['nom']))
     {
