@@ -1,7 +1,7 @@
 <?php
 session_start();
       require_once("../controleur/leControleur.php");
-      $unControleur = new leControleur("localhost","event","root","");
+      $unControleur = new leControleur("localhost","ppe","root","");
       if(isset($_POST["sinscrir"]))
       {
          $envoi = array ("nom"=>$_POST['nom'], 
@@ -15,13 +15,13 @@ session_start();
          "role"=>$_POST['role']
         );
          $unControleur->insert("personne",$envoi);
-          if(isset($resultat['nom']))
+          if(isset($resultat['email']))
           {
-              $_SESSION['id_personne'] = $resultat['id_personne'];
-              $_SESSION['email'] = $resultat['email'];
-              $_SESSION['nom'] = $resultat['nom'];
-              $_SESSION['prenom'] = $resultat['prenom'];
-  
+            $_SESSION['id_personne'] = $resultat['id_personne'];
+            $_SESSION['mdp'] = $resultat['mdp'];
+            $_SESSION['email'] = $resultat['email'];
+            $_SESSION['nom'] = $resultat['nom'];
+            $_SESSION['prenom'] = $resultat['prenom'];
           }
           header('location: connexion.php');
         }
@@ -34,13 +34,16 @@ session_start();
           "adresse"=>$_POST['adresse']
          );
           $unControleur->insert("partenaire",$envoi);
-            if(isset($resultat['nom']))
+            if(isset($resultat['nom_marque']))
             {
-                $_SESSION['id_partenaire'] = $resultat['id_partenaire'];
-                $_SESSION['acronyme'] = $resultat['acronyme'];
-                $_SESSION['nom_marque'] = $resultat['nom_marque'];
+              $_SESSION['id_partenaire'] = $resultat['id_partenaire'];
+              $_SESSION['accronyme'] = $resultat['accronyme'];
+              $_SESSION['mdp'] = $resultat['mdp'];
+              $_SESSION['nom_marque'] = $resultat['nom_marque'];
+              $_SESSION['adresse'] = $resultat['adresse'];
             }
-            var_dump( $envoi);
+            header('location: connexion.php');
+            //var_dump( $envoi);
           }
   ?>
 <!DOCTYPE html>
@@ -74,17 +77,15 @@ session_start();
   </header>
 <div class="nav_bar">
 </div>
-<center><h1>Formulaire d'inscription</h1></center>
+<center><h1></h1></center>
 <div class="row">
 <div class="col-sm-12">
   <?php 
- 
       require_once("formulaire/formInscription.php");
   ?>
   </div>
   </div>
 <div>
-
 </div>
 <footer id="footer">
 <div class="footer-top">

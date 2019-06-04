@@ -39,7 +39,6 @@ class leModele {
             $select->execute($donnees);
             $resultat = $select->fetch();
             return $resultat;
-            var_dump($resultat);
         }
     }
 /*
@@ -73,8 +72,8 @@ public function insert($table, array $tab)
             $statement = $this->unPdo->prepare($sql);
             $statement->execute($valeurs);
            // echo $sql;
-            var_dump( $valeurs);
-            echo $sql; 
+            //var_dump( $valeurs);
+            //echo $sql; 
 }
 
 /*

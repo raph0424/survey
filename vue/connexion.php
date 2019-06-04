@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","event","root","");
+$unControleur = new leControleur("localhost","ppe","root","");
 if(isset($_POST["Seconnecter"]))
 {
     $email = $_POST['email'];
@@ -21,7 +21,7 @@ if(isset($_POST["Seconnecter"]))
     } else {
         $accronyme = $email;
         $resultat = $unControleur->verifConPart($accronyme, $mdp);
-        var_dump($resultat);
+        //var_dump($resultat);
         if (isset($resultat['nom_marque'])) {
             $_SESSION['id_partenaire'] = $resultat['id_partenaire'];
             $_SESSION['accronyme'] = $resultat['accronyme'];
