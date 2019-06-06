@@ -6,7 +6,7 @@ if(isset($_SESSION['mdp']))
       $linkCon ='vue/deconnexion.php';
       $sign = '';
       $signe = '';
-      $event = 'vue/event.php';
+      $event = 'vue/evenement.php';
     }
     else
     {
@@ -549,10 +549,10 @@ if(isset($_SESSION['mdp']))
     </div>
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Orange</strong>. All Rights Reserved
+        &copy; Copyright <strong>Orange</strong>.All Rights Reserved
       </div>
       <div class="credits">
-        Designed by <a href="">Cfa  insta</a>
+        Designed by<a href="">Cfa insta</a>
       </div>
     </div>
   </footer>

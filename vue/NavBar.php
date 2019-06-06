@@ -5,7 +5,7 @@ if(isset($_SESSION['mdp']))
   $linkCon ='deconnexion.php';
   $sign = '';
   $signe = '';
-  $event = 'event.php';
+  $event = 'evenement.php';
 }
 else
 {
