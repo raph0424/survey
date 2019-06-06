@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['login']))
+if(isset($_SESSION['mdp']))
 {
   $connec ='Deconnexion';
   $linkCon ='deconnexion.php';
@@ -30,6 +30,11 @@ else
           <li><a href="lieu.php">Lieu</a></li>
           <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
           <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
-          <li class="buy-tickets"><a href="ticket.php">Acheter ticket</a></li>
+          <?php if(isset($_SESSION['nom']))
+          {
+            ?> <li class="buy-tickets"><a href="ticket.php">Acheter ticket</a></li> <?php   
+            }
+          ?>
+          
         </ul>
       </nav>

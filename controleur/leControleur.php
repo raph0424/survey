@@ -14,6 +14,18 @@ class leControleur
         // on peu controler les donnees 
         return $this->unModele->verifCon($email, $mdp);
     }
+    public function selectEvent()
+    {
+        return $this->unModele->selectEvent();
+    }
+    public function selectProduit()
+    {
+        return $this->unModele->selectProduit();
+    }
+    public function selectPartenaire()
+    {
+        return $this->unModele->selectPartenaire();
+    }
     public function verifConPart($accronyme, $mdp)
     {
         // on peu controler les donnees 

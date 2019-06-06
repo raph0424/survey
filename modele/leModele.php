@@ -140,11 +140,53 @@ public function update($table, array $tab, array $id)
 
 public function selectEvent()
 {
-    $requete = "select * from event where id_event = :id_event;";
-    $donnee = array(":id_event"=>$id_event);
-    $select = $this->unPdo->prepare($requete);
-    $select = $this->execute($donnee);
-}
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from event;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+        }
+    }
+    public function selectProduit()
+{
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from produit;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+        }
+    }
+    
+    public function selectPartenaire()
+{
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from partenaire;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+        }
+    }
 
 
 

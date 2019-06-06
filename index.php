@@ -55,7 +55,13 @@ if(isset($_SESSION['mdp']))
           <li><a href="vue/lieu.php">Lieu</a></li>
           <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
           <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
-          <li class="buy-tickets"><a href="vue/ticket.php">Acheter ticket</a></li>
+          <?php 
+          if(isset($_SESSION['nom']))
+          {
+              ?><li class="buy-tickets"><a href="vue/ticket.php">Acheter Tickets</a></li><?php
+          }
+          ?>
+          
         </ul>
       </nav>
     </div>
