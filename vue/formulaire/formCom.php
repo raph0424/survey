@@ -15,7 +15,7 @@
     <div class="col-sm-6">
         <p class = "pcom">Commentaire </p>
         <textarea class="form-control"  type="text" name="commentaire"></textarea></div>
-        <input class ='buttonCom btn btn-primary' type="submit" name="Valider" value="Valider">
+        <input class ='buttonCom btn btn-primary' type="submit" name="<?php echo $valider_produit; ?>" value="Valider">
         <input type="hidden" name="id_produit" value="<?php echo $id_produit ;?>">
         <input class ='buttonCom btn btn-primary' type="submit" name="Modifier" value="Modifier">
 </form>
