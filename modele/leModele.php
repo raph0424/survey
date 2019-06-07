@@ -258,7 +258,6 @@ public function selectEvent()
                        $donnees = array(":score"=>$tab['score'],":commentaire"=>$tab['commentaire'],":id_personne"=>$_SESSION['id_personne'],":id_produit"=>$tab['id_produit']);
                        $insert = $this->unPdo->prepare($requete);
                        $insert->execute($donnees);
-                       var_dump($insert);
                    } 
                 }
             }
