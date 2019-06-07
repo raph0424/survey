@@ -31,9 +31,9 @@
                                             <a href="#" data-toggle="modal" data-target="#<?php echo $idmodal; ?>"><img class="card-img-top" src="../img/Produit/produit<?php echo $unResultat['id_telephone']; ?>.jpg" alt=""></a>
                                             <div class="card-body">
                                                 <h4 class="card-title">
-            <?php
-            echo "<td>", $unResultat['designation'], "</td>";
-            ?>
+                                                <?php
+                                                echo "<td>", $unResultat['designation'], "</td>";
+                                                ?>
                                                 </h4>
                                                     <?php
                                                     echo "<td>", $unResultat['Prix'], "$ </td>";
@@ -78,13 +78,12 @@
                                                                                     <td colspan="2" class="hidden-xs"></td>
                                                                                     <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
                                                                                 </tr>  
-
                                                                                 <?php
                                                                                         $id_produit = $unResultat['id_telephone'];
-                                                                                        require_once("formulaire/formCom.php");
+                                                                                        require("formulaire/formCom.php");
                                                                                         if(isset($_POST['Valider']))
                                                                                         {
-                                                                                            $unControleur->insertNote($_POST, $id_produit);
+                                                                                           $unControleur->insertNote($_POST);
                                                                                         }
                                                                                         if(isset($_POST['Supprimer']))
                                                                                         {
