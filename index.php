@@ -80,19 +80,19 @@ if(isset($_SESSION['mdp']))
       <div class="col-sm-12">
         <div class="row">
           <div class="col-sm-6">
-            <a href="#"><img src="img/Template1.jpg" alt="" class="img-fluid"></a>
+            <a href="vue/event1.php"><img src="img/Template1.jpg" alt="" class="img-fluid"></a>
             </div>
             <div class="col-sm-6">
-              <a href="#"><img src="img/Template2.jpg" alt="" class="img-fluid"></a>
+              <a href="vue/event2.php"><img src="img/Template2.jpg" alt="" class="img-fluid"></a>
             </div>
           </div>
           </br>
           <div class="row">
             <div class="col-sm-6">
-              <a href="#"><img src="img/Template3.jpg" alt="" class="img-fluid"></a>
+              <a href="vue/event3.php"><img src="img/Template3.jpg" alt="" class="img-fluid"></a>
             </div>
             <div class="col-sm-6">
-              <a href="#"><img src="img/Template4.jpg" alt="" class="img-fluid"></a>
+              <a href="vue/event4.php"><img src="img/Template4.jpg" alt="" class="img-fluid"></a>
             </div>
           </div>
                       <style>

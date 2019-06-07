@@ -18,6 +18,10 @@ class leControleur
     {
         return $this->unModele->selectEvent();
     }
+     public function selectLieu()
+    {
+        return $this->unModele->selectLieu();
+    }
     public function selectProduit()
     {
         return $this->unModele->selectProduit();

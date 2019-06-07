@@ -72,8 +72,7 @@ public function insert($table, array $tab)
             $statement = $this->unPdo->prepare($sql);
             $statement->execute($valeurs);
            // echo $sql;
-            //var_dump( $valeurs);
-            //echo $sql; 
+           var_dump( $valeurs);
 }
 
 /*
@@ -159,6 +158,23 @@ public function selectEvent()
     if ($this->unPdo != null) {
             // selection de toutes les données
             $requete = "select * from produit;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+        }
+    }
+    
+     public function selectLieu()
+{
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from Lieu;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 

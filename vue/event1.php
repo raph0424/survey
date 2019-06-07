@@ -1,8 +1,24 @@
 <?php
 session_start();
-require_once("../controleur/leControleur.php");
+      require_once("../controleur/leControleur.php");
       $unControleur = new leControleur("localhost","event","root","");
-      $resu = $unControleur->selectEvent();
+      $res = $unControleur->selectLieu();
+      if(isset($_POST["create"]))
+      {
+         $envoi = array ("designation"=>$_POST['designation'], 
+         "tarif"=>$_POST['tarif'],
+         "nb_places"=>$_POST['nb_places'],
+         "date_event"=>$_POST['date_event'], 
+         "horaires"=>$_POST['horaire'],
+         "description"=>$_POST['description'],
+         "categorie"=>'event1',
+         "valid"=>1,
+         "id_lieu"=>$_POST['lieu']
+        );
+         $unControleur->insert("event",$envoi);
+          //header('Location: evenement.php');
+          exit;
+        }
   ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,21 +49,15 @@ require_once("../controleur/leControleur.php");
     ?>
     </div>
   </header>
-<div class="nav_bar">
-</div>
-<div class="row">
-<div class="col-sm-12">
-      <?php 
-      require_once("affichage/vueEvent.php");
+  <?php 
+      require_once("formulaire/formEvent.php");
   ?>
-</div>
-</div>
 <footer id="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6 footer-info">
-            <img src="img/logo.png" alt="TheEvenet">
+            <img src="../img/logo.png" alt="TheEvenet">
             <p>Notre Groupe est l’héritier d’une histoire plurielle, riche de défis relevés, d'innovations audacieuses et d'une solidarité forte entre les femmes et les hommes qui ont partagé cette dynamique. Orange, héritier de France Télécom, porte les valeurs d’un groupe mondial d’origine française, fier de ses racines, mais aussi fier de ses conquêtes à l’échelle du monde. Une épopée à découvrir à travers 30 moments forts et 130 dates clés qui constituent la mémoire de notre entreprise, d’hier à aujourd’hui.</p>
           </div>
           <div class="col-lg-3 col-md-6 footer-links">
@@ -94,16 +104,16 @@ require_once("../controleur/leControleur.php");
     </div>
   </footer>
   <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/superfish/hoverIntent.js"></script>
-  <script src="lib/superfish/superfish.min.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/venobox/venobox.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="contactform/contactform.js"></script>
-  <script src="js/main.js"></script>
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../lib/easing/easing.min.js"></script>
+  <script src="../lib/superfish/hoverIntent.js"></script>
+  <script src="../lib/superfish/superfish.min.js"></script>
+  <script src="../lib/wow/wow.min.js"></script>
+  <script src="../lib/venobox/venobox.min.js"></script>
+  <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../contactform/contactform.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>
