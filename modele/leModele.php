@@ -154,7 +154,7 @@ public function selectEvent()
         }
     }
     public function selectProduit()
-{
+    {
     if ($this->unPdo != null) {
             // selection de toutes les données
             $requete = "select * from produit;";
@@ -171,7 +171,7 @@ public function selectEvent()
     }
     
      public function selectLieu()
-{
+    {
     if ($this->unPdo != null) {
             // selection de toutes les données
             $requete = "select * from Lieu;";
@@ -204,9 +204,67 @@ public function selectEvent()
         }
     }
 
+    public function selectAttribut()
+    {
+        if ($this->unPdo != null) {
+                // selection de toutes les données
+                $requete = "SELECT * from attribut where designation = 'poids' and id_telephone = 1;";
+                // preparation de la requete avant execution
+                // $donnees = array(":telephone"=>$_SESSION['id_telephone']);
+                $select = $this->unPdo->prepare($requete);
+                // exection de la requete
+                $select->execute();
+                // extraction des données
+                $result = $select->fetchAll();
+                return $result;
+            }
+        }
+        public function selectAttribut1()
+        {
+            if ($this->unPdo != null) {
+                    // selection de toutes les données
+                    $requete = "SELECT * from attribut where designation = 'taille ecran' and id_telephone = 1;";
+                    // preparation de la requete avant execution
+                    // $donnees = array(":telephone"=>$_SESSION['id_telephone']);
+                    $select = $this->unPdo->prepare($requete);
+                    // exection de la requete
+                    $select->execute();
+                    // extraction des données
+                    $result = $select->fetchAll();
+                    return $result;
+                }
+            }
+            public function selectAttribut2()
+            {
+                if ($this->unPdo != null) {
+                        // selection de toutes les données
+                        $requete = "SELECT * from attribut where designation = 'couleur' and id_telephone = 1;";
+                        // preparation de la requete avant execution
+                        // $donnees = array(":telephone"=>$_SESSION['id_telephone']);
+                        $select = $this->unPdo->prepare($requete);
+                        // exection de la requete
+                        $select->execute();
+                        // extraction des données
+                        $result = $select->fetchAll();
+                        return $result;
+                    }
+                }
+
+                public function insertNote($tab)
+                {
+                   if($this->unPdo!=null)
+                   {
+                       $requete ="insert into note values(null, :score, :commentaire, :id_personne, :id_produit)";
+                       $donnees = array(":score"=>$tab['score'],":commentaire"=>$tab['commentaire'],":id_personne"=>$_SESSION['id_personne'],":id_produit"=>$tab['id_produit']);
+                       $insert = $this->unPdo->prepare($requete);
+                       $insert->execute($donnees);
+                       var_dump($insert);
+                   } 
+                }
+            }
 
 
-}
+
 
 
 
