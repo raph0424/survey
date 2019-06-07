@@ -1,7 +1,8 @@
 <?php
 session_start();
+
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","event","root","");
+$unControleur = new leControleur("localhost","ppe","root","");
 $result1 = $unControleur->selectPartenaire();
 $result = $unControleur->selectProduit();
   ?>
@@ -37,6 +38,7 @@ $result = $unControleur->selectProduit();
   </header>
 <div>
   <?php 
+
       require_once("affichage/vueBoutique.php");
   ?>
 </div>
