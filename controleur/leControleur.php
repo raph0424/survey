@@ -47,4 +47,20 @@ class leControleur
       {
         $this->unModele->update($table, $tab);
       }
+      public function insertNote($tab)
+      {
+        $this->unModele->insertNote($tab);
+      }
+      public function selectAttribut()
+      {
+          return $this->unModele->selectAttribut();
+      }
+      public function selectAttribut1()
+      {
+          return $this->unModele->selectAttribut1();
+      } 
+       public function selectAttribut2()
+      {
+          return $this->unModele->selectAttribut2();
+      }
 }
