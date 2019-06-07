@@ -79,9 +79,11 @@
                                                                                     <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
                                                                                 </tr>  
                                                                                 <?php
+
                                                                                         $id_produit = $unResultat['id_telephone'];
+                                                                                        $valider_produit = 'valider'.$unResultat['id_telephone'];
                                                                                         require("formulaire/formCom.php");
-                                                                                        if(isset($_POST['Valider']))
+                                                                                        if(isset($_POST[$valider_produit]))
                                                                                         {
                                                                                            $unControleur->insertNote($_POST);
                                                                                         }
