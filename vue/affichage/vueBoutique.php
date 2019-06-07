@@ -23,6 +23,7 @@
                             foreach ($result as $unResultat) {
                                 if ($Resultat['id_partenaire'] == $unResultat['id_partenaire']) {
                                     $idmodal = 'modal-tel-' . $unResultat['id_telephone'];
+                                   
                                     ?>
 
                                     <div class="col-lg-4 col-md-6 mb-4">
@@ -50,7 +51,7 @@
                                                                     <div class="col-sm-12">
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
-                                                                                <img class="card-img-top" src="../img/Produit/produit<?php echo $unResultat['id_telephone']; ?>.jpg" alt="">
+                                                                                <img class="card-img-top" src="../img/Produit/produit<?php echo $unResultat['id_telephone'];?>.jpg" alt="">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -58,10 +59,6 @@
 
                                                                 <div class="modal-body">
                                                                     <div>
-                                                                        
-                                                                        <!------ Include the above in your HEAD tag ---------->
-
-
                                                                         <table>
                                                                             <thead>
                                                                                 <tr>
@@ -80,7 +77,21 @@
                                                                                     <td><a href="#" data-dismiss ="modal" class="btn btn-warning"><i class="fa fa-angle-left"></i> Retour aux événements</a></td>
                                                                                     <td colspan="2" class="hidden-xs"></td>
                                                                                     <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
-                                                                                </tr>
+                                                                                </tr>  
+
+                                                                                <?php
+                                                                                        $id_produit = $unResultat['id_telephone'];
+                                                                                        require_once("formulaire/formCom.php");
+                                                                                        if(isset($_POST['Valider']))
+                                                                                        {
+                                                                                            $unControleur->insertNote($_POST, $id_produit);
+                                                                                        }
+                                                                                        if(isset($_POST['Supprimer']))
+                                                                                        {
+                                                                                            $id_com = $_POST['hidden'];
+                                                                                            $unControleur->delete($id_note);
+                                                                                        }
+                                                                                    ?>
                                                                             </tfoot>
                                                                         </table>
                                                                     </div>
@@ -103,6 +114,7 @@
                                     </div>
             <?php
         }
+
     }
     ?>
 
