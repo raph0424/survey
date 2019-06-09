@@ -1,0 +1,31 @@
+<?php
+    //tableau de forme php
+    //var_dump($resultat);
+
+    foreach ($resultats as $unResultat)
+    {
+        echo"<table class=' table table-bordered'>";
+    echo" <tr><th width='80%'>Commentaire de ".$unResultat['auteur']."</th><th width='10%'>Note</th>
+    " ;       if($_SESSION['prenom'] == $unResultat['auteur'] || $_SESSION['login'] == "admin")
+    {
+        echo "<th width='10%'>Supprimer commentaire</th>";
+    }echo"</tr>";
+    echo "<tr>
+         <td width='80%' height='100px'>".$unResultat['text']."</td>
+         <td>".$unResultat['note']." sur 5 </td> "; 
+         if($_SESSION['prenom'] == $unResultat['auteur'] || $_SESSION['login'] == "admin")
+         {
+         echo"<td> <form class='form-group' action='' method='post'>
+         <table>
+         <input type='hidden' name='hidden' value='".$unResultat['id_com']."'>
+         <input type='submit' name='Supprimer' value='Supprimer'>";
+         echo"</table>
+         </form> </td>         
+         </tr>";
+         }
+   
+    }
+    echo "</table>"; 
+ 
+
+?>

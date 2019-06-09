@@ -254,16 +254,28 @@ public function selectEvent()
                 {
                    if($this->unPdo!=null)
                    {
-                       $requete ="insert into note values(null, :score, :commentaire, :id_personne, :id_produit)";
-                       $donnees = array(":score"=>$tab['score'],":commentaire"=>$tab['commentaire'],":id_personne"=>$_SESSION['id_personne'],":id_produit"=>$tab['id_produit']);
+                       $requete ="insert into note values(null, :auteur, :score, :commentaire, :id_personne, :id_telephone)";
+                       $donnees = array(":auteur"=>$_SESSION['prenom'],":score"=>$tab['score'],":commentaire"=>$tab['commentaire'],":id_personne"=>$_SESSION['id_personne'],":id_telephone"=>$tab['id_telephone']);
                        $insert = $this->unPdo->prepare($requete);
                        $insert->execute($donnees);
                    } 
                 }
+            
+
+            public function selectNote($id_produit)
+            {
+                if($this->unPdo != null)
+                {
+                    $requete = "select * from note where id_telephone = :id_telephone;";
+                    $donnees = array(":id_telephone"=>$id_produit);                    
+                    $select = $this->unPdo->prepare($requete);
+                    $select->execute($donnees);
+                    $resultat = $select->fetchAll();
+                    return $resultat;
+                }
             }
 
-
-
+        }
 
 
 

@@ -82,6 +82,7 @@
 
                                                                                         $id_produit = $unResultat['id_telephone'];
                                                                                         $valider_produit = 'valider'.$unResultat['id_telephone'];
+                                                                                        require("affichage/vueCom.php");                                                                                        
                                                                                         require("formulaire/formCom.php");
                                                                                         if(isset($_POST[$valider_produit]))
                                                                                         {
@@ -89,8 +90,9 @@
                                                                                         }
                                                                                         if(isset($_POST['Supprimer']))
                                                                                         {
-                                                                                            $id_com = $_POST['hidden'];
-                                                                                            $unControleur->delete($id_note);
+                                                                                            $id_note = $_POST['hidden'];
+                                                                                            $envoi = array ( "id_note"=>$id_note);
+                                                                                            $unControleur->delete("note",$envoi);
                                                                                         }
                                                                                     ?>
                                                                             </tfoot>
