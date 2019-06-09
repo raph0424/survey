@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 07 juin 2019 à 19:36
--- Version du serveur :  5.7.21
--- Version de PHP :  7.2.4
+-- Généré le :  Dim 09 juin 2019 à 17:25
+-- Version du serveur :  5.7.24
+-- Version de PHP :  7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `attribut` (
   `id_telephone` int(11) NOT NULL,
   PRIMARY KEY (`idattribut`),
   KEY `Attribut_produit_FK` (`id_telephone`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `attribut`
@@ -45,10 +45,8 @@ CREATE TABLE IF NOT EXISTS `attribut` (
 INSERT INTO `attribut` (`idattribut`, `designation`, `valeur`, `id_telephone`) VALUES
 (1, 'taille ecran', '6,1 pouces', 1),
 (2, 'couleur', 'Noir', 1),
-(3, 'poids', '200g', 1),
-(4, 'taille ecran', '6.3 pouce', 2),
-(5, 'couleur', 'vert', 2),
-(6, 'poids', '150g', 2);
+(3, 'taille ecran', '5.7 pouces', 2),
+(4, 'couleur', 'Blanc', 2);
 
 -- --------------------------------------------------------
 
@@ -70,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `event` (
   `id_lieu` int(11) NOT NULL,
   PRIMARY KEY (`id_event`),
   KEY `event_lieu_FK` (`id_lieu`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `event`
@@ -94,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `inscrire` (
   `qualite` varchar(50) NOT NULL,
   PRIMARY KEY (`id_event`,`id_personne`),
   KEY `inscrire_personne0_FK` (`id_personne`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `inscrire`
@@ -116,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `lieu` (
   `adresse` varchar(50) NOT NULL,
   `code_postal` int(11) NOT NULL,
   PRIMARY KEY (`id_lieu`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `lieu`
@@ -135,22 +133,15 @@ INSERT INTO `lieu` (`id_lieu`, `designation`, `adresse`, `code_postal`) VALUES
 DROP TABLE IF EXISTS `note`;
 CREATE TABLE IF NOT EXISTS `note` (
   `id_note` int(11) NOT NULL AUTO_INCREMENT,
+  `auteur` varchar(50) NOT NULL,
   `score` int(11) NOT NULL,
   `commentaire` varchar(50) NOT NULL,
   `id_personne` int(11) NOT NULL,
-  `id_produit` int(11) NOT NULL,
+  `id_telephone` int(11) NOT NULL,
   PRIMARY KEY (`id_note`),
   KEY `note_personne_FK` (`id_personne`),
-  KEY `note_Attribut0_FK` (`id_produit`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `note`
---
-
-INSERT INTO `note` (`id_note`, `score`, `commentaire`, `id_personne`, `id_produit`) VALUES
-(1, 4, 'ecran un peu trop grand mais bonne qualité', 2, 1),
-(2, 3, 'Je préfèrerais ce téléphone en blanc', 2, 2);
+  KEY `note_Attribut0_FK` (`id_telephone`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -167,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `partenaire` (
   `date_debut` date NOT NULL,
   `adresse` varchar(500) NOT NULL,
   PRIMARY KEY (`id_partenaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `partenaire`
@@ -189,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `participer` (
   `id_telephone` int(11) NOT NULL,
   PRIMARY KEY (`id_event`,`id_telephone`),
   KEY `participer_telephone_FK` (`id_telephone`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `participer`
@@ -218,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `code_postal` int(11) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_personne`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `personne`
@@ -246,15 +237,15 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `id_partenaire` int(11) NOT NULL,
   PRIMARY KEY (`id_telephone`),
   KEY `produit_partenaire_FK` (`id_partenaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
 INSERT INTO `produit` (`id_telephone`, `designation`, `Prix`, `poids`, `taille`, `couleur`, `date_sortie`, `id_partenaire`) VALUES
-(1, 'S10', 650, 250, 6.5, 'noire', '2019-05-06', 1),
-(2, 'P22', 599, 220, 5.9, 'blanc', '2019-06-07', 2);
+(1, 'S10', 0, 0, 0, '', '2019-05-06', 1),
+(2, 'P22', 0, 0, 0, '', '2019-06-07', 2);
 
 -- --------------------------------------------------------
 
@@ -273,7 +264,7 @@ CREATE TABLE IF NOT EXISTS `soumettre` (
   PRIMARY KEY (`id_partenaire`,`id_personne`,`id_event`),
   KEY `soumettre_personne_FK` (`id_personne`),
   KEY `soumettre_event_FK` (`id_event`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `soumettre`
@@ -300,14 +291,16 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   PRIMARY KEY (`id_ticket`),
   KEY `ticket_personne_FK` (`id_personne`),
   KEY `ticket_partenaire0_FK` (`id_partenaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ticket`
 --
 
 INSERT INTO `ticket` (`id_ticket`, `objet`, `date`, `contenu`, `id_personne`, `id_partenaire`) VALUES
-(1, 'Impossible de s\'inscrire à l\'event', '2019-04-12', 'Bonjour, je suis dans l\'impossibilité de m\'inscrir', 2, 1);
+(1, 'Impossible de s\'inscrire à l\'event', '2019-04-12', 'Bonjour, je suis dans l\'impossibilité de m\'inscrir', 2, 1),
+(2, 'dsf', '2019-05-29', 'dfd', 2, 1),
+(3, 'dsf', '2019-05-29', 'dfd', 2, 1);
 
 --
 -- Contraintes pour les tables déchargées
@@ -336,7 +329,7 @@ ALTER TABLE `inscrire`
 -- Contraintes pour la table `note`
 --
 ALTER TABLE `note`
-  ADD CONSTRAINT `note_Attribut0_FK` FOREIGN KEY (`id_produit`) REFERENCES `attribut` (`idattribut`),
+  ADD CONSTRAINT `note_Attribut0_FK` FOREIGN KEY (`id_telephone`) REFERENCES `attribut` (`idattribut`),
   ADD CONSTRAINT `note_personne_FK` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`);
 
 --
