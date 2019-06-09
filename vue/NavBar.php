@@ -26,7 +26,7 @@ if (isset($_SESSION['mdp'])) {
         <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
         <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
         <?php if (isset($_SESSION['nom'])) { ?>
-            <li class="buy-tickets"><a href="ticket.php">Acheter ticket</a></li>
+            <li class="buy-tickets"><a href="ticket.php">Support</a></li>
         <?php } ?>
 
     </ul>

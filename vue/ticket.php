@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","event","root","");
-$result = $unControleur->selectEvent();
+$unControleur = new leControleur("localhost","ppe","root","");
+$result = $unControleur->selectTicket();
 
   ?>
 <!DOCTYPE html>

@@ -58,7 +58,7 @@ if(isset($_SESSION['mdp']))
           <?php 
           if(isset($_SESSION['nom']))
           {
-              ?><li class="buy-tickets"><a href="vue/ticket.php">Acheter Tickets</a></li><?php
+              ?><li class="buy-tickets"><a href="vue/ticket.php">Support</a></li><?php
           }
           ?>
           

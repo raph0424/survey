@@ -275,7 +275,22 @@ public function selectEvent()
                 }
             }
 
+    public function selectTicket()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from ticket;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute();
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
         }
+    }
+
+}
 
 
 
