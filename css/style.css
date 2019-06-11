@@ -154,7 +154,6 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
   background-color: #000;
-  margin-bottom: 0.5em;
 }
 
 #header.header-scrolled,
