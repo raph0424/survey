@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","ppe","root","");
+$unControleur = new leControleur("localhost","event","root","");
 $result = $unControleur->selectTicket();
 
   ?>
@@ -34,14 +34,17 @@ $result = $unControleur->selectTicket();
     require_once("NavBar.php");
     ?>
     </div>
+    </div>
   </header>
-<div class="nav_bar">
-</div>
-<div>
+  </br></br>
+ <center>
   <?php 
       require_once("affichage/vueTicket.php");
   ?>
-</div>
+  </center>
+
+  
+
 <footer id="footer">
 <div class="footer-top">
   <div class="container">
