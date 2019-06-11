@@ -72,7 +72,7 @@ public function insert($table, array $tab)
             $statement = $this->unPdo->prepare($sql);
             $statement->execute($valeurs);
            // echo $sql;
-           var_dump( $valeurs);
+           //var_dump( $valeurs);
 }
 
 /*
@@ -184,6 +184,7 @@ public function selectEvent()
             // extraction des données
             $result = $select->fetchAll();
             return $result;
+            
         }
     }
     
@@ -200,7 +201,10 @@ public function selectEvent()
 
             // extraction des données
             $result = $select->fetchAll();
+            //var_dump($result);
             return $result;
+        
+
         }
     }
 
