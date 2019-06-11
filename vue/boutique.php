@@ -1,12 +1,10 @@
 <?php
 session_start();
-
+//sleep(10);
 require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","ppe","root","");
 $result1 = $unControleur->selectPartenaire();
 $result = $unControleur->selectProduit();
-$id_produit= 1;
-$resultat = $unControleur->selectNote($id_produit);
   ?>
 <!DOCTYPE html>
 <html lang="fr">
