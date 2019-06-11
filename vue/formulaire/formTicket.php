@@ -2,8 +2,9 @@
     <table border=0>
     <tr>
     <td>Objet</td>
-    <td><input class="form-control" type="text" name="objet"></td>
-    <td class="td1">Fournisseur</td>
+    
+    <td><input class="form-control" type="text" name="objet"></td></tr></br>
+    <tr><td>Fournisseur</td>
             <td><select name="id_partenaire">
             <?php
                     foreach($result as $unPartenaire)
@@ -21,9 +22,11 @@
         </tr>
         <tr>      
     </table>
-    <div class="col-sm-6">
+    
+    <div class="col-sm-4">
         <p class = "pcom">Message</p>
         <textarea class="form-control"  type="text" name="contenu"></textarea></div>
+        </br>
         <input class ='buttonCom btn btn-primary' type="submit" name="envoyer" value="Envoyer">
-        <input type="hidden" name="id_ticket" value="<?php echo $id_ticket ;?>">
+        <!--<input type="hidden" name="id_ticket" value="<?php/* echo $id_ticket ;*/?>">-->
 </form>
