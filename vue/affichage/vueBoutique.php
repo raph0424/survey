@@ -1,8 +1,6 @@
-<!-- Custom styles for this template -->
 <link href="../css/shop-homepage.css" rel="stylesheet">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <div class="container">
     <br>
     <div class="list-group">
@@ -23,7 +21,6 @@
                             foreach ($result as $unResultat) {
                                 if ($Resultat['id_partenaire'] == $unResultat['id_partenaire']) {
                                     $idmodal = 'modal-tel-' . $unResultat['id_telephone'];
-                                   
                                     ?>
 
                                     <div class="col-lg-4 col-md-6 mb-4">
@@ -79,14 +76,13 @@
                                                                                     <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
                                                                                 </tr>  
                                                                                 <?php
-
+                                                                                    
                                                                                         $id_produit = $unResultat['id_telephone'];
-                                                                                        $valider_produit = 'valider'.$unResultat['id_telephone'];
-                                                                                        require("affichage/vueCom.php");                                                                                        
+                                                                                        $valider_produit = 'valider'.$unResultat['id_telephone'];                                                                                                                                                                           
                                                                                         require("formulaire/formCom.php");
                                                                                         if(isset($_POST[$valider_produit]))
                                                                                         {
-                                                                                           $unControleur->insertNote($_POST);
+                                                                                            $unControleur->insertNote($_POST);
                                                                                         }
                                                                                         if(isset($_POST['Supprimer']))
                                                                                         {
@@ -94,6 +90,9 @@
                                                                                             $envoi = array ( "id_note"=>$id_note);
                                                                                             $unControleur->delete("note",$envoi);
                                                                                         }
+                                                                                        $resultat = $unControleur->selectNote($id_produit);
+                                                                                        require("affichage/vueCom.php");    
+
                                                                                     ?>
                                                                             </tfoot>
                                                                         </table>
