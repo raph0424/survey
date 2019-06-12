@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 12 juin 2019 à 12:22
+-- Généré le :  mer. 12 juin 2019 à 13:16
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -292,6 +292,7 @@ DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE IF NOT EXISTS `ticket` (
   `id_ticket` int(11) NOT NULL AUTO_INCREMENT,
   `auteur` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `objet` varchar(50) NOT NULL,
   `date` date NOT NULL,
   `contenu` varchar(50) NOT NULL,
@@ -300,15 +301,16 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   PRIMARY KEY (`id_ticket`),
   KEY `ticket_personne_FK` (`id_personne`),
   KEY `ticket_partenaire0_FK` (`id_partenaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ticket`
 --
 
-INSERT INTO `ticket` (`id_ticket`, `auteur`, `objet`, `date`, `contenu`, `id_personne`, `id_partenaire`) VALUES
-(1, '', 'Impossible de s\'inscrire à l\'event', '2019-04-12', 'Bonjour, je suis dans l\'impossibilité de m\'inscrir', 2, 1),
-(9, 'Julie', 're', '2019-05-28', 'ee', 2, 2);
+INSERT INTO `ticket` (`id_ticket`, `auteur`, `email`, `objet`, `date`, `contenu`, `id_personne`, `id_partenaire`) VALUES
+(16, 'Julie', '', 'Soucis', '2019-06-13', 'Bonjour j\'ai un problÃ¨me avec mon S10', 2, 1),
+(17, 'Julie', '', 'ecran', '2019-06-07', 'bonsoir , mon Ã©cran est cassÃ© que faire !', 2, 1),
+(18, 'kevin', '', 'Gros soucis', '2019-06-21', 'Mon tÃ©lÃ©phone ne s\'allume pas !', 3, 1);
 
 --
 -- Contraintes pour les tables déchargées
