@@ -5,13 +5,13 @@
     foreach ($resultat as $unResultat)
     {
         echo"<table class=' table table-bordered'>";
-    echo" <tr><th width='80%'>Commentaire de ".$unResultat['auteur']."</th><th width='10%'>Note</th>
+    echo" <tr><th width='60%'>Commentaire de ".$unResultat['auteur']."</th><th width='20%'>Note</th>
     " ;       if($_SESSION['prenom'] == $unResultat['auteur'] || $_SESSION['nom'] == "admin" && $unResultat['id_telephone'] == $id_produit)
     {
         echo "<th width='10%'>Supprimer commentaire</th>";
     }echo"</tr>";
     echo "<tr>
-         <td width='80%' height='100px'>".$unResultat['commentaire']."</td>
+         <td width='70%' height='100px'>".$unResultat['commentaire']."</td>
          <td>".$unResultat['score']." sur 5 </td> "; 
          if($_SESSION['prenom'] == $unResultat['auteur'])
          {
@@ -19,7 +19,7 @@
          <table>
          <input type='hidden' name='id_telephone' value='<?php echo $id_produit ;?>'>         
          <input type='hidden' name='hidden' value='".$unResultat['id_note']."'>
-         <input type='submit' name='Supprimer' value='Supprimer'>";
+         <input class ='buttonCom btn btn-primary'type='submit' name='Supprimer' value='Supprimer'>";
          echo"</table>
          </form> </td>         
          </tr>";

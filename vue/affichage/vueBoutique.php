@@ -76,7 +76,8 @@
                                                                                     <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
                                                                                 </tr>  
                                                                                 <?php
-                                                                                    
+                                                                                    if(isset($_SESSION['nom']))
+                                                                                    {
                                                                                         $id_produit = $unResultat['id_telephone'];
                                                                                         $valider_produit = 'valider'.$unResultat['id_telephone'];                                                                                                                                                                           
                                                                                         require("formulaire/formCom.php");
@@ -92,7 +93,7 @@
                                                                                         }
                                                                                         $resultat = $unControleur->selectNote($id_produit);
                                                                                         require("affichage/vueCom.php");    
-
+                                                                                    }
                                                                                     ?>
                                                                             </tfoot>
                                                                         </table>
