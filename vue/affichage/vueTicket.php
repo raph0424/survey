@@ -9,6 +9,7 @@ require_once("formulaire/formTicket.php");
 if(isset($_POST["envoyer"]))
 {
    $envoi = array ("auteur"=>$_SESSION['prenom'],
+   "email"=>$_SESSION['email'],
    "objet"=>$_POST['objet'], 
    "date"=>$_POST['date'],
    "contenu"=>$_POST['contenu'],

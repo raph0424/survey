@@ -28,10 +28,25 @@ foreach ($result1 as $unResultat)
          <table>
     <input type='hidden' name='hidden' value='".$unResultat['id_ticket']."'>
     <input class ='buttonCom btn btn-primary' type='submit' name='Supprimer' value='Supprimer'></td>
-    </br>
-    <input class ='buttonCom btn btn-primary' type='submit' name='Repondre' value='Répondre'></td>
     </table>
          </form></tr>";   
+
+
+
+      echo'  <form class="form-group" method="post" action="mailto:'.$unResultat["email"].'">
+    <table border=0>
+    <tr>
+
+        <tr>      
+    </table>
+    <div class="col-sm-6">
+        <p class = "pcom">Répondre au ticket</p>
+        <textarea class="form-control"  type="text" name="commentaire"></textarea></div>
+        </br>
+        <input class ="buttonCom1 btn btn-primary" type="submit" name="Envoyer" value="Envoyer">
+</form>';
+
+
 
 }
 
@@ -42,31 +57,13 @@ echo "</table>";
 <?php
 
 ?>
-<form class="form-group" method="post" action="">
-    <table border=0>
-    <tr>
-        <td class="td1">Note</td>
-            <td><select class="td1 form-control" name="score">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select></td>
-        </tr>
-        <tr>      
-    </table>
-    <div class="col-sm-6">
-        <p class = "pcom">Commentaire </p>
-        <textarea class="form-control"  type="text" name="commentaire"></textarea></div>
-        </br>
-        <input class ='buttonCom btn btn-primary' type="submit" name="<?php echo $valider_produit; ?>" value="Valider">
-        <input type="hidden" name="id_telephone" value="<?php echo $id_produit ;?>">
-        <input class ='buttonCom btn btn-primary' type="submit" name="Modifier" value="Modifier">
-</form>
 <style>
 .buttonCom 
 {
     margin-bottom : 5px;
+}
+.buttonCom1 
+{
+    margin-bottom : 60px;
 }
 </style>
