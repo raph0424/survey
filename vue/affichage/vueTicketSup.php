@@ -7,20 +7,27 @@ $id_partenaire = $_SESSION['id_partenaire'];
 $result = $unControleur->selectPartenaire();
 
 $result1 = $unControleur->selectTicketSup($id_partenaire);
-
+?>
+<div class="col-sm-6">
+<?php
 foreach ($result1 as $unResultat)
 {
     echo"<table class='table table-bordered'>";
-    echo" <tr><th width='400px'>Message de ".$unResultat['auteur']."</th><th width='200px'>objet : ".$unResultat['objet']."</th><th width='100px'>Supprimer message</th></tr>";       
-    echo "<td>".$unResultat['contenu']."</td>";   
-      
-      if($unResultat['id_partenaire'] == $id_partenaire)
-    {
-    }
+    echo" <tr><th width='40%'>Message de ".$unResultat['auteur']."</th><th width='10%'>Objet</th><th width='10%'> Date</th><th width='10%'>Supprimer message</th></tr>";       
+    echo "<tr><td width='40%'>".$unResultat['contenu']."</td><td width='10%'>".$unResultat['objet']."</td><td width='10%'>".$unResultat['date']."</td>
+    <input type='hidden' name='hidden' value='".$unResultat['id_ticket']."'><td>
+    <form class='form-group' action='' method='post'>
+         <table>
+    <input class ='buttonCom btn btn-primary' type='submit' name='Supprimer' value='Supprimer'></td>
+    </table>
+         </form></tr>";   
+
 }
 
 echo "</table>"; 
-
+?>
+</div>
+<?php
 require_once("formulaire/formTicket.php");
 
 if(isset($_POST["envoyer"]))
