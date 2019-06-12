@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","ppe","root","");
+$unControleur = new leControleur("localhost","event","root","");
 $result = $unControleur->selectTicket();
 
   ?>
@@ -31,15 +31,26 @@ $result = $unControleur->selectTicket();
       </div>
         
     <?php
+   
     require_once("NavBar.php");
+   
     ?>
     </div>
     </div>
   </header>
   </br></br>
  <center>
+
   <?php 
+  if (isset($_SESSION['nom']))
+  {
       require_once("affichage/vueTicket.php");
+  }
+  if (isset($_SESSION['accronyme'])) 
+  {
+    require_once("affichage/vueTicketSup.php");
+  }
+
   ?>
   </center>
 

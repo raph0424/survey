@@ -75,8 +75,6 @@ session_start();
     ?>
     </div>
   </header>
-<div class="nav_bar">
-</div>
 <center><h1></h1></center>
 <div class="row">
 <div class="col-sm-12">

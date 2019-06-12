@@ -1,7 +1,7 @@
 <link href="css/formstyle.css" rel="stylesheet">
 <style type="text/css">
 body {
-       background-color: #262626; 
+       background-color: white; 
 }
 .login-page {
   width: 360px;

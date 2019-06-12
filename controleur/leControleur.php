@@ -30,6 +30,10 @@ class leControleur
     {
         return $this->unModele->selectTicket();
     }
+    public function selectTicketSup($id_partenaire)
+    {
+        return $this->unModele->selectTicketSup($id_partenaire);
+    }
     public function selectProduit()
     {
         return $this->unModele->selectProduit();

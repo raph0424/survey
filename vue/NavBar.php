@@ -28,6 +28,9 @@ if (isset($_SESSION['mdp'])) {
         <?php if (isset($_SESSION['nom'])) { ?>
             <li class="buy-tickets"><a href="ticket.php">Support</a></li>
         <?php } ?>
+        <?php if (isset($_SESSION['accronyme'])) { ?>
+            <li class="buy-tickets"><a href="ticket.php">Ticket Support</a></li>
+        <?php } ?>
 
     </ul>
 </nav>
