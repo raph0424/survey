@@ -18,7 +18,7 @@
 </body>
 <style>
 body {
-       background-color: #262626; 
+       background-color: white; 
 }
 .login-page {
   width: 360px;
