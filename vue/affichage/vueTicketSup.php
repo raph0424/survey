@@ -3,7 +3,24 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <?php
+$id_partenaire = $_SESSION['id_partenaire'];
 $result = $unControleur->selectPartenaire();
+
+$result1 = $unControleur->selectTicketSup($id_partenaire);
+
+foreach ($result1 as $unResultat)
+{
+    echo"<table class='table table-bordered'>";
+    echo" <tr><th width='400px'>Message de ".$unResultat['auteur']."</th><th width='200px'>objet : ".$unResultat['objet']."</th><th width='100px'>Supprimer message</th></tr>";       
+    echo "<td>".$unResultat['contenu']."</td>";   
+      
+      if($unResultat['id_partenaire'] == $id_partenaire)
+    {
+    }
+}
+
+echo "</table>"; 
+
 require_once("formulaire/formTicket.php");
 
 if(isset($_POST["envoyer"]))
