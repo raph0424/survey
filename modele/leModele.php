@@ -141,7 +141,7 @@ public function selectEvent()
 {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from event;";
+            $requete = "select * from event ;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
@@ -151,6 +151,7 @@ public function selectEvent()
             // extraction des données
             $result = $select->fetchAll();
             return $result;
+            
         }
     }
     public function selectProduit()
