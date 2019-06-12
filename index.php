@@ -61,6 +61,9 @@ if(isset($_SESSION['mdp']))
               ?><li class="buy-tickets"><a href="vue/ticket.php">Support</a></li><?php
           }
           ?>
+        <?php if (isset($_SESSION['accronyme'])) { ?>
+            <li class="buy-tickets"><a href="vue/ticket.php">Ticket Support</a></li>
+        <?php } ?>
           
         </ul>
       </nav>
