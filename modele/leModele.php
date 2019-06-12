@@ -293,6 +293,21 @@ public function selectEvent()
             return $result;
         }
     }
+    public function selectTicketSup($id_partenaire)
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from ticket where :id_partenaire = id_partenaire;";
+            $donnees = array(":id_partenaire"=>$id_partenaire);                    
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute($donnees);
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+        }
+    }
 
 }
 
