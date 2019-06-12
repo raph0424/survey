@@ -1,13 +1,13 @@
 <?php
 session_start();
       require_once("../controleur/leControleur.php");
-      $unControleur = new leControleur("localhost","event","root","");
+      $unControleur = new leControleur("localhost","ppe","root","");
       $res = $unControleur->selectLieu();
       if(isset($_POST["create"]))
       {
          $envoi = array ("designation"=>$_POST['designation'], 
          "tarif"=>$_POST['tarif'],
-         "nb_places"=>$_POST['nb_places'],
+         "nbplaces"=>$_POST['nb_places'],
          "date_event"=>$_POST['date_event'], 
          "horaires"=>$_POST['horaire'],
          "description"=>$_POST['description'],
@@ -16,6 +16,32 @@ session_start();
          "id_lieu"=>$_POST['lieu']
         );
          $unControleur->insert("event",$envoi);
+         
+        $image_name1 = $_FILES['image1']['name'];
+	$image_type1 = $_FILES['image1']['type'];
+	$image_size1 = $_FILES['image1']['size'];
+	$image_tmp_name1= $_FILES['image1']['tmp_name'];
+	move_uploaded_file($image_tmp_name1,"../img/event/Template1.jpg");
+        
+        $image_name2 = $_FILES['image2']['name'];
+	$image_type2 = $_FILES['image2']['type'];
+	$image_size2 = $_FILES['image2']['size'];
+	$image_tmp_name2= $_FILES['image2']['tmp_name'];
+	move_uploaded_file($image_tmp_name2,"../img/event/Template2.jpg");
+        
+        $image_name3 = $_FILES['image3']['name'];
+	$image_type3 = $_FILES['image3']['type'];
+	$image_size3 = $_FILES['image3']['size'];
+	$image_tmp_name3= $_FILES['image3']['tmp_name'];
+	move_uploaded_file($image_tmp_name3,"../img/event/Template3.jpg");
+        
+        $image_name4 = $_FILES['image4']['name'];
+	$image_type4 = $_FILES['image4']['type'];
+	$image_size4 = $_FILES['image4']['size'];
+	$image_tmp_name4 = $_FILES['image4']['tmp_name'];
+		
+ 
+	move_uploaded_file($image_tmp_name4,"../img/event/Template4.jpg");
           //header('Location: evenement.php');
           exit;
         }

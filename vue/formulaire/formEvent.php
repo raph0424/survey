@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form class="form-horizontal" action="" method="post">
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="designation" class="col-sm-4 control-label">Désignation de l&rsquo;événement</label>
             <div class="col-sm-8">
@@ -49,7 +49,7 @@
         <div class="form-group">
             <label for="image" class="col-sm-4 control-label">Image associée n°1</label>
             <div class="col-sm-8">
-                <input type="file" id="image" name="image1" class="form-control">
+                <input type="file" id="image1" name="image1" class="form-control">
             </div>
         </div>
         <div class="form-group">
