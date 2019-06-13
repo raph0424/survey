@@ -17,31 +17,41 @@ session_start();
         );
          $unControleur->insert("event",$envoi);
          
+        $Template1 = $_POST["designation"]."1";
         $image_name1 = $_FILES['image1']['name'];
 	$image_type1 = $_FILES['image1']['type'];
 	$image_size1 = $_FILES['image1']['size'];
 	$image_tmp_name1= $_FILES['image1']['tmp_name'];
-	move_uploaded_file($image_tmp_name1,"../img/event/Template1.jpg");
-        
+        move_uploaded_file($image_tmp_name1,"../img/event/$Template1.jpg");
+
+                
+        $Template2 = $_POST["designation"]."2";
         $image_name2 = $_FILES['image2']['name'];
 	$image_type2 = $_FILES['image2']['type'];
 	$image_size2 = $_FILES['image2']['size'];
 	$image_tmp_name2= $_FILES['image2']['tmp_name'];
-	move_uploaded_file($image_tmp_name2,"../img/event/Template2.jpg");
+	move_uploaded_file($image_tmp_name2,"../img/event/$Template2.jpg");
         
+        $Template3 = $_POST["designation"]."3";
         $image_name3 = $_FILES['image3']['name'];
 	$image_type3 = $_FILES['image3']['type'];
 	$image_size3 = $_FILES['image3']['size'];
 	$image_tmp_name3= $_FILES['image3']['tmp_name'];
-	move_uploaded_file($image_tmp_name3,"../img/event/Template3.jpg");
+	move_uploaded_file($image_tmp_name3,"../img/event/$Template3.jpg");
         
+        $Template4 = $_POST["designation"]."4";
         $image_name4 = $_FILES['image4']['name'];
 	$image_type4 = $_FILES['image4']['type'];
 	$image_size4 = $_FILES['image4']['size'];
 	$image_tmp_name4 = $_FILES['image4']['tmp_name'];
-		
- 
-	move_uploaded_file($image_tmp_name4,"../img/event/Template4.jpg");
+        move_uploaded_file($image_tmp_name4,"../img/event/$Template4.jpg");
+        
+        $Miniature = $_POST["designation"]."mini";
+        $image_name5 = $_FILES['image5']['name'];
+	$image_type5 = $_FILES['image5']['type'];
+	$image_size5 = $_FILES['image5']['size'];
+	$image_tmp_name5 = $_FILES['image5']['tmp_name'];
+        move_uploaded_file($image_tmp_name5,"../img/event/$Miniature.jpg");
           //header('Location: evenement.php');
           exit;
         }

@@ -1,4 +1,5 @@
 <div class="container-fluid">
+    <h2> Formulaire de création de votre Evénement </h2>
     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="designation" class="col-sm-4 control-label">Désignation de l&rsquo;événement</label>
@@ -68,6 +69,12 @@
             <label for="image" class="col-sm-4 control-label">Image associée n°4</label>
             <div class="col-sm-8">
                 <input type="file" id="image" name="image4" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="image" class="col-sm-4 control-label">Miniature de votre Event</label>
+            <div class="col-sm-8">
+                <input type="file" id="image" name="image5" class="form-control">
             </div>
         </div>
         <div class="form-group">
