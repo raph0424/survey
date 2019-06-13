@@ -150,12 +150,10 @@ if(isset($_SESSION['mdp']))
             <div class="speaker">
               <img src="img/moi.jpg" alt="Speaker 1" class="img-fluid">
               <div class="details">
-                <h3><a href="kevin.php">Kevin LEFEBVRE</a></h3>
+                <h3><a href="vue/kevin.php">Kevin LEFEBVRE</a></h3>
                 <p>Developpeur</p>
                 <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
                   <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
                   <a href=""><i class="fa fa-linkedin"></i></a>
                 </div>
               </div>
@@ -342,8 +340,8 @@ if(isset($_SESSION['mdp']))
     <section id="gallery" class="wow fadeInUp">
       <div class="container">
         <div class="section-header">
-          <h2>Gallerie</h2>
-          <p>Liste de photos des événements récent</p>
+          <h2>Galerie</h2>
+          <p>Liste de photos des événements récents</p>
         </div>
       </div>
       <div class="owl-carousel gallery-carousel">
