@@ -25,7 +25,7 @@
 
                                     <div class="col-lg-4 col-md-6 mb-4">
                                         <div class="card h-100">
-                                            <a href="#" data-toggle="modal" data-target="#<?php echo $idmodal; ?>"><img class="card-img-top" src="../img/Produit/produit<?php echo $unResultat['id_telephone']; ?>.jpg" alt=""></a>
+                                            <a href="#" data-toggle="modal" data-target="#<?php echo $idmodal; ?>"><img class="card-img-top" src="../img/Produit/<?php echo $unResultat['designation']; ?>.jpg" alt=""></a>
                                             <div class="card-body">
                                                 <h4 class="card-title">
                                                 <?php
@@ -48,7 +48,7 @@
                                                                     <div class="col-sm-12">
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
-                                                                                <img class="card-img-top" src="../img/Produit/produit<?php echo $unResultat['id_telephone'];?>.jpg" alt="">
+                                                                                <img class="card-img-top" src="../img/Produit/<?php echo $unResultat['designation'];?>.jpg" alt="">
                                                                             </div>
                                                                         </div>
                                                                     </div>

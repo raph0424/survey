@@ -78,7 +78,8 @@
                                                                         </tbody>
                                                                         <tfoot>
                                                                             <tr>
-                                                                                <td><a href="#" data-dismiss ="modal" class="btn btn-warning"><i class="fa fa-angle-left"></i> Retour aux événements</a></td>
+                                                                                <?php $id = $unResultat['id_event']; ?>
+                                                                                <td><a href="Vision<?php echo $unResultat['categorie'];?>.php?id=<?php echo $id?>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Visionnez cet événement !</a></td>
                                                                                 <td colspan="2" class="hidden-xs"></td>
                                                                                 <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
                                                                             </tr>

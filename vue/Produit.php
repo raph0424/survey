@@ -2,57 +2,26 @@
 session_start();
       require_once("../controleur/leControleur.php");
       $unControleur = new leControleur("localhost","ppe","root","");
-      $res = $unControleur->selectLieu();
       if(isset($_POST["create"]))
       {
          $envoi = array ("designation"=>$_POST['designation'], 
-         "tarif"=>$_POST['tarif'],
-         "nbplaces"=>$_POST['nb_places'],
-         "date_event"=>$_POST['date_event'], 
-         "horaires"=>$_POST['horaire'],
-         "description"=>$_POST['description'],
-         "categorie"=>'event 3',
-         "valid"=>1,
-         "id_lieu"=>$_POST['lieu']
+         "Prix"=>$_POST['Prix'],
+         "poids"=>$_POST['poids'],
+         "taille"=>$_POST['taille'], 
+         "couleur"=>$_POST['couleur'],
+         "date_sortie"=>$_POST['date_sortie'],
+         "id_partenaire"=>$_SESSION['id_partenaire']
         );
-         $unControleur->insert("event",$envoi);
+         $unControleur->insert("produit",$envoi);
          
-        $Template1 = $_POST["designation"]."1";
-        $image_name1 = $_FILES['image1']['name'];
-	$image_type1 = $_FILES['image1']['type'];
-	$image_size1 = $_FILES['image1']['size'];
-	$image_tmp_name1= $_FILES['image1']['tmp_name'];
-        move_uploaded_file($image_tmp_name1,"../img/event/$Template1.jpg");
-
-                
-        $Template2 = $_POST["designation"]."2";
-        $image_name2 = $_FILES['image2']['name'];
-	$image_type2 = $_FILES['image2']['type'];
-	$image_size2 = $_FILES['image2']['size'];
-	$image_tmp_name2= $_FILES['image2']['tmp_name'];
-	move_uploaded_file($image_tmp_name2,"../img/event/$Template2.jpg");
-        
-        $Template3 = $_POST["designation"]."3";
-        $image_name3 = $_FILES['image3']['name'];
-	$image_type3 = $_FILES['image3']['type'];
-	$image_size3 = $_FILES['image3']['size'];
-	$image_tmp_name3= $_FILES['image3']['tmp_name'];
-	move_uploaded_file($image_tmp_name3,"../img/event/$Template3.jpg");
-        
-        $Template4 = $_POST["designation"]."4";
-        $image_name4 = $_FILES['image4']['name'];
-	$image_type4 = $_FILES['image4']['type'];
-	$image_size4 = $_FILES['image4']['size'];
-	$image_tmp_name4 = $_FILES['image4']['tmp_name'];
-        move_uploaded_file($image_tmp_name4,"../img/event/$Template4.jpg");
-        
-        $Miniature = $_POST["designation"]."mini";
-        $image_name5 = $_FILES['image5']['name'];
-	$image_type5 = $_FILES['image5']['type'];
-	$image_size5 = $_FILES['image5']['size'];
-	$image_tmp_name5 = $_FILES['image5']['tmp_name'];
-        move_uploaded_file($image_tmp_name5,"../img/event/$Miniature.jpg");
-        header('Location: Produit.php');
+        $NomTel = $_POST["designation"];
+        $image_name1 = $_FILES['imagetel']['name'];
+	$image_type1 = $_FILES['imagetel']['type'];
+	$image_size1 = $_FILES['imagetel']['size'];
+	$image_tmp_name1= $_FILES['imagetel']['tmp_name'];
+        move_uploaded_file($image_tmp_name1,"../img/Produit/$NomTel.jpg");
+        var_dump($envoi);
+        header('Location: evenement.php');
           exit;
         }
   ?>
@@ -86,7 +55,7 @@ session_start();
     </div>
   </header>
   <?php 
-      require_once("formulaire/formEvent.php");
+      require_once("formulaire/formProduit.php");
   ?>
 <footer id="footer">
     <div class="footer-top">

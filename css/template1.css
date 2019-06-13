@@ -1,0 +1,38 @@
+html{
+   scroll-behavior: smooth;
+}
+
+.body{
+  background-color : #bdf9a4;
+  color : #3a3a3a;
+}
+.date_img:hover{
+  color: white;
+}
+  /* :::::::::::::::::::::::::::::::::: ICONE ::::::::::::::::::::::::::::::::::::: */
+  .fa {
+    color: #96e575;
+    background-color: #2d2d2d;
+    margin: 5px;
+    width: 50px;
+    padding-bottom: 17px;
+    padding-top: 17px;
+    border-radius: 50%;
+  }
+  .fa.fa-facebook:hover {
+  background-color:  rgb(57,84,152);
+  color: white;
+  }
+  .fa.fa-twitter:hover {
+  background-color:  rgb(97,163,235);
+  color: white;
+  }
+  .fa.fa-instagram:hover {
+  background-color: rgb(247,74,83);
+  color: white;
+  }
+
+  .fa.fa-snapchat:hover {
+  background-color:  rgb(247,244,1);
+  color: white;
+  }

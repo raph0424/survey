@@ -21,12 +21,15 @@
 </head>
 
 
-<body>
+<body class='body'>
+    <?php
+                        foreach ($result as $unResultat) {
+                            if($unResultat['id_event'] == $_GET['id']){ ?>
 <!-- :::::::::::::::::::::::::::::::::::: AFFICHE :::::::::::::::::::::::::::::::::-->
     <div class="row">
       <div class="col-sm-12">
         <center>
-          <img class="img-responsive" src="affiche.jpg" alt="VotreImage" width="900" height="300">
+          <img class="img-responsive" src="../img/event/<?php echo $unResultat['designation']; ?>1.jpg" alt="VotreImage" width="900" height="300">
         </center>
       </div>
     </div>
@@ -36,12 +39,12 @@
       <div class="col-sm-12" >
         <center>
           <br/><br/><br/>
-            <h1 class="font-weight-light">Titre Event</h1>
-            <p class="font-italic">Organisateur</p>
+            <h1 class="font-weight-light"><?php echo $unResultat['designation']?></h1>
+            <p class="font-italic">Organisateur : <?php echo$_SESSION['nom_marque']?></p>
 <!-- ::::::::::::::::::::::::::::::::::: DATE  ::::::::::::::::::::::::::::::: -->
             <p  class="font-weight-light">              
               <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=evenement&dates=20190612T180000Z/20190612T210000Z&ctz=Europe/Paris&details=reserve%20ta%20soiree%20pour%20assister%20a%20cet%20evenement&location=paris,%20france" class="date_img">
-                 <img class="img-responsive" src="date.png">
+                 <img class="img-responsive" src="../exemple_template3/date.png">
               </a>
               <br/>
               <small>click here ↑</small><br/><br/><br/>
@@ -78,16 +81,16 @@
    <div class="col-sm-6">
       <br/>
        <center style="margin-left:180px">
-          <h2  class="font-weight-light">Nom du Produit</h2>
+          <h2  class="font-weight-light">Description</h2>
           <br/>
        </center>
-            <p  class="font-weight-light" style="margin-left:180px">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <p  class="font-weight-light" style="margin-left:180px"><?php echo $unResultat['description']?></p>
     </div>
 <!-- ::::::::::::::::::::::::::::: IMAGE 1 ::::::::::::::::::::::::::::::::::::: -->
       <div class="col-sm-6">
         <div>
           <center>
-            <img class="img-responsive" src="img.png" alt="VotreImage">
+            <img class="img-responsive" src="../img/event/<?php echo $unResultat['designation']?>2.jpg" alt="VotreImage">
           </center>
         </div>
       </div>
@@ -102,7 +105,7 @@
       <div class="col-sm-6">
         <div>
           <center>
-            <img class="img-responsive" src="img.png" alt="VotreImage" >
+            <img class="img-responsive" src="../img/event/<?php echo $unResultat['designation']?>3.jpg" alt="VotreImage" >
           </center>
         </div>
       </div>
@@ -110,14 +113,16 @@
       <div class="col-sm-6">
       <br/>
        <center style="margin-right:180px">
-          <h2  class="font-weight-light">Nom du Produit</h2>
+          <h2  class="font-weight-light">Horaires</h2>
           <br/>
        </center>
-            <p  class="font-weight-light" style="margin-right:180px">Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <p  class="font-weight-light" style="margin-right:180px"><?php echo $unResultat['horaires']?></p>
     </div>
   </div>
     
-
+ <?php 
+                            }
+                        }?>
 </body>
 
 
@@ -155,7 +160,7 @@ html{
    scroll-behavior: smooth;
 }
 
-body{
+.body{
   background-color : #212121;
   color : #869aaa;
 }

@@ -48,25 +48,25 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="image" class="col-sm-4 control-label">Image associée n°1</label>
+            <label for="image" class="col-sm-4 control-label">Bannière de votre Evénement format 900 x 300</label>
             <div class="col-sm-8">
                 <input type="file" id="image1" name="image1" class="form-control">
             </div>
         </div>
         <div class="form-group">
-            <label for="image" class="col-sm-4 control-label">Image associée n°2</label>
+            <label for="image" class="col-sm-4 control-label">Image associée à la description</label>
             <div class="col-sm-8">
                 <input type="file" id="image" name="image2" class="form-control">
             </div>
         </div>
         <div class="form-group">
-            <label for="image" class="col-sm-4 control-label">Image associée n°3</label>
+            <label for="image" class="col-sm-4 control-label">Image illustrative </label>
             <div class="col-sm-8">
                 <input type="file" id="image" name="image3" class="form-control">
             </div>
         </div>
         <div class="form-group">
-            <label for="image" class="col-sm-4 control-label">Image associée n°4</label>
+            <label for="image" class="col-sm-4 control-label">Image associée n°4(inutile)</label>
             <div class="col-sm-8">
                 <input type="file" id="image" name="image4" class="form-control">
             </div>

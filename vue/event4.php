@@ -11,7 +11,7 @@ session_start();
          "date_event"=>$_POST['date_event'], 
          "horaires"=>$_POST['horaire'],
          "description"=>$_POST['description'],
-         "categorie"=>'event4',
+         "categorie"=>'event 4',
          "valid"=>1,
          "id_lieu"=>$_POST['lieu']
         );
@@ -52,7 +52,7 @@ session_start();
 	$image_size5 = $_FILES['image5']['size'];
 	$image_tmp_name5 = $_FILES['image5']['tmp_name'];
         move_uploaded_file($image_tmp_name5,"../img/event/$Miniature.jpg");
-          //header('Location: evenement.php');
+        header('Location: Produit.php');
           exit;
         }
   ?>
