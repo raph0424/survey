@@ -44,6 +44,7 @@ if(isset($_POST["sub"]))
     require_once("NavBar.php");
     ?>
     </div>
+    </br>
   </header>
 <div>
   <?php 

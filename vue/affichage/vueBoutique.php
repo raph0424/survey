@@ -6,8 +6,7 @@
     <div class="list-group">
         <?php foreach ($result1 as $Resultat) { ?> 
             <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#partenaire-<?php echo $Resultat['id_partenaire']; ?>" aria-expanded="false" aria-controls="#partenaire-<?php echo $Resultat['id_partenaire']; ?>">
-                <?php echo $Resultat['nom_marque']; ?>
-            </button>
+                <?php echo $Resultat['nom_marque']; ?></button>
             <br>
         <?php } ?>
     </div>
@@ -79,9 +78,7 @@
                                                                                     if(isset($_SESSION['nom']))
                                                                                     {
                                                                                         $id_produit = $unResultat['id_telephone'];
-                                                                                        $valider_produit = 'valider'.$unResultat['id_telephone'];   
-                                                                                        $result1 = $unControleur->selectPartenaire();
-                                                                                        $result = $unControleur->selectProduit();                                                                                                                                                                        
+                                                                                        $valider_produit = 'valider'.$unResultat['id_telephone'];                                                                                                                                                                       
                                                                                         if(isset($_POST[$valider_produit]))
                                                                                         {
                                                                                             $unControleur->insertNote($_POST);
@@ -97,8 +94,6 @@
                                                                                             $id_note = $_GET['id_note'];
                                                                                             $unControleur->updateNote($_POST,$id_note);
                                                                                         }
-                                                                                        $result1 = $unControleur->selectPartenaire();
-                                                                                        $result = $unControleur->selectProduit();
                                                                                         $resultat = $unControleur->selectNote($id_produit);
                                                                                         require("formulaire/formCom.php");
                                                                                         require("affichage/vueCom.php");  
