@@ -10,7 +10,9 @@
 --------------------------------------------------------------*/
 
 body {
-  background: #fff;
+  background-image:  url("../img/test.jpg");
+  background: cover;
+  background: no-repeat;
   color: #2f3138;
   font-family: "Open Sans", sans-serif;
 }
