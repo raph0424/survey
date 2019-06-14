@@ -110,7 +110,7 @@ Si mon profil vous intéresse, n'hésitez pas à me contacter.
               Paris, P 75015<br>
               FRANCE <br>
               <strong>Téléphone:</strong>06.47.38.99.23<br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Email:</strong>orange.event2019@gmail.com<br>
             </p>
             <div class="social-links">
               <a href="https://twitter.com/orange?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="twitter"><i class="fa fa-twitter"></i></a>

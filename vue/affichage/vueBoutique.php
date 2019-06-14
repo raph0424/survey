@@ -79,8 +79,9 @@
                                                                                     if(isset($_SESSION['nom']))
                                                                                     {
                                                                                         $id_produit = $unResultat['id_telephone'];
-                                                                                        $valider_produit = 'valider'.$unResultat['id_telephone'];                                                                                                                                                                           
-                                                                                        require("formulaire/formCom.php");
+                                                                                        $valider_produit = 'valider'.$unResultat['id_telephone'];   
+                                                                                        $result1 = $unControleur->selectPartenaire();
+                                                                                        $result = $unControleur->selectProduit();                                                                                                                                                                        
                                                                                         if(isset($_POST[$valider_produit]))
                                                                                         {
                                                                                             $unControleur->insertNote($_POST);
@@ -91,9 +92,18 @@
                                                                                             $envoi = array ( "id_note"=>$id_note);
                                                                                             $unControleur->delete("note",$envoi);
                                                                                         }
+                                                                                        if(isset($_POST['Modifier']))
+                                                                                        {
+                                                                                            $id_note = $_GET['id_note'];
+                                                                                            $unControleur->updateNote($_POST,$id_note);
+                                                                                        }
+                                                                                        $result1 = $unControleur->selectPartenaire();
+                                                                                        $result = $unControleur->selectProduit();
                                                                                         $resultat = $unControleur->selectNote($id_produit);
-                                                                                        require("affichage/vueCom.php");    
-                                                                                    }
+                                                                                        require("formulaire/formCom.php");
+                                                                                        require("affichage/vueCom.php");  
+                                                                                    }  
+                                                                                    
                                                                                     ?>
                                                                             </tfoot>
                                                                         </table>
