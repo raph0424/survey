@@ -4,7 +4,7 @@ session_start();
 require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","event","root","");
 $result1 = $unControleur->selectPartenaire();
-$result = $unControleur->selectProduit();
+$result = $unControleur->selectProduit();    
   ?>
 <!DOCTYPE html>
 <html lang="fr">
