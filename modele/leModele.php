@@ -188,6 +188,23 @@ public function selectEvent()
             
         }
     }
+    public function selectInscrire()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from inscrire;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
     
     public function selectPartenaire()
 {

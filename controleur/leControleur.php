@@ -26,6 +26,10 @@ class leControleur
     {
         return $this->unModele->selectLieu();
     }
+    public function selectInscrire()
+    {
+        return $this->unModele->selectInscrire();
+    }
     public function selectTicket()
     {
         return $this->unModele->selectTicket();

@@ -81,11 +81,23 @@
                                                                                 <?php $id = $unResultat['id_event']; ?>
                                                                                 <td><a href="Vision<?php echo $unResultat['categorie'];?>.php?id=<?php echo $id?>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Visionnez cet événement !</a></td>
                                                                                 <td colspan="2" class="hidden-xs"></td>
+                                                                                <?php if(isset($_SESSION['id_personne'])){?>
                                                                                 <form class="form-group" action="" method="post">
                                                                                     <td><input type="hidden" name="id_event" value ="<?php echo $unResultat['id_event']?>"></td>
                                                                                     <td><input type="hidden" name="id_personne" value ="<?php echo $_SESSION['id_personne']?>"></td>
                                                                                     <td><input data-toggle="modal" id="#ignismyModal" type="submit" name="sub" class="btn btn-success btn-block"></td>
                                                                                 </form>
+                                                                                <?php }?>
+                                                                                <?php if(isset($_SESSION['id_partenaire'])){?>
+                                                                                <?php $i = 0;
+                                                                                foreach ($results as $unResultats) { 
+                                                                                   if($unResultats['id_event'] == $unResultat['id_event']){ 
+                                                                                       $i++;
+                                                                                }
+                                                                                }
+                                                                                ?>
+                                                                                <tr><th>Il y a actuellement : <?php echo $i; ?> influenceurs inscrits à cet événement</th></tr>
+                                                                                <?php } ?>
                                                                             </tr>
                                                                         </tfoot>
                                                                     </table>
