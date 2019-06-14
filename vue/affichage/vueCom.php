@@ -31,9 +31,10 @@
          }
     }
     echo "</table>"; 
+   if ($j > 0){
     echo "<tr> "
     . "<th> Moyenne des notes du produit : " .($tot / $j)."</th>"
     . "</tr>";
- 
+   }
 
 ?>
