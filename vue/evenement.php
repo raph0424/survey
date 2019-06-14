@@ -2,7 +2,7 @@
 session_start();
 //sleep(10);
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","ppe","root","");
+$unControleur = new leControleur("localhost","event","root","");
 $result = $unControleur->selectEvent();
 if(isset($_POST["sub"]))
       {
