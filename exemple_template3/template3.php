@@ -39,7 +39,7 @@
       <div class="col-sm-12" >
         <center>
           <br/><br/><br/>
-            <h1 class="font-weight-light"><?php echo $unResultat['designation']?></h1>
+            <h1 class="h11 font-weight-light"><?php echo $unResultat['designation']?></h1>
             <p class="font-italic">Organisateur : <?php echo$_SESSION['nom_marque']?></p>
 <!-- ::::::::::::::::::::::::::::::::::: DATE  ::::::::::::::::::::::::::::::: -->
             <p  class="font-weight-light">              
@@ -81,7 +81,7 @@
    <div class="col-sm-6">
       <br/>
        <center style="margin-left:180px">
-          <h2  class="font-weight-light">Description</h2>
+          <h2  class="h11 font-weight-light">Description</h2>
           <br/>
        </center>
             <p  class="font-weight-light" style="margin-left:180px"><?php echo $unResultat['description']?></p>
@@ -129,6 +129,10 @@
 
 <style>
   /* :::::::::::::::::::::::::::::::::: ICONE ::::::::::::::::::::::::::::::::::::: */
+
+  .h11{
+  color: white;
+}
   .fa {
     color: #869aaa;
     background-color: #2d2d2d;

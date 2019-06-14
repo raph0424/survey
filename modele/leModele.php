@@ -282,6 +282,9 @@ public function selectEvent()
                        $insert->execute($donnees);
                    } 
                 }
+
+
+                
             
 
             public function selectNote($id_produit)
