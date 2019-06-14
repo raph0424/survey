@@ -15,11 +15,13 @@
          <td>".$unResultat['score']." sur 5 </td> "; 
          if($_SESSION['prenom'] == $unResultat['auteur'])
          {
-         echo"<td> <form class='form-group' action='' method='post'>
+         echo"<td> <form class='form-group' action='boutique.php?id_note=".$unResultat['id_note']."' method='post'>
          <table>
-         <input type='hidden' name='id_telephone' value='<?php echo $id_produit ;?>'>         
+         <input type='hidden' name='id_telephone' value='".$id_produit."'>         
          <input type='hidden' name='hidden' value='".$unResultat['id_note']."'>
-         <input class ='buttonCom btn btn-primary'type='submit' name='Supprimer' value='Supprimer'>";
+         <input class ='buttonCom btn btn-primary'type='submit' name='Supprimer' value='Supprimer'>
+         <input class ='buttonCom btn btn-primary'type='submit' name='modifier' value='Modifier'>
+         ";
          echo"</table>
          </form> </td>         
          </tr>";

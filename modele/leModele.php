@@ -310,6 +310,19 @@ public function selectEvent()
         }
     }
 
+    public function updateNote($tab, $id_note)
+{
+    if($this->unPdo!=null)
+    {
+            $requete ="update note set score = :score, commentaire = :commentaire where id_note = :id_note;";
+            $donnees = array(":score"=>$tab['score'],":commentaire"=>$tab['commentaire'],":id_note"=>$id_note);
+            $insert = $this->unPdo->prepare($requete);
+            $insert->execute($donnees);
+            var_dump($requete);
+
+    }
+}
+
 }
 
 

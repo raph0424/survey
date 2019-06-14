@@ -63,6 +63,10 @@ class leControleur
       {
         $this->unModele->insertNote($tab);
       }
+      public function updateNote($tab,$id_note)
+      {
+        $this->unModele->updateNote($tab,$id_note);
+      }
       public function selectAttribut()
       {
           return $this->unModele->selectAttribut();
