@@ -45,7 +45,7 @@ session_start();
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6 footer-info">
-            <img src="img/logo.png" alt="TheEvenet">
+            <img src="../img/logo.png" alt="TheEvenet">
             <p>Notre Groupe est l’héritier d’une histoire plurielle, riche de défis relevés, d'innovations audacieuses et d'une solidarité forte entre les femmes et les hommes qui ont partagé cette dynamique. Orange, héritier de France Télécom, porte les valeurs d’un groupe mondial d’origine française, fier de ses racines, mais aussi fier de ses conquêtes à l’échelle du monde. Une épopée à découvrir à travers 30 moments forts et 130 dates clés qui constituent la mémoire de notre entreprise, d’hier à aujourd’hui.</p>
           </div>
           <div class="col-lg-3 col-md-6 footer-links">
@@ -71,7 +71,7 @@ session_start();
               Paris, P 75015<br>
               FRANCE <br>
               <strong>Téléphone:</strong>06.47.38.99.23<br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Email:</strong>orange.event2019@gmail.com<br>
             </p>
             <div class="social-links">
               <a href="https://twitter.com/orange?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="twitter"><i class="fa fa-twitter"></i></a>
