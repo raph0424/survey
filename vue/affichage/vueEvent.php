@@ -81,7 +81,11 @@
                                                                                 <?php $id = $unResultat['id_event']; ?>
                                                                                 <td><a href="Vision<?php echo $unResultat['categorie'];?>.php?id=<?php echo $id?>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Visionnez cet événement !</a></td>
                                                                                 <td colspan="2" class="hidden-xs"></td>
-                                                                                <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
+                                                                                <form class="form-group" action="" method="post">
+                                                                                    <td><input type="hidden" name="id_event" value ="<?php echo $unResultat['id_event']?>"></td>
+                                                                                    <td><input type="hidden" name="id_personne" value ="<?php echo $_SESSION['id_personne']?>"></td>
+                                                                                    <td><input data-toggle="modal" id="#ignismyModal" type="submit" name="sub" class="btn btn-success btn-block"></td>
+                                                                                </form>
                                                                             </tr>
                                                                         </tfoot>
                                                                     </table>

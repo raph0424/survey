@@ -4,6 +4,15 @@ session_start();
 require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","ppe","root","");
 $result = $unControleur->selectEvent();
+if(isset($_POST["sub"]))
+      {
+         $envoi = array ("id_event"=>$_POST['id_event'], 
+         "id_personne"=>$_POST['id_personne'],
+         "date_inscription"=>date('Y-m-d H:i:s'),
+         "qualite"=>"influenceur"
+        );
+         $unControleur->insert("inscrire",$envoi);
+      }
   ?>
 <!DOCTYPE html>
 <html lang="fr">
