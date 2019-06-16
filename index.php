@@ -175,15 +175,12 @@ if(isset($_SESSION['mdp']))
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/3.jpg" alt="Speaker 3" class="img-fluid">
+              <img src="img/mc.jpg" alt="Marie-Camille" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Chavane Marie-Camille</h3>
-                <p>Developpeur</p>
+                <h3><a href="vue/mc.php">Marie-Camille CHAVANNE</h3>
+                <p>Developpeuse</p>
                 <div class="social">
-                  <a href=""><i class="fa fa-twitter"></i></a>
-                  <a href=""><i class="fa fa-facebook"></i></a>
-                  <a href=""><i class="fa fa-google-plus"></i></a>
-                  <a href=""><i class="fa fa-linkedin"></i></a>
+                  <a href="https://www.linkedin.com/in/marie-camille-chavanne-64b717bb/"><i class="fa fa-linkedin"></i></a>
                 </div>
               </div>
             </div>
