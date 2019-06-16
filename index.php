@@ -161,9 +161,9 @@ if(isset($_SESSION['mdp']))
           </div>
           <div class="col-lg-4 col-md-6">
             <div class="speaker">
-              <img src="img/speakers/2.jpg" alt="Speaker 2" class="img-fluid">
+              <img src="img/raph.jpg" alt="Speaker 2" class="img-fluid">
               <div class="details">
-                <h3><a href="speaker-details.html">Raphael Maria</a></h3>
+                <h3><a href="vue/raph.php">Raphael Maria</a></h3>
                 <p>Developpeur</p>
                 <div class="social">
                   <a href=""><i class="fa fa-twitter"></i></a>

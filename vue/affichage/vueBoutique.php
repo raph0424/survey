@@ -55,17 +55,51 @@
 
                                                                 <div class="modal-body">
                                                                     <div>
+                                                                        
                                                                         <table>
+                                                                            
                                                                             <thead>
+                                                                                <?php 
+                                                                                    $prix = $unResultat['Prix'];
+                                                                                    foreach($result2 as $unResult){
+                                                                                        if($unResult['id_telephone'] == $unResultat['id_telephone']){
+                                                                                            $pourcentage = $unResultat['Prix'] * ($unResult['valeur'] / 100);
+                                                                                            $prix = $unResultat['Prix'] - $pourcentage;
+                                                                                            ?> <td> Promotion - <?php echo $unResult['valeur']; ?> %</td><?php
+                                                                                        }?>
+                                                                                                    
+                                                                                <?php }?>
+                                                                            <?php 
+                                                                                        if (isset($_SESSION['role']) == 'ROLE_ADMIN'){
+                                                                                            ?>
+                                                                                        <form class="form-group" method="post" action="">
+                                                                                            <table border=0>
+                                                                                            <td> Si une promotion est déja en cours, vous ne pourrez pas en ajouter une autre ! </td>
+                                                                                            <tr>
+                                                                                                <td class="td1">Ajoutez une promo :</td>
+                                                                                                    <td><select class="td1 form-control" name="valeur">
+                                                                                                        <option value="15">15%</option>
+                                                                                                        <option value="25">25%</option>
+                                                                                                        <option value="50">50%</option>
+                                                                                                        <option value="60">60%</option>
+                                                                                                        <option value="75">75%</option>
+                                                                                                    </select></td>
+                                                                                                    <td> <input type="hidden" name="id_tel" value ="<?php echo $unResultat['id_telephone']; ?>"></td>
+                                                                                                    <td> <input class ='btn btn-primary' type="submit" name="ajouter" value="ajouter Promo"> </td>
+                                                                                                </tr>
+                                                                                        </form>
+                                                                                        <?php } ?>
                                                                                 <tr>
+                                                                                    
                                                                                     <th>Produit</th>
                                                                                     <th>Prix</th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
                                                                                 <tr>
+                                                                                    
                                                                                     <td><?php echo $unResultat['designation']; ?></td>
-                                                                                    <td><?php echo $unResultat['Prix'], "$"; ?></td>
+                                                                                    <td><?php echo $prix, "$"; ?></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                             <tfoot>

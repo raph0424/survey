@@ -42,6 +42,10 @@ class leControleur
     {
         return $this->unModele->selectProduit();
     }
+    public function selectPromos()
+    {
+        return $this->unModele->selectPromos();
+    }
     public function selectPartenaire()
     {
         return $this->unModele->selectPartenaire();

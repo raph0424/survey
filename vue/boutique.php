@@ -4,7 +4,15 @@ session_start();
 require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","event","root","");
 $result1 = $unControleur->selectPartenaire();
-$result = $unControleur->selectProduit();    
+$result = $unControleur->selectProduit(); 
+$result2 = $unControleur->selectPromos();
+if (isset($_POST['ajouter'])){
+   $envoi = array ("valeur"=>$_POST['valeur'],
+         "id_telephone"=>$_POST['id_tel']
+        );
+         $unControleur->insert("promos",$envoi); 
+         header('Location: boutique.php');
+}
   ?>
 <!DOCTYPE html>
 <html lang="fr">
