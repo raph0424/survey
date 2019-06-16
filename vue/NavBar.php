@@ -22,7 +22,6 @@ if (isset($_SESSION['mdp'])) {
             <li><a class='btn btn-info btn-lg'data-toggle='modal' data-target='#ModalEvent' style="border-radius: 0px;">Event</a></li>
         <?php } ?>
         <li><a href="<?php echo $event; ?>">Evenement</a></li>
-        <li><a href="lieu.php">Lieu</a></li>
         <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
         <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
         <?php if (isset($_SESSION['nom'])) { ?>

@@ -104,7 +104,7 @@
                                                                             </tbody>
                                                                             <tfoot>
                                                                                 <tr>
-                                                                                    <td><a href="#" data-dismiss ="modal" class="btn btn-warning"><i class="fa fa-angle-left"></i> Retour aux événements</a></td>
+                                                                                    <td><a href="#" data-dismiss="modal" class="btn btn-warning"><i class="fa fa-angle-left"></i> Retour aux événements</a></td>
                                                                                     <td colspan="2" class="hidden-xs"></td>
                                                                                     <td><a data-toggle="modal" href="#ignismyModal" class="btn btn-success btn-block">Valider l'achat <i class="fa fa-angle-right"></i></a></td>
                                                                                 </tr>  
