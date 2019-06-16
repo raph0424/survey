@@ -35,7 +35,10 @@
         <center style="margin-left:80px">
           <br/><br/><br/><br/><br/>
             <h1 class="font-weight-light"><?php echo $unResultat['designation']?></h1>
-            <p class="font-italic "><small>Organisateur : <?php echo$_SESSION['nom_marque']?></small></p>
+            <?php if (isset ($_SESSION['nom_marque'])) { 
+                $orga = $_SESSION['nom_marque'];
+            echo '<p class="font-italic "><small>Organisateur : '.$orga.'</small></p>';
+             } ?>
           <br/><br/><br/><br/><br/>
         </center>
       </div>

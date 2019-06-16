@@ -40,7 +40,10 @@
         <center>
           <br/><br/><br/>
             <h1 class="h11 font-weight-light"><?php echo $unResultat['designation']?></h1>
-            <p class="font-italic">Organisateur : <?php echo$_SESSION['nom_marque']?></p>
+            <?php if (isset ($_SESSION['nom_marque'])) { 
+                $orga = $_SESSION['nom_marque'];
+            echo '<p class="font-italic "><small>Organisateur : '.$orga.'</small></p>';
+             } ?>
 <!-- ::::::::::::::::::::::::::::::::::: DATE  ::::::::::::::::::::::::::::::: -->
             <p  class="font-weight-light">              
               <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=evenement&dates=20190612T180000Z/20190612T210000Z&ctz=Europe/Paris&details=reserve%20ta%20soiree%20pour%20assister%20a%20cet%20evenement&location=paris,%20france" class="date_img">
