@@ -11,7 +11,7 @@
         <?php } ?>
     </div>
     <?php foreach ($result1 as $Resultat) { ?> 
-        <div class="collapse" id="partenaire-<?php echo $Resultat['id_partenaire']; ?>">
+        <div class="collapse show" id="partenaire-<?php echo $Resultat['id_partenaire']; ?>">
             <div class="card card-body">
                 <div class="row">
                     <div class="col-lg-8">
