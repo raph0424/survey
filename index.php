@@ -52,7 +52,6 @@ if(isset($_SESSION['mdp']))
           }
           ?>
           <li><a href="<?php echo $event; ?>">Evenement</a></li>
-          <li><a href="vue/lieu.php">Lieu</a></li>
           <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
           <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
           <?php 
@@ -292,7 +291,7 @@ if(isset($_SESSION['mdp']))
               <div class="hotel-img">
                 <img src="img/hotels/1.jpg" alt="Hotel 1" class="img-fluid" width="500px">
               </div>
-              <h3><a href="#">Parc des expositions</a></h3>
+              <h3><a href="vue/expo.php">Parc des expositions</a></h3>
               <div class="stars">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -308,7 +307,7 @@ if(isset($_SESSION['mdp']))
               <div class="hotel-img">
                 <img src="img/hotels/2.jpg" alt="Hotel 2" class="img-fluid">
               </div>
-              <h3><a href="#">La villette</a></h3>
+              <h3><a href="vue/vilette.php">La Villette</a></h3>
               <div class="stars">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -324,7 +323,7 @@ if(isset($_SESSION['mdp']))
               <div class="hotel-img">
                 <img src="img/hotels/3.jpg" alt="Hotel 3" class="img-fluid" width="500px" height="300px" >
               </div>
-              <h3><a href="#">Pompidou</a></h3>
+              <h3><a href="vue/pompidou.php">Pompidou</a></h3>
               <div class="stars">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -416,8 +415,7 @@ if(isset($_SESSION['mdp']))
                   <a data-toggle="collapse" class="collapsed" href="#faq1">Comment faire pour créer un évenement ? <i class="fa fa-minus-circle"></i></a>
                   <div id="faq1" class="collapse" data-parent="#faq-list">
                     <p>
-                      Vous devez être partenaire d'orange. Pour devenir partenaire vous devez vous inscrire en tant qu'entreprise et faire une demande de création d'événement,
-                       une fois le dossier examiner orange décidera si oui ou non vous pourrez devenir partenaire.
+                      Vous devez être partenaire d'orange. Pour devenir partenaire vous devez vous inscrire en tant qu'entreprise et faire une création d'événement.
                     </p>
                   </div>
                 </li>
@@ -433,7 +431,7 @@ if(isset($_SESSION['mdp']))
                   <a data-toggle="collapse" href="#faq3" class="collapsed">Quels avantages à acheter mes billets? <i class="fa fa-minus-circle"></i></a>
                   <div id="faq3" class="collapse" data-parent="#faq-list">
                     <p>
-                      En achetant votre billet en ligne vous bénéficiez d'une réduction de 20%.
+                      En achetant votre billet en ligne vous pourrez bénéficiez de réduction.
                     </p>
                   </div>
                 </li>
@@ -441,7 +439,7 @@ if(isset($_SESSION['mdp']))
                   <a data-toggle="collapse" href="#faq4" class="collapsed">Combien de produit sont il disponnible ? <i class="fa fa-minus-circle"></i></a>
                   <div id="faq4" class="collapse" data-parent="#faq-list">
                     <p>
-                     Le nombre de produit varie en fonction des événement en cour, chaque événement détient des produits qu'il met en ligne dans notre boutique.
+                     Le nombre de produit varie en fonction des événement en cour, chaque événement détient un produit qu'il met en ligne dans notre boutique.
                     </p>
                   </div>
                 </li>
@@ -474,36 +472,10 @@ if(isset($_SESSION['mdp']))
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <p><a href="mailto:orange.event2019@gmail.com"> orange.event2019@gmail.com</a></p>
             </div>
           </div>
         </div>
-        <div class="form">
-          <div id="sendmessage">Votre message à bien été envoyé. Merci!</div>
-          <div id="errormessage"></div>
-          <form action="" method="post" role="form" class="contactForm">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Votre nom" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Votre Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div class="validation"></div>
-              </div>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validation"></div>
-            </div>
-            <div class="text-center"><button type="submit">Envoyer</button></div>
-          </form>
-        </div>
-      </div>
     </section>
   </main>
   <footer id="footer">
