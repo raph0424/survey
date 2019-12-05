@@ -222,12 +222,47 @@ public function selectEvent()
             
         }
     }
+    public function countProduit1()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "SELECT COUNT(*) FROM produit WHERE id_partenaire = 1";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
+    public function countProduit2()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "SELECT COUNT(*) FROM produit WHERE id_partenaire = 2";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
+    
     
     public function selectPartenaire()
 {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from partenaire;";
+            $requete = "select * from partenaire";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 

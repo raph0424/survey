@@ -22,6 +22,14 @@ class leControleur
     {
         return $this->unModele->selectNote($id_produit);
     }
+    public function countProduit1()
+    {
+        return $this->unModele->countProduit1();
+    }
+    public function countProduit2()
+    {
+        return $this->unModele->countProduit2();
+    }
      public function selectLieu()
     {
         return $this->unModele->selectLieu();

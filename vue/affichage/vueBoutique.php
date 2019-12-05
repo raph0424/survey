@@ -5,13 +5,24 @@
     <br>
     <div class="list-group">
         <?php foreach ($result1 as $Resultat) { ?> 
+        <?php if ($Resultat['id_partenaire'] == 1) {
+                foreach ($resultp1 as $key) {
+                    $a = $key['COUNT(*)'];
+                }
+            }
+            foreach ($resultp2 as $keys) {
+                if ($Resultat['id_partenaire'] == 2) {
+                    $a = $keys['COUNT(*)'];
+                }
+            }
+                ?>
             <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#partenaire-<?php echo $Resultat['id_partenaire']; ?>" aria-expanded="false" aria-controls="#partenaire-<?php echo $Resultat['id_partenaire']; ?>">
-                <?php echo $Resultat['nom_marque']; ?></button>
+                <?php echo $Resultat['nom_marque']. " <br> nombre de produit : ".$a; ?></button>
             <br>
         <?php } ?>
     </div>
     <?php foreach ($result1 as $Resultat) { ?> 
-        <div class="collapse show" id="partenaire-<?php echo $Resultat['id_partenaire']; ?>">
+        <div class="collapse" id="partenaire-<?php echo $Resultat['id_partenaire']; ?>">
             <div class="card card-body">
                 <div class="row">
                     <div class="col-lg-8">
@@ -24,16 +35,36 @@
 
                                     <div class="col-lg-4 col-md-6 mb-4">
                                         <div class="card h-100">
-                                            <a href="#" data-toggle="modal" data-target="#<?php echo $idmodal; ?>"><img class="card-img-top" src="../img/Produit/<?php echo $unResultat['designation']; ?>.jpg" alt=""></a>
+                                            <a href="#" data-toggle="modal" data-target="#<?php echo $idmodal; ?>"><img class="card-img-top" src="../<?php echo $unResultat['img']; ?>" alt=""></a>
                                             <div class="card-body">
                                                 <h4 class="card-title">
                                                 <?php
                                                 echo "<td>", $unResultat['designation'], "</td>";
                                                 ?>
-                                                </h4>
                                                     <?php
-                                                    echo "<td>", $unResultat['Prix'], "$ </td>";
-                                                    ?>
+                                                    $j=0;
+                                                                foreach ($result2 as $unResult) {
+                                                                    if ($unResult['id_telephone'] == $unResultat['id_telephone']) {
+                                                                        $j=1;
+                                                                        $pourcentage = $unResultat['Prix'] * ($unResult['valeur'] / 100);
+                                                                        $prix = $unResultat['Prix'] - $pourcentage;
+                                                                        ?> <td> Promotion - <?php echo $unResult['valeur']; ?> %</td> <br><?php
+                                                                        if (isset($unResult['valeur'])) {
+                                                                            echo "<strike> <font color='red'>", $unResultat['Prix'], "$ </font> </strike>";
+                                                                            echo "<td>", $prix, "$ </td";
+                                                                        }
+                                                                        else {
+                                                                             echo "<td>", $unResultat['Prix'], "$ </td>";
+                                                                        }
+                                                                    ?>
+                                                                                                    
+                                                                                <?php }?>
+                                                                  <?php  if ($j == 0) {
+                                                                            $j=1;                                                                             echo "<td>", $unResultat['Prix'], "$ </td>";
+                                                                } }?>
+                                                </h4>
+                                                    
+                                               
                                                 <p class="card-text"></p>
                                                 <div class="modal fade bannerformmodal modal-tel" tabindex="-1" role="dialog" aria-labelledby="modal-tel-label" aria-hidden="true" id="<?php echo $idmodal; ?>">
                                                     <div class="modal-dialog modal-md">
@@ -47,7 +78,7 @@
                                                                     <div class="col-sm-12">
                                                                         <div class="row">
                                                                             <div class="col-sm-6">
-                                                                                <img class="card-img-top" src="../img/Produit/<?php echo $unResultat['designation'];?>.jpg" alt="">
+                                                                                <img class="card-img-top" src="../<?php echo $unResultat['img'];?>" alt="">
                                                                             </div>
                                                                         </div>
                                                                     </div>

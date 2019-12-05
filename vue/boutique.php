@@ -6,6 +6,8 @@ $unControleur = new leControleur("localhost","event","root","");
 $result1 = $unControleur->selectPartenaire();
 $result = $unControleur->selectProduit(); 
 $result2 = $unControleur->selectPromos();
+$resultp1 = $unControleur->countProduit1();
+$resultp2 = $unControleur->countProduit2();
 if (isset($_POST['ajouter'])){
    $envoi = array ("valeur"=>$_POST['valeur'],
          "id_telephone"=>$_POST['id_tel']

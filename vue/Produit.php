@@ -10,6 +10,7 @@ session_start();
          "taille"=>$_POST['taille'], 
          "couleur"=>$_POST['couleur'],
          "date_sortie"=>$_POST['date_sortie'],
+		 "img"=>'/img/Produit/'.$_POST["designation"].'.jpg',
          "id_partenaire"=>$_SESSION['id_partenaire']
         );
          $unControleur->insert("produit",$envoi);
@@ -20,7 +21,6 @@ session_start();
 	$image_size1 = $_FILES['imagetel']['size'];
 	$image_tmp_name1= $_FILES['imagetel']['tmp_name'];
         move_uploaded_file($image_tmp_name1,"../img/Produit/$NomTel.jpg");
-        var_dump($envoi);
         header('Location: evenement.php');
           exit;
         }
