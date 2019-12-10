@@ -141,16 +141,19 @@ public function selectEvent()
 {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from event ;";
+            $requete = "select * from Select_event;";
+          
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
             // exection de la requete
-            $select->execute();
-
+            $test = $select->execute();
+            var_dump($test);
             // extraction des données
             $result = $select->fetchAll();
+           
             return $result;
+            
             
         }
     }
@@ -158,7 +161,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from produit;";
+            $requete = "select * from Select_produit;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
@@ -175,7 +178,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from Lieu;";
+            $requete = "select * from Select_lieu;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
@@ -209,7 +212,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from promos;";
+            $requete = "select * from Select_promos;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
@@ -226,7 +229,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "SELECT COUNT(*) FROM produit WHERE id_partenaire = 1";
+            $requete = "select * from Select_Nb_Produit1";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
@@ -243,7 +246,24 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "SELECT COUNT(*) FROM produit WHERE id_partenaire = 2";
+            $requete = "select * from Select_Nb_Produit2";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+
+            // exection de la requete
+            $select->execute();
+
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
+    public function countProduit3()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from Select_Nb_Produit3";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
@@ -262,7 +282,7 @@ public function selectEvent()
 {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from partenaire";
+            $requete = "select * from Select_partenaire";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
 
@@ -343,7 +363,7 @@ public function selectEvent()
             {
                 if($this->unPdo != null)
                 {
-                    $requete = "select * from note where id_telephone = :id_telephone;";
+                    $requete = "select * from Select_note where id_telephone = :id_telephone;";
                     $donnees = array(":id_telephone"=>$id_produit);                    
                     $select = $this->unPdo->prepare($requete);
                     $select->execute($donnees);
@@ -356,7 +376,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from ticket;";
+            $requete = "select * from Select_ticket;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete

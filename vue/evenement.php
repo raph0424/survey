@@ -2,7 +2,7 @@
 session_start();
 //sleep(10);
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","event","root","");
+$unControleur = new leControleur("localhost","eventupdate","root","");
 $result = $unControleur->selectEvent();
 $results = $unControleur->selectInscrire();
 if(isset($_POST["sub"]))

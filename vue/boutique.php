@@ -2,12 +2,14 @@
 session_start();
 //sleep(10);
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","event","root","");
+$unControleur = new leControleur("localhost","eventupdate","root","");
 $result1 = $unControleur->selectPartenaire();
 $result = $unControleur->selectProduit(); 
 $result2 = $unControleur->selectPromos();
 $resultp1 = $unControleur->countProduit1();
 $resultp2 = $unControleur->countProduit2();
+$resultp3 = $unControleur->countProduit3();
+
 if (isset($_POST['ajouter'])){
    $envoi = array ("valeur"=>$_POST['valeur'],
          "id_telephone"=>$_POST['id_tel']

@@ -30,6 +30,10 @@ class leControleur
     {
         return $this->unModele->countProduit2();
     }
+    public function countProduit3()
+    {
+        return $this->unModele->countProduit3();
+    }
      public function selectLieu()
     {
         return $this->unModele->selectLieu();

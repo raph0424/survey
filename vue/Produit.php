@@ -1,7 +1,7 @@
 <?php
 session_start();
       require_once("../controleur/leControleur.php");
-      $unControleur = new leControleur("localhost","event","root","");
+      $unControleur = new leControleur("localhost","eventupdate","root","");
       if(isset($_POST["create"]))
       {
          $envoi = array ("designation"=>$_POST['designation'], 

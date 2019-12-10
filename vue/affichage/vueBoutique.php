@@ -15,11 +15,16 @@
                     $a = $keys['COUNT(*)'];
                 }
             }
+            foreach ($resultp3 as $keyss) {
+                if ($Resultat['id_partenaire'] == 3) {
+                    $a = $keyss['COUNT(*)'];
+                }
+            }
                 ?>
             <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#partenaire-<?php echo $Resultat['id_partenaire']; ?>" aria-expanded="false" aria-controls="#partenaire-<?php echo $Resultat['id_partenaire']; ?>">
                 <?php echo $Resultat['nom_marque']. " <br> nombre de produit : ".$a; ?></button>
             <br>
-        <?php } ?>
+        <?php }?>
     </div>
     <?php foreach ($result1 as $Resultat) { ?> 
         <div class="collapse" id="partenaire-<?php echo $Resultat['id_partenaire']; ?>">
@@ -102,6 +107,8 @@
                                                                                 <?php }?>
                                                                             <?php 
                                                                                         if (isset($_SESSION['role']) == 'ROLE_ADMIN'){
+                                                                                          
+
                                                                                             ?>
                                                                                         <form class="form-group" method="post" action="">
                                                                                             <table border=0>

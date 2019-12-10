@@ -1,7 +1,7 @@
 <?php
 session_start();
       require_once("../controleur/leControleur.php");
-      $unControleur = new leControleur("localhost","event","root","");
+      $unControleur = new leControleur("localhost","eventupdate","root","");
       $res = $unControleur->selectLieu();
       if(isset($_POST["create"]))
       {
