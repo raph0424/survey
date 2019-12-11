@@ -148,7 +148,7 @@ public function selectEvent()
 
             // exection de la requete
             $test = $select->execute();
-            var_dump($test);
+          //  var_dump($test);
             // extraction des données
             $result = $select->fetchAll();
            
@@ -333,6 +333,27 @@ public function selectEvent()
                 if ($this->unPdo != null) {
                         // selection de toutes les données
                         $requete = "SELECT * from attribut where designation = 'couleur' and id_telephone = 1;";
+                        // preparation de la requete avant execution
+                        // $donnees = array(":telephone"=>$_SESSION['id_telephone']);
+                        $select = $this->unPdo->prepare($requete);
+                        // exection de la requete
+                        $select->execute();
+                        // extraction des données
+                        $result = $select->fetchAll();
+                        return $result;
+                    }
+                }
+				
+				public function selectlastPersonneid()
+            {
+                if ($this->unPdo != null) {
+                        // selection de toutes les données
+                        $requete = "select id_personne
+						from
+						  personne
+						order by
+						  id_personne DESC
+						Limit 1;";
                         // preparation de la requete avant execution
                         // $donnees = array(":telephone"=>$_SESSION['id_telephone']);
                         $select = $this->unPdo->prepare($requete);

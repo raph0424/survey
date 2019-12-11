@@ -18,6 +18,10 @@ class leControleur
     {
         return $this->unModele->selectEvent();
     }
+	public function selectlastPersonneid()
+    {
+        return $this->unModele->selectlastPersonneid();
+    }
     public function selectNote($id_produit)
     {
         return $this->unModele->selectNote($id_produit);

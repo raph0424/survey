@@ -4,7 +4,16 @@ session_start();
       $unControleur = new leControleur("localhost","eventupdate","root","");
       if(isset($_POST["sinscrir"]))
       {
-         $envoi = array ("nom"=>$_POST['nom'], 
+		  $envois = array ("mdp"=>$_POST['mdp'],
+         "adresse"=>$_POST['adresse']
+		 );
+		 $unControleur->insert("personne",$envois);
+		 $result = $unControleur->selectlastPersonneid();
+		 foreach($result as $unresult){
+			 $idperson = $unresult['id_personne'];
+		 }
+         $envoi = array ("id_personne"=>$idperson, 
+		 "nom"=>$_POST['nom'], 
          "prenom"=>$_POST['prenom'],
          "email"=>$_POST['email'],
          "mdp"=>$_POST['mdp'], 
@@ -14,7 +23,7 @@ session_start();
          "code_postal"=>$_POST['code_postal'],
          "role"=>$_POST['role']
         );
-         $unControleur->insert("personne",$envoi);
+         $unControleur->insert("user",$envoi);
           if(isset($resultat['nom']))
           {
             $_SESSION['id_personne'] = $resultat['id_personne'];
@@ -27,7 +36,16 @@ session_start();
         }
         if(isset($_POST["sinscrire"]))
         {
-          $envoi = array ("accronyme"=>$_POST['accronyme'], 
+			$envois = array ("mdp"=>$_POST['mdp'],
+         "adresse"=>$_POST['adresse']
+		 );
+		 $unControleur->insert("personne",$envoi);
+		 $result = $unControleur->selectlastPersonneid();
+		 foreach($result as $unresult){
+			 $idperson = $unresult['id_personne'];
+		 }
+         $envoi = array ("id_partenaire"=>$idperson, 
+		  "accronyme"=>$_POST['accronyme'], 
           "nom_marque"=>$_POST['nom_marque'],
           "mdp"=>$_POST['mdp'], 
           "date_debut"=>$_POST['date_debut'], 
