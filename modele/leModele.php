@@ -338,6 +338,10 @@ public function selectEvent()
                         return $result;
                     }
                 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c55e39691646fda2458fdf38c48f98e07abe408a
                 public function insertNote($tab)
                 {
                    if($this->unPdo!=null)

@@ -39,7 +39,11 @@ session_start();
 			$envois = array ("mdp"=>$_POST['mdp'],
          "adresse"=>$_POST['adresse']
 		 );
+<<<<<<< HEAD
 		 $unControleur->insert("personne",$envois);
+=======
+		 $unControleur->insert("personne",$envoi);
+>>>>>>> c55e39691646fda2458fdf38c48f98e07abe408a
 		 $result = $unControleur->selectlastPersonneid();
 		 foreach($result as $unresult){
 			 $idperson = $unresult['id_personne'];
