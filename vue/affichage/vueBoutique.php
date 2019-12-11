@@ -106,7 +106,7 @@
                                                                                                     
                                                                                 <?php }?>
                                                                             <?php 
-                                                                                        if (isset($_SESSION['role']) == 'ROLE_ADMIN'){
+                                                                                        if ($_SESSION['role'] == 'ROLE_ADMIN'){
                                                                                           
 
                                                                                             ?>

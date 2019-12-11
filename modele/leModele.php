@@ -15,12 +15,11 @@ class leModele {
             echo $exp->getMessage();
         }
     }
-
     public function verifCon($email, $mdp)
     {
         if($this->unPdo!=null)
         {
-            $requete ="select * from personne where email=:email and mdp=:mdp;";
+            $requete ="select * from user where email=:email and mdp=:mdp;";
             $donnees = array(":email"=>$email,":mdp"=>$mdp);
             $select = $this->unPdo->prepare($requete);
             $select->execute($donnees);
@@ -74,18 +73,15 @@ public function insert($table, array $tab)
            // echo $sql;
            //var_dump( $valeurs);
 }
-
 /*
     Delete
 */
-
 public function delete($table, array $tab)
 {
     if ($this->unPdo == null)
     {
         return;
     }
-
     $delete_format = 'delete from %s where (%s) = (%s)';
     $colonnes = $parametres = $valeurs = [];
     foreach ($tab as $colonne => $valeur)
@@ -105,7 +101,6 @@ public function delete($table, array $tab)
     $statement = $this->unPdo->prepare($sql);
     $statement->execute($valeurs);
 }
-
 /*
     Updaute
 */
@@ -115,7 +110,6 @@ public function update($table, array $tab, array $id)
     {
         return;
     }
-
     $update_format = 'update %s set (%s) = (%s) where %s = %s';
     $colonnes = $parametres = $valeurs = [];
     foreach ($tab as $colonne => $valeur)
@@ -136,7 +130,6 @@ public function update($table, array $tab, array $id)
     $statement = $this->unPdo->prepare($sql);
     $statement->execute($valeurs);
 }
-
 public function selectEvent()
 {
     if ($this->unPdo != null) {
@@ -145,10 +138,9 @@ public function selectEvent()
           
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $test = $select->execute();
-            var_dump($test);
+          //  var_dump($test);
             // extraction des données
             $result = $select->fetchAll();
            
@@ -164,10 +156,8 @@ public function selectEvent()
             $requete = "select * from Select_produit;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             return $result;
@@ -181,10 +171,8 @@ public function selectEvent()
             $requete = "select * from Select_lieu;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             return $result;
@@ -198,10 +186,8 @@ public function selectEvent()
             $requete = "select * from inscrire;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             return $result;
@@ -215,10 +201,8 @@ public function selectEvent()
             $requete = "select * from Select_promos;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             return $result;
@@ -232,10 +216,8 @@ public function selectEvent()
             $requete = "select * from Select_Nb_Produit1";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             return $result;
@@ -249,10 +231,8 @@ public function selectEvent()
             $requete = "select * from Select_Nb_Produit2";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             return $result;
@@ -266,10 +246,8 @@ public function selectEvent()
             $requete = "select * from Select_Nb_Produit3";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             return $result;
@@ -285,19 +263,15 @@ public function selectEvent()
             $requete = "select * from Select_partenaire";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
-
             // exection de la requete
             $select->execute();
-
             // extraction des données
             $result = $select->fetchAll();
             //var_dump($result);
             return $result;
         
-
         }
     }
-
     public function selectAttribut()
     {
         if ($this->unPdo != null) {
@@ -343,7 +317,27 @@ public function selectEvent()
                         return $result;
                     }
                 }
-
+				
+				public function selectlastPersonneid()
+            {
+                if ($this->unPdo != null) {
+                        // selection de toutes les données
+                        $requete = "select id_personne
+						from
+						  personne
+						order by
+						  id_personne DESC
+						Limit 1;";
+                        // preparation de la requete avant execution
+                        // $donnees = array(":telephone"=>$_SESSION['id_telephone']);
+                        $select = $this->unPdo->prepare($requete);
+                        // exection de la requete
+                        $select->execute();
+                        // extraction des données
+                        $result = $select->fetchAll();
+                        return $result;
+                    }
+                }
                 public function insertNote($tab)
                 {
                    if($this->unPdo!=null)
@@ -354,11 +348,8 @@ public function selectEvent()
                        $insert->execute($donnees);
                    } 
                 }
-
-
                 
             
-
             public function selectNote($id_produit)
             {
                 if($this->unPdo != null)
@@ -371,7 +362,6 @@ public function selectEvent()
                     return $resultat;
                 }
             }
-
     public function selectTicket()
     {
     if ($this->unPdo != null) {
@@ -401,7 +391,6 @@ public function selectEvent()
             return $result;
         }
     }
-
     public function updateNote($tab, $id_note)
 {
     if($this->unPdo!=null)
@@ -411,12 +400,7 @@ public function selectEvent()
             $insert = $this->unPdo->prepare($requete);
             $insert->execute($donnees);
             var_dump($requete);
-
     }
 }
-
 }
-
-
-
 ?>
