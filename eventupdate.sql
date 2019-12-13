@@ -728,3 +728,45 @@ ALTER TABLE `ticket`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+ /* procedure d'insertion d'user */
+delimiter $
+create procedure insert_user (In pmdp varchar(50), padresse varchar(50), pnom varchar(50), pprenom varchar(50),
+pemail varchar(50), IN pdate_naissance date, IN pcode_postal int(5), ptelephone int(5), IN prole varchar(50))
+begin 
+    declare id int(5);
+    insert into personne values (null, pmdp, padresse);
+    select id_personne into id from personne where mdp COLLATE utf8_unicode_ci = pmdp and adresse COLLATE utf8_unicode_ci = padresse; 
+    insert into user values(id,pnom, pprenom, pemail, pmdp, ptelephone, pdate_naissance, padresse, pcode_postal, prole);
+end $
+delimiter ; 
+ 
+/* appel de la procedure */ 
+call insert_user("125", "2 rue malon","jean","louis","p@y.fr","1998-05-24","95100",0123456789,"ROLE_USER"),
+call insert_user("12567", "rue bali","capucine","merlan","o@y.fr","1999-05-24","75100",0123456789,"ROLE_USER"),
+call insert_user("12564", "3 rue keb","theo","aude","m@y.fr","1997-08-24","92100",0123456789,"ROLE_USER"),
+call insert_user("12562", "34 rue talon","anne","vie","c@y.fr","1992-05-24","93100",0123456789,"ROLE_USER"),
+call insert_user("12561", "31 rue avon","paul","lorrenzi","b@y.fr","1990-05-24","94300",0123456789,"ROLE_USER"),
+call insert_user("12560", "54 avenue lon","ke","bernacle","z@y.fr","1993-05-24","94200",0123456789,"ROLE_USER");
+
+/* procedure d'insertion d'un partenaire */
+delimiter $
+create procedure insert_partenaire (In pmdp varchar(50), padresse varchar(50), paccronyme varchar(50), pnom_marque varchar(50), IN pdate_debut date)
+begin 
+    declare id int(5);
+    insert into personne values (null, pmdp, padresse);
+    select id_personne into id from personne where mdp COLLATE utf8_unicode_ci = pmdp and adresse COLLATE utf8_unicode_ci = padresse; 
+    insert into partenaire values(id,paccronyme, pmdp, pnom_marque, pdate_debut, padresse);
+end $
+delimiter ; 
+
+/* appel de la procedure */
+call insert_partenaire("12534", "45 avenue boule","A","apple","1992-05-24");
+call insert_partenaire("1253", "95 avenue boule","B","bonnaci","1995-05-24");
+call insert_partenaire("125", "75 avenue boule","C","castorama","1994-05-24");
+call insert_partenaire("12555", "14 avenue boule","D","donuts","1972-05-24");
+call insert_partenaire("12566", "5 avenue boule","E","Elec","1982-05-24");
+call insert_partenaire("12536", "12 avenue boule","F","Frais","1991-05-24");
+
