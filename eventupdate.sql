@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 11 Décembre 2019 à 16:56
+-- Généré le :  Ven 13 Décembre 2019 à 18:34
 -- Version du serveur :  5.6.26
 -- Version de PHP :  5.6.12
 
@@ -51,6 +51,17 @@ CREATE TABLE IF NOT EXISTS `event` (
   `valid` tinyint(1) NOT NULL,
   `id_lieu` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Déclencheurs `event`
+--
+DELIMITER $$
+CREATE TRIGGER `new-event_valid` BEFORE INSERT ON `event`
+ FOR EACH ROW BEGIN
+    SET NEW.valid= 1;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -114,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `partenaire` (
   `nom_marque` varchar(50) NOT NULL,
   `date_debut` date NOT NULL,
   `adresse` varchar(500) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `partenaire`
@@ -122,7 +133,19 @@ CREATE TABLE IF NOT EXISTS `partenaire` (
 
 INSERT INTO `partenaire` (`id_partenaire`, `accronyme`, `mdp`, `nom_marque`, `date_debut`, `adresse`) VALUES
 (5, 'SSG', '123456', 'Samsung', '2019-02-12', '44 Avenue des Champs Elysee'),
-(6, 'HW', '123456', 'Huawei', '2019-03-14', '5 rue des Lilas');
+(6, 'HW', '123456', 'Huawei', '2019-03-14', '5 rue des Lilas'),
+(22, 'ONP', '123456', 'ONE PLUS', '2019-12-13', '5 rue de Paris');
+
+--
+-- Déclencheurs `partenaire`
+--
+DELIMITER $$
+CREATE TRIGGER `current_date_debut` BEFORE INSERT ON `partenaire`
+ FOR EACH ROW BEGIN
+    SET NEW.date_debut = NOW();
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -145,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `id_personne` int(11) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   `adresse` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `personne`
@@ -158,7 +181,9 @@ INSERT INTO `personne` (`id_personne`, `mdp`, `adresse`) VALUES
 (4, 'Solas', '5 rue des chaufourniers'),
 (5, '123456', '44 Avenue des Champs-Elysee'),
 (6, '123456', '5 rue des Lilas'),
-(21, 'test', 'Tests');
+(21, 'test', 'Tests'),
+(22, '123456', '5 rue de Paris'),
+(23, '123456', 'Test');
 
 -- --------------------------------------------------------
 
@@ -351,6 +376,17 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `id_partenaire` int(11) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
+--
+-- Déclencheurs `ticket`
+--
+DELIMITER $$
+CREATE TRIGGER `new-ticket_date` BEFORE INSERT ON `ticket`
+ FOR EACH ROW BEGIN
+    SET NEW.date= NOW();
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -368,7 +404,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `adresse` varchar(50) NOT NULL,
   `code_postal` int(11) NOT NULL,
   `role` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `user`
@@ -379,7 +415,19 @@ INSERT INTO `user` (`id_personne`, `nom`, `prenom`, `email`, `mdp`, `telephone`,
 (2, 'Dupont', 'Julie', 'Dup.J22@gmail.com', '123456', 613432345, '1988-06-07', '6 Avenue Charle de gaulle', 75017, 'ROLE_USER'),
 (3, 'lefe', 'kevin', 'a@a.com', '123', 123, '2019-06-26', 'qsdqd', 94100, 'ROLE_USER'),
 (4, 'Maria', 'RaphaÃ«l', 'R@gmail.com', 'Solas', 687907844, '1997-05-24', '5 rue des chaufourniers', 75019, 'ROLE_USER'),
-(21, 'testinsertid', 'test', 'test', 'test', 0, '1998-05-24', 'Tests', 0, 'ROLE_USER');
+(21, 'testinsertid', 'test', 'test', 'test', 0, '1998-05-24', 'Tests', 0, 'ROLE_USER'),
+(23, 'Testrole', 'roletest', 'test@gmail.com', '123456', 687907899, '1997-05-24', 'Test', 75019, 'ROLE_USER');
+
+--
+-- Déclencheurs `user`
+--
+DELIMITER $$
+CREATE TRIGGER `new_role_user` BEFORE INSERT ON `user`
+ FOR EACH ROW BEGIN
+    SET NEW.role = "ROLE_USER";
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -593,12 +641,12 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT pour la table `partenaire`
 --
 ALTER TABLE `partenaire`
-  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT pour la table `personne`
 --
 ALTER TABLE `personne`
-  MODIFY `id_personne` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id_personne` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
@@ -618,7 +666,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_personne` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id_personne` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- Contraintes pour les tables exportées
 --

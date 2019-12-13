@@ -96,7 +96,6 @@ body {
       <input type="date" name="date_naissance" placeholder="Votre date de naissance">
       <input type="text" name="adresse" placeholder="Adresse">
       <input type="text" name="code_postal" placeholder="Code postal">
-      <input type="hidden" name="role" value="ROLE_USER" />
       <input type="submit" class="btn" name ="sinscrir" value="S'inscrire" />
       <p class="message">
           Désirez vous faire partie de nos partenaires ?
@@ -107,7 +106,6 @@ body {
       <input name="accronyme" id="acronyme" type="text" placeholder="Acronyme de l'entreprise" />
       <input name="nom_marque" id="nom_marque" type="text" placeholder="Nom de votre Marque" />
       <input name="mdp" id="password" type="password" placeholder="password" />
-      <input type="date" id="date_debut" name="date_debut" />
       <input type="text"  id="adresse" name="adresse" placeholder="Adresse">
       <input id="btnLg" type="submit" class="btn" name ="sinscrire" value="S'inscrire" />
       <p class="message">

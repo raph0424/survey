@@ -21,7 +21,7 @@ session_start();
          "date_naissance"=>$_POST['date_naissance'],
          "adresse"=>$_POST['adresse'],
          "code_postal"=>$_POST['code_postal'],
-         "role"=>$_POST['role']
+         "role"=>""
         );
          $unControleur->insert("user",$envoi);
           if(isset($resultat['nom']))
@@ -39,11 +39,7 @@ session_start();
 			$envois = array ("mdp"=>$_POST['mdp'],
          "adresse"=>$_POST['adresse']
 		 );
-<<<<<<< HEAD
 		 $unControleur->insert("personne",$envois);
-=======
-		 $unControleur->insert("personne",$envoi);
->>>>>>> c55e39691646fda2458fdf38c48f98e07abe408a
 		 $result = $unControleur->selectlastPersonneid();
 		 foreach($result as $unresult){
 			 $idperson = $unresult['id_personne'];
@@ -51,8 +47,7 @@ session_start();
          $envoi = array ("id_partenaire"=>$idperson, 
 		  "accronyme"=>$_POST['accronyme'], 
           "nom_marque"=>$_POST['nom_marque'],
-          "mdp"=>$_POST['mdp'], 
-          "date_debut"=>$_POST['date_debut'], 
+          "mdp"=>$_POST['mdp'],
           "adresse"=>$_POST['adresse']
          );
           $unControleur->insert("partenaire",$envoi);
