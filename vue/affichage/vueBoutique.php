@@ -5,18 +5,18 @@
     <br>
     <div class="list-group">
         <?php foreach ($result1 as $Resultat) { ?> 
-        <?php if ($Resultat['id_partenaire'] == 1) {
+        <?php if ($Resultat['id_partenaire'] == 5) {
                 foreach ($resultp1 as $key) {
                     $a = $key['COUNT(*)'];
                 }
             }
             foreach ($resultp2 as $keys) {
-                if ($Resultat['id_partenaire'] == 2) {
+                if ($Resultat['id_partenaire'] == 6) {
                     $a = $keys['COUNT(*)'];
                 }
             }
             foreach ($resultp3 as $keyss) {
-                if ($Resultat['id_partenaire'] == 3) {
+                if ($Resultat['id_partenaire'] == 22) {
                     $a = $keyss['COUNT(*)'];
                 }
             }

@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
--- http://www.phpmyadmin.net
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
 --
--- Client :  127.0.0.1
--- Généré le :  Ven 13 Décembre 2019 à 18:34
--- Version du serveur :  5.6.26
--- Version de PHP :  5.6.12
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  ven. 13 déc. 2019 à 19:43
+-- Version du serveur :  5.7.24
+-- Version de PHP :  7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -20,17 +22,42 @@ SET time_zone = "+00:00";
 -- Base de données :  `eventupdate`
 --
 
+DELIMITER $$
+--
+-- Procédures
+--
+DROP PROCEDURE IF EXISTS `insert_partenaire`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_partenaire` (IN `pmdp` VARCHAR(50), `padresse` VARCHAR(50), `paccronyme` VARCHAR(50), `pnom_marque` VARCHAR(50), IN `pdate_debut` DATE)  begin 
+    declare id int(5);
+    insert into personne values (null, pmdp, padresse);
+    select id_personne into id from personne where mdp COLLATE utf8_unicode_ci = pmdp and adresse COLLATE utf8_unicode_ci = padresse; 
+    insert into partenaire values(id,paccronyme, pmdp, pnom_marque, pdate_debut, padresse);
+end$$
+
+DROP PROCEDURE IF EXISTS `insert_user`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_user` (IN `pmdp` VARCHAR(50), `padresse` VARCHAR(50), `pnom` VARCHAR(50), `pprenom` VARCHAR(50), `pemail` VARCHAR(50), IN `pdate_naissance` DATE, IN `pcode_postal` INT(5), `ptelephone` INT(5), IN `prole` VARCHAR(50))  begin 
+    declare id int(5);
+    insert into personne values (null, pmdp, padresse);
+    select id_personne into id from personne where mdp COLLATE utf8_unicode_ci = pmdp and adresse COLLATE utf8_unicode_ci = padresse; 
+    insert into user values(id,pnom, pprenom, pemail, pmdp, ptelephone, pdate_naissance, padresse, pcode_postal, prole);
+end$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
 -- Structure de la table `attribut`
 --
 
+DROP TABLE IF EXISTS `attribut`;
 CREATE TABLE IF NOT EXISTS `attribut` (
-  `idattribut` int(11) NOT NULL,
+  `idattribut` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(50) NOT NULL,
   `valeur` varchar(50) NOT NULL,
-  `id_telephone` int(11) NOT NULL
+  `id_telephone` int(11) NOT NULL,
+  PRIMARY KEY (`idattribut`),
+  KEY `Attribut_produit_FK` (`id_telephone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -39,8 +66,9 @@ CREATE TABLE IF NOT EXISTS `attribut` (
 -- Structure de la table `event`
 --
 
+DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
-  `id_event` int(11) NOT NULL,
+  `id_event` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(50) NOT NULL,
   `tarif` int(11) NOT NULL,
   `nbplaces` int(11) NOT NULL,
@@ -49,15 +77,24 @@ CREATE TABLE IF NOT EXISTS `event` (
   `description` varchar(50) NOT NULL,
   `categorie` enum('event 1','event 2','event 3','event 4','event 5') NOT NULL,
   `valid` tinyint(1) NOT NULL,
-  `id_lieu` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `id_lieu` int(11) NOT NULL,
+  PRIMARY KEY (`id_event`),
+  KEY `event_lieu_FK` (`id_lieu`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `event`
+--
+
+INSERT INTO `event` (`id_event`, `designation`, `tarif`, `nbplaces`, `date_event`, `horaires`, `description`, `categorie`, `valid`, `id_lieu`) VALUES
+(7, 'Conference Samsung S10', 25, 50, '2019-12-27', '12:17', 'PrÃ©sentation du dernier samsung', 'event 4', 1, 1);
 
 --
 -- Déclencheurs `event`
 --
+DROP TRIGGER IF EXISTS `new-event_valid`;
 DELIMITER $$
-CREATE TRIGGER `new-event_valid` BEFORE INSERT ON `event`
- FOR EACH ROW BEGIN
+CREATE TRIGGER `new-event_valid` BEFORE INSERT ON `event` FOR EACH ROW BEGIN
     SET NEW.valid= 1;
 END
 $$
@@ -69,12 +106,22 @@ DELIMITER ;
 -- Structure de la table `inscrire`
 --
 
+DROP TABLE IF EXISTS `inscrire`;
 CREATE TABLE IF NOT EXISTS `inscrire` (
   `id_event` int(11) NOT NULL,
   `id_personne` int(11) NOT NULL,
   `date_inscription` date NOT NULL,
-  `qualite` varchar(50) NOT NULL
+  `qualite` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_event`,`id_personne`),
+  KEY `inscrire_personne0_FK` (`id_personne`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `inscrire`
+--
+
+INSERT INTO `inscrire` (`id_event`, `id_personne`, `date_inscription`, `qualite`) VALUES
+(7, 3, '2019-12-13', 'influenceur');
 
 -- --------------------------------------------------------
 
@@ -82,15 +129,17 @@ CREATE TABLE IF NOT EXISTS `inscrire` (
 -- Structure de la table `lieu`
 --
 
+DROP TABLE IF EXISTS `lieu`;
 CREATE TABLE IF NOT EXISTS `lieu` (
-  `id_lieu` int(11) NOT NULL,
+  `id_lieu` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(50) NOT NULL,
   `adresse` varchar(50) NOT NULL,
-  `code_postal` int(11) NOT NULL
+  `code_postal` int(11) NOT NULL,
+  PRIMARY KEY (`id_lieu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `lieu`
+-- Déchargement des données de la table `lieu`
 --
 
 INSERT INTO `lieu` (`id_lieu`, `designation`, `adresse`, `code_postal`) VALUES
@@ -103,14 +152,18 @@ INSERT INTO `lieu` (`id_lieu`, `designation`, `adresse`, `code_postal`) VALUES
 -- Structure de la table `note`
 --
 
+DROP TABLE IF EXISTS `note`;
 CREATE TABLE IF NOT EXISTS `note` (
-  `id_note` int(11) NOT NULL,
+  `id_note` int(11) NOT NULL AUTO_INCREMENT,
   `auteur` varchar(50) NOT NULL,
   `score` int(11) NOT NULL,
   `commentaire` varchar(500) NOT NULL,
   `id_personne` int(11) NOT NULL,
-  `id_telephone` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `id_telephone` int(11) NOT NULL,
+  PRIMARY KEY (`id_note`),
+  KEY `note_personne_FK` (`id_personne`),
+  KEY `note_Attribut0_FK` (`id_telephone`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -118,17 +171,19 @@ CREATE TABLE IF NOT EXISTS `note` (
 -- Structure de la table `partenaire`
 --
 
+DROP TABLE IF EXISTS `partenaire`;
 CREATE TABLE IF NOT EXISTS `partenaire` (
-  `id_partenaire` int(11) NOT NULL,
+  `id_partenaire` int(11) NOT NULL AUTO_INCREMENT,
   `accronyme` varchar(50) NOT NULL,
   `mdp` varchar(50) NOT NULL,
   `nom_marque` varchar(50) NOT NULL,
   `date_debut` date NOT NULL,
-  `adresse` varchar(500) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  `adresse` varchar(500) NOT NULL,
+  PRIMARY KEY (`id_partenaire`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `partenaire`
+-- Déchargement des données de la table `partenaire`
 --
 
 INSERT INTO `partenaire` (`id_partenaire`, `accronyme`, `mdp`, `nom_marque`, `date_debut`, `adresse`) VALUES
@@ -139,9 +194,9 @@ INSERT INTO `partenaire` (`id_partenaire`, `accronyme`, `mdp`, `nom_marque`, `da
 --
 -- Déclencheurs `partenaire`
 --
+DROP TRIGGER IF EXISTS `current_date_debut`;
 DELIMITER $$
-CREATE TRIGGER `current_date_debut` BEFORE INSERT ON `partenaire`
- FOR EACH ROW BEGIN
+CREATE TRIGGER `current_date_debut` BEFORE INSERT ON `partenaire` FOR EACH ROW BEGIN
     SET NEW.date_debut = NOW();
 END
 $$
@@ -153,9 +208,12 @@ DELIMITER ;
 -- Structure de la table `participer`
 --
 
+DROP TABLE IF EXISTS `participer`;
 CREATE TABLE IF NOT EXISTS `participer` (
   `id_event` int(11) NOT NULL,
-  `id_telephone` int(11) NOT NULL
+  `id_telephone` int(11) NOT NULL,
+  PRIMARY KEY (`id_event`,`id_telephone`),
+  KEY `participer_telephone_FK` (`id_telephone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -164,14 +222,16 @@ CREATE TABLE IF NOT EXISTS `participer` (
 -- Structure de la table `personne`
 --
 
+DROP TABLE IF EXISTS `personne`;
 CREATE TABLE IF NOT EXISTS `personne` (
-  `id_personne` int(11) NOT NULL,
+  `id_personne` int(11) NOT NULL AUTO_INCREMENT,
   `mdp` varchar(50) NOT NULL,
-  `adresse` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+  `adresse` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_personne`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `personne`
+-- Déchargement des données de la table `personne`
 --
 
 INSERT INTO `personne` (`id_personne`, `mdp`, `adresse`) VALUES
@@ -183,7 +243,11 @@ INSERT INTO `personne` (`id_personne`, `mdp`, `adresse`) VALUES
 (6, '123456', '5 rue des Lilas'),
 (21, 'test', 'Tests'),
 (22, '123456', '5 rue de Paris'),
-(23, '123456', 'Test');
+(23, '123456', 'Test'),
+(24, '12345', '78 rue delrue'),
+(25, 'IUYTRE', '67 avenue loupe'),
+(26, '123456', '7 rue de charonne'),
+(27, '765432', '18 avene des champ elysee');
 
 -- --------------------------------------------------------
 
@@ -191,8 +255,9 @@ INSERT INTO `personne` (`id_personne`, `mdp`, `adresse`) VALUES
 -- Structure de la table `produit`
 --
 
+DROP TABLE IF EXISTS `produit`;
 CREATE TABLE IF NOT EXISTS `produit` (
-  `id_telephone` int(11) NOT NULL,
+  `id_telephone` int(11) NOT NULL AUTO_INCREMENT,
   `designation` varchar(50) NOT NULL,
   `Prix` float NOT NULL,
   `poids` float NOT NULL,
@@ -200,8 +265,17 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `couleur` varchar(50) NOT NULL,
   `date_sortie` date NOT NULL,
   `img` varchar(50) NOT NULL,
-  `id_partenaire` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  `id_partenaire` int(11) NOT NULL,
+  PRIMARY KEY (`id_telephone`),
+  KEY `produit_partenaire_FK` (`id_partenaire`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+INSERT INTO `produit` (`id_telephone`, `designation`, `Prix`, `poids`, `taille`, `couleur`, `date_sortie`, `img`, `id_partenaire`) VALUES
+(12, 'Samsung S10', 900, 125, 40, 'noire', '2019-12-26', '/img/Produit/Samsung S10.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -209,17 +283,22 @@ CREATE TABLE IF NOT EXISTS `produit` (
 -- Structure de la table `promos`
 --
 
+DROP TABLE IF EXISTS `promos`;
 CREATE TABLE IF NOT EXISTS `promos` (
-  `idpromo` int(11) NOT NULL,
+  `idpromo` int(11) NOT NULL AUTO_INCREMENT,
   `valeur` int(11) NOT NULL,
-  `id_telephone` int(11) NOT NULL
+  `id_telephone` int(11) NOT NULL,
+  PRIMARY KEY (`idpromo`),
+  KEY `Attribut_produit_FK` (`id_telephone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
 -- Doublure de structure pour la vue `select_event`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_event`;
 CREATE TABLE IF NOT EXISTS `select_event` (
 `id_event` int(11)
 ,`designation` varchar(50)
@@ -237,7 +316,9 @@ CREATE TABLE IF NOT EXISTS `select_event` (
 
 --
 -- Doublure de structure pour la vue `select_lieu`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_lieu`;
 CREATE TABLE IF NOT EXISTS `select_lieu` (
 `id_lieu` int(11)
 ,`designation` varchar(50)
@@ -249,7 +330,9 @@ CREATE TABLE IF NOT EXISTS `select_lieu` (
 
 --
 -- Doublure de structure pour la vue `select_nb_produit1`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_nb_produit1`;
 CREATE TABLE IF NOT EXISTS `select_nb_produit1` (
 `COUNT(*)` bigint(21)
 );
@@ -258,7 +341,9 @@ CREATE TABLE IF NOT EXISTS `select_nb_produit1` (
 
 --
 -- Doublure de structure pour la vue `select_nb_produit2`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_nb_produit2`;
 CREATE TABLE IF NOT EXISTS `select_nb_produit2` (
 `COUNT(*)` bigint(21)
 );
@@ -267,7 +352,9 @@ CREATE TABLE IF NOT EXISTS `select_nb_produit2` (
 
 --
 -- Doublure de structure pour la vue `select_nb_produit3`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_nb_produit3`;
 CREATE TABLE IF NOT EXISTS `select_nb_produit3` (
 `COUNT(*)` bigint(21)
 );
@@ -276,7 +363,9 @@ CREATE TABLE IF NOT EXISTS `select_nb_produit3` (
 
 --
 -- Doublure de structure pour la vue `select_note`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_note`;
 CREATE TABLE IF NOT EXISTS `select_note` (
 `id_note` int(11)
 ,`auteur` varchar(50)
@@ -290,7 +379,9 @@ CREATE TABLE IF NOT EXISTS `select_note` (
 
 --
 -- Doublure de structure pour la vue `select_partenaire`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_partenaire`;
 CREATE TABLE IF NOT EXISTS `select_partenaire` (
 `id_partenaire` int(11)
 ,`accronyme` varchar(50)
@@ -304,7 +395,9 @@ CREATE TABLE IF NOT EXISTS `select_partenaire` (
 
 --
 -- Doublure de structure pour la vue `select_produit`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_produit`;
 CREATE TABLE IF NOT EXISTS `select_produit` (
 `id_telephone` int(11)
 ,`designation` varchar(50)
@@ -321,7 +414,9 @@ CREATE TABLE IF NOT EXISTS `select_produit` (
 
 --
 -- Doublure de structure pour la vue `select_promos`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_promos`;
 CREATE TABLE IF NOT EXISTS `select_promos` (
 `idpromo` int(11)
 ,`valeur` int(11)
@@ -332,7 +427,9 @@ CREATE TABLE IF NOT EXISTS `select_promos` (
 
 --
 -- Doublure de structure pour la vue `select_ticket`
+-- (Voir ci-dessous la vue réelle)
 --
+DROP VIEW IF EXISTS `select_ticket`;
 CREATE TABLE IF NOT EXISTS `select_ticket` (
 `id_ticket` int(11)
 ,`auteur` varchar(50)
@@ -350,13 +447,17 @@ CREATE TABLE IF NOT EXISTS `select_ticket` (
 -- Structure de la table `soumettre`
 --
 
+DROP TABLE IF EXISTS `soumettre`;
 CREATE TABLE IF NOT EXISTS `soumettre` (
   `id_partenaire` int(11) NOT NULL,
   `id_personne` int(11) NOT NULL,
   `id_event` int(11) NOT NULL,
   `date_demande` date NOT NULL,
   `date_validation` date NOT NULL,
-  `decision` tinyint(1) NOT NULL
+  `decision` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_partenaire`,`id_personne`,`id_event`),
+  KEY `soumettre_personne_FK` (`id_personne`),
+  KEY `soumettre_event_FK` (`id_event`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -365,23 +466,34 @@ CREATE TABLE IF NOT EXISTS `soumettre` (
 -- Structure de la table `ticket`
 --
 
+DROP TABLE IF EXISTS `ticket`;
 CREATE TABLE IF NOT EXISTS `ticket` (
-  `id_ticket` int(11) NOT NULL,
+  `id_ticket` int(11) NOT NULL AUTO_INCREMENT,
   `auteur` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `objet` varchar(50) NOT NULL,
   `date` date NOT NULL,
   `contenu` varchar(50) NOT NULL,
   `id_personne` int(11) NOT NULL,
-  `id_partenaire` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+  `id_partenaire` int(11) NOT NULL,
+  PRIMARY KEY (`id_ticket`),
+  KEY `ticket_personne_FK` (`id_personne`),
+  KEY `ticket_partenaire0_FK` (`id_partenaire`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `ticket`
+--
+
+INSERT INTO `ticket` (`id_ticket`, `auteur`, `email`, `objet`, `date`, `contenu`, `id_personne`, `id_partenaire`) VALUES
+(20, 'kevin', 'a@a.com', 'telephone', '2019-12-13', 'marche plus', 3, 5);
 
 --
 -- Déclencheurs `ticket`
 --
+DROP TRIGGER IF EXISTS `new-ticket_date`;
 DELIMITER $$
-CREATE TRIGGER `new-ticket_date` BEFORE INSERT ON `ticket`
- FOR EACH ROW BEGIN
+CREATE TRIGGER `new-ticket_date` BEFORE INSERT ON `ticket` FOR EACH ROW BEGIN
     SET NEW.date= NOW();
 END
 $$
@@ -393,8 +505,9 @@ DELIMITER ;
 -- Structure de la table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id_personne` int(11) NOT NULL,
+  `id_personne` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -403,11 +516,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `date_naissance` date NOT NULL,
   `adresse` varchar(50) NOT NULL,
   `code_postal` int(11) NOT NULL,
-  `role` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+  `role` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_personne`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 --
--- Contenu de la table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id_personne`, `nom`, `prenom`, `email`, `mdp`, `telephone`, `date_naissance`, `adresse`, `code_postal`, `role`) VALUES
@@ -416,14 +530,16 @@ INSERT INTO `user` (`id_personne`, `nom`, `prenom`, `email`, `mdp`, `telephone`,
 (3, 'lefe', 'kevin', 'a@a.com', '123', 123, '2019-06-26', 'qsdqd', 94100, 'ROLE_USER'),
 (4, 'Maria', 'RaphaÃ«l', 'R@gmail.com', 'Solas', 687907844, '1997-05-24', '5 rue des chaufourniers', 75019, 'ROLE_USER'),
 (21, 'testinsertid', 'test', 'test', 'test', 0, '1998-05-24', 'Tests', 0, 'ROLE_USER'),
-(23, 'Testrole', 'roletest', 'test@gmail.com', '123456', 687907899, '1997-05-24', 'Test', 75019, 'ROLE_USER');
+(23, 'Testrole', 'roletest', 'test@gmail.com', '123456', 687907899, '1997-05-24', 'Test', 75019, 'ROLE_USER'),
+(24, 'marie', 'camille', 'p.p@com', '12345', 87654321, '2019-12-24', '78 rue delrue', 34567, 'ROLE_USER'),
+(25, 'dupont', 'laurier', 'z@r.fr', 'IUYTRE', 8765432, '1975-11-12', '67 avenue loupe', 67894, 'ROLE_USER');
 
 --
 -- Déclencheurs `user`
 --
+DROP TRIGGER IF EXISTS `new_role_user`;
 DELIMITER $$
-CREATE TRIGGER `new_role_user` BEFORE INSERT ON `user`
- FOR EACH ROW BEGIN
+CREATE TRIGGER `new_role_user` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
     SET NEW.role = "ROLE_USER";
 END
 $$
@@ -436,7 +552,7 @@ DELIMITER ;
 --
 DROP TABLE IF EXISTS `select_event`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_event` AS (select `event`.`id_event` AS `id_event`,`event`.`designation` AS `designation`,`event`.`tarif` AS `tarif`,`event`.`nbplaces` AS `nbplaces`,`event`.`date_event` AS `date_event`,`event`.`horaires` AS `horaires`,`event`.`description` AS `description`,`event`.`categorie` AS `categorie`,`event`.`valid` AS `valid`,`event`.`id_lieu` AS `id_lieu` from `event`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_event`  AS  (select `event`.`id_event` AS `id_event`,`event`.`designation` AS `designation`,`event`.`tarif` AS `tarif`,`event`.`nbplaces` AS `nbplaces`,`event`.`date_event` AS `date_event`,`event`.`horaires` AS `horaires`,`event`.`description` AS `description`,`event`.`categorie` AS `categorie`,`event`.`valid` AS `valid`,`event`.`id_lieu` AS `id_lieu` from `event`) ;
 
 -- --------------------------------------------------------
 
@@ -445,7 +561,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_lieu`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_lieu` AS (select `lieu`.`id_lieu` AS `id_lieu`,`lieu`.`designation` AS `designation`,`lieu`.`adresse` AS `adresse`,`lieu`.`code_postal` AS `code_postal` from `lieu`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_lieu`  AS  (select `lieu`.`id_lieu` AS `id_lieu`,`lieu`.`designation` AS `designation`,`lieu`.`adresse` AS `adresse`,`lieu`.`code_postal` AS `code_postal` from `lieu`) ;
 
 -- --------------------------------------------------------
 
@@ -454,7 +570,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_nb_produit1`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_nb_produit1` AS (select count(0) AS `COUNT(*)` from `produit` where (`produit`.`id_partenaire` = 1));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_nb_produit1`  AS  (select count(0) AS `COUNT(*)` from `produit` where (`produit`.`id_partenaire` = 1)) ;
 
 -- --------------------------------------------------------
 
@@ -463,7 +579,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_nb_produit2`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_nb_produit2` AS (select count(0) AS `COUNT(*)` from `produit` where (`produit`.`id_partenaire` = 2));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_nb_produit2`  AS  (select count(0) AS `COUNT(*)` from `produit` where (`produit`.`id_partenaire` = 2)) ;
 
 -- --------------------------------------------------------
 
@@ -472,7 +588,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_nb_produit3`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_nb_produit3` AS (select count(0) AS `COUNT(*)` from `produit` where (`produit`.`id_partenaire` = 3));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_nb_produit3`  AS  (select count(0) AS `COUNT(*)` from `produit` where (`produit`.`id_partenaire` = 3)) ;
 
 -- --------------------------------------------------------
 
@@ -481,7 +597,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_note`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_note` AS (select `note`.`id_note` AS `id_note`,`note`.`auteur` AS `auteur`,`note`.`score` AS `score`,`note`.`commentaire` AS `commentaire`,`note`.`id_personne` AS `id_personne`,`note`.`id_telephone` AS `id_telephone` from `note`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_note`  AS  (select `note`.`id_note` AS `id_note`,`note`.`auteur` AS `auteur`,`note`.`score` AS `score`,`note`.`commentaire` AS `commentaire`,`note`.`id_personne` AS `id_personne`,`note`.`id_telephone` AS `id_telephone` from `note`) ;
 
 -- --------------------------------------------------------
 
@@ -490,7 +606,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_partenaire`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_partenaire` AS (select `partenaire`.`id_partenaire` AS `id_partenaire`,`partenaire`.`accronyme` AS `accronyme`,`partenaire`.`mdp` AS `mdp`,`partenaire`.`nom_marque` AS `nom_marque`,`partenaire`.`date_debut` AS `date_debut`,`partenaire`.`adresse` AS `adresse` from `partenaire`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_partenaire`  AS  (select `partenaire`.`id_partenaire` AS `id_partenaire`,`partenaire`.`accronyme` AS `accronyme`,`partenaire`.`mdp` AS `mdp`,`partenaire`.`nom_marque` AS `nom_marque`,`partenaire`.`date_debut` AS `date_debut`,`partenaire`.`adresse` AS `adresse` from `partenaire`) ;
 
 -- --------------------------------------------------------
 
@@ -499,7 +615,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_produit`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_produit` AS (select `produit`.`id_telephone` AS `id_telephone`,`produit`.`designation` AS `designation`,`produit`.`Prix` AS `Prix`,`produit`.`poids` AS `poids`,`produit`.`taille` AS `taille`,`produit`.`couleur` AS `couleur`,`produit`.`date_sortie` AS `date_sortie`,`produit`.`img` AS `img`,`produit`.`id_partenaire` AS `id_partenaire` from `produit`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_produit`  AS  (select `produit`.`id_telephone` AS `id_telephone`,`produit`.`designation` AS `designation`,`produit`.`Prix` AS `Prix`,`produit`.`poids` AS `poids`,`produit`.`taille` AS `taille`,`produit`.`couleur` AS `couleur`,`produit`.`date_sortie` AS `date_sortie`,`produit`.`img` AS `img`,`produit`.`id_partenaire` AS `id_partenaire` from `produit`) ;
 
 -- --------------------------------------------------------
 
@@ -508,7 +624,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_promos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_promos` AS (select `promos`.`idpromo` AS `idpromo`,`promos`.`valeur` AS `valeur`,`promos`.`id_telephone` AS `id_telephone` from `promos`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_promos`  AS  (select `promos`.`idpromo` AS `idpromo`,`promos`.`valeur` AS `valeur`,`promos`.`id_telephone` AS `id_telephone` from `promos`) ;
 
 -- --------------------------------------------------------
 
@@ -517,158 +633,10 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `select_ticket`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_ticket` AS (select `ticket`.`id_ticket` AS `id_ticket`,`ticket`.`auteur` AS `auteur`,`ticket`.`email` AS `email`,`ticket`.`objet` AS `objet`,`ticket`.`date` AS `date`,`ticket`.`contenu` AS `contenu`,`ticket`.`id_personne` AS `id_personne`,`ticket`.`id_partenaire` AS `id_partenaire` from `ticket`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `select_ticket`  AS  (select `ticket`.`id_ticket` AS `id_ticket`,`ticket`.`auteur` AS `auteur`,`ticket`.`email` AS `email`,`ticket`.`objet` AS `objet`,`ticket`.`date` AS `date`,`ticket`.`contenu` AS `contenu`,`ticket`.`id_personne` AS `id_personne`,`ticket`.`id_partenaire` AS `id_partenaire` from `ticket`) ;
 
 --
--- Index pour les tables exportées
---
-
---
--- Index pour la table `attribut`
---
-ALTER TABLE `attribut`
-  ADD PRIMARY KEY (`idattribut`),
-  ADD KEY `Attribut_produit_FK` (`id_telephone`);
-
---
--- Index pour la table `event`
---
-ALTER TABLE `event`
-  ADD PRIMARY KEY (`id_event`),
-  ADD KEY `event_lieu_FK` (`id_lieu`);
-
---
--- Index pour la table `inscrire`
---
-ALTER TABLE `inscrire`
-  ADD PRIMARY KEY (`id_event`,`id_personne`),
-  ADD KEY `inscrire_personne0_FK` (`id_personne`);
-
---
--- Index pour la table `lieu`
---
-ALTER TABLE `lieu`
-  ADD PRIMARY KEY (`id_lieu`);
-
---
--- Index pour la table `note`
---
-ALTER TABLE `note`
-  ADD PRIMARY KEY (`id_note`),
-  ADD KEY `note_personne_FK` (`id_personne`),
-  ADD KEY `note_Attribut0_FK` (`id_telephone`);
-
---
--- Index pour la table `partenaire`
---
-ALTER TABLE `partenaire`
-  ADD PRIMARY KEY (`id_partenaire`);
-
---
--- Index pour la table `participer`
---
-ALTER TABLE `participer`
-  ADD PRIMARY KEY (`id_event`,`id_telephone`),
-  ADD KEY `participer_telephone_FK` (`id_telephone`);
-
---
--- Index pour la table `personne`
---
-ALTER TABLE `personne`
-  ADD PRIMARY KEY (`id_personne`);
-
---
--- Index pour la table `produit`
---
-ALTER TABLE `produit`
-  ADD PRIMARY KEY (`id_telephone`),
-  ADD KEY `produit_partenaire_FK` (`id_partenaire`);
-
---
--- Index pour la table `promos`
---
-ALTER TABLE `promos`
-  ADD PRIMARY KEY (`idpromo`),
-  ADD KEY `Attribut_produit_FK` (`id_telephone`);
-
---
--- Index pour la table `soumettre`
---
-ALTER TABLE `soumettre`
-  ADD PRIMARY KEY (`id_partenaire`,`id_personne`,`id_event`),
-  ADD KEY `soumettre_personne_FK` (`id_personne`),
-  ADD KEY `soumettre_event_FK` (`id_event`);
-
---
--- Index pour la table `ticket`
---
-ALTER TABLE `ticket`
-  ADD PRIMARY KEY (`id_ticket`),
-  ADD KEY `ticket_personne_FK` (`id_personne`),
-  ADD KEY `ticket_partenaire0_FK` (`id_partenaire`);
-
---
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_personne`);
-
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `attribut`
---
-ALTER TABLE `attribut`
-  MODIFY `idattribut` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT pour la table `event`
---
-ALTER TABLE `event`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT pour la table `lieu`
---
-ALTER TABLE `lieu`
-  MODIFY `id_lieu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT pour la table `note`
---
-ALTER TABLE `note`
-  MODIFY `id_note` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT pour la table `partenaire`
---
-ALTER TABLE `partenaire`
-  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
---
--- AUTO_INCREMENT pour la table `personne`
---
-ALTER TABLE `personne`
-  MODIFY `id_personne` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
---
--- AUTO_INCREMENT pour la table `produit`
---
-ALTER TABLE `produit`
-  MODIFY `id_telephone` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
---
--- AUTO_INCREMENT pour la table `promos`
---
-ALTER TABLE `promos`
-  MODIFY `idpromo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT pour la table `ticket`
---
-ALTER TABLE `ticket`
-  MODIFY `id_ticket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_personne` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
---
--- Contraintes pour les tables exportées
+-- Contraintes pour les tables déchargées
 --
 
 --
@@ -724,49 +692,8 @@ ALTER TABLE `soumettre`
 ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_partenaire0_FK` FOREIGN KEY (`id_partenaire`) REFERENCES `partenaire` (`id_partenaire`),
   ADD CONSTRAINT `ticket_personne_FK` FOREIGN KEY (`id_personne`) REFERENCES `user` (`id_personne`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
- /* procedure d'insertion d'user */
-delimiter $
-create procedure insert_user (In pmdp varchar(50), padresse varchar(50), pnom varchar(50), pprenom varchar(50),
-pemail varchar(50), IN pdate_naissance date, IN pcode_postal int(5), ptelephone int(5), IN prole varchar(50))
-begin 
-    declare id int(5);
-    insert into personne values (null, pmdp, padresse);
-    select id_personne into id from personne where mdp COLLATE utf8_unicode_ci = pmdp and adresse COLLATE utf8_unicode_ci = padresse; 
-    insert into user values(id,pnom, pprenom, pemail, pmdp, ptelephone, pdate_naissance, padresse, pcode_postal, prole);
-end $
-delimiter ; 
- 
-/* appel de la procedure */ 
-call insert_user("125", "2 rue malon","jean","louis","p@y.fr","1998-05-24","95100",0123456789,"ROLE_USER"),
-call insert_user("12567", "rue bali","capucine","merlan","o@y.fr","1999-05-24","75100",0123456789,"ROLE_USER"),
-call insert_user("12564", "3 rue keb","theo","aude","m@y.fr","1997-08-24","92100",0123456789,"ROLE_USER"),
-call insert_user("12562", "34 rue talon","anne","vie","c@y.fr","1992-05-24","93100",0123456789,"ROLE_USER"),
-call insert_user("12561", "31 rue avon","paul","lorrenzi","b@y.fr","1990-05-24","94300",0123456789,"ROLE_USER"),
-call insert_user("12560", "54 avenue lon","ke","bernacle","z@y.fr","1993-05-24","94200",0123456789,"ROLE_USER");
-
-/* procedure d'insertion d'un partenaire */
-delimiter $
-create procedure insert_partenaire (In pmdp varchar(50), padresse varchar(50), paccronyme varchar(50), pnom_marque varchar(50), IN pdate_debut date)
-begin 
-    declare id int(5);
-    insert into personne values (null, pmdp, padresse);
-    select id_personne into id from personne where mdp COLLATE utf8_unicode_ci = pmdp and adresse COLLATE utf8_unicode_ci = padresse; 
-    insert into partenaire values(id,paccronyme, pmdp, pnom_marque, pdate_debut, padresse);
-end $
-delimiter ; 
-
-/* appel de la procedure */
-call insert_partenaire("12534", "45 avenue boule","A","apple","1992-05-24");
-call insert_partenaire("1253", "95 avenue boule","B","bonnaci","1995-05-24");
-call insert_partenaire("125", "75 avenue boule","C","castorama","1994-05-24");
-call insert_partenaire("12555", "14 avenue boule","D","donuts","1972-05-24");
-call insert_partenaire("12566", "5 avenue boule","E","Elec","1982-05-24");
-call insert_partenaire("12536", "12 avenue boule","F","Frais","1991-05-24");
-
