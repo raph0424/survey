@@ -29,6 +29,7 @@ if(isset($_POST["Seconnecter"]))
             $_SESSION['mdp'] = $resultat['mdp'];
             $_SESSION['nom_marque'] = $resultat['nom_marque'];
             $_SESSION['adresse'] = $resultat['adresse'];
+            $_SESSION['role'] = $resultat['role'];
             header('location: ../index.php');
         } else {
             echo" Connexion impossible ! Veuillez vérifier vos identifiants !";

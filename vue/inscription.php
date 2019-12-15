@@ -13,7 +13,7 @@ session_start();
 			 $idperson = $unresult['id_personne'];
 		 }
          $envoi = array ("id_personne"=>$idperson, 
-		 "nom"=>$_POST['nom'], 
+		     "nom"=>$_POST['nom'], 
          "prenom"=>$_POST['prenom'],
          "email"=>$_POST['email'],
          "mdp"=>$_POST['mdp'], 
@@ -21,7 +21,7 @@ session_start();
          "date_naissance"=>$_POST['date_naissance'],
          "adresse"=>$_POST['adresse'],
          "code_postal"=>$_POST['code_postal'],
-         "role"=>""
+         "role"=> "ROLE_USER"
         );
          $unControleur->insert("user",$envoi);
           if(isset($resultat['nom']))
@@ -48,7 +48,8 @@ session_start();
 		  "accronyme"=>$_POST['accronyme'], 
           "nom_marque"=>$_POST['nom_marque'],
           "mdp"=>$_POST['mdp'],
-          "adresse"=>$_POST['adresse']
+          "adresse"=>$_POST['adresse'],
+          "role"=> "ROLE_PARTENAIRE"
          );
           $unControleur->insert("partenaire",$envoi);
             if(isset($resultat['nom_marque']))

@@ -680,3 +680,13 @@ ALTER TABLE `ticket`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE IF NOT EXISTS `note` (
+  `id_note` int(11) NOT NULL,
+  `auteur` varchar(50) NOT NULL,
+  `score` int(11) NOT NULL,
+  `commentaire` varchar(500) NOT NULL,
+  `id_personne` int(11) NOT NULL,
+  `id_telephone` int(11) NOT NULL
+) 

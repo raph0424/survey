@@ -213,7 +213,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from Select_Nb_Produit1";
+            $requete = "select count(*) as nb_produit from produit where id_partenaire = 5";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete
@@ -228,7 +228,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from Select_Nb_Produit2";
+            $requete = "select count(*) as nb_produit from produit where id_partenaire = 6";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete
@@ -243,7 +243,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from Select_Nb_Produit3";
+            $requete = "select count(*) as nb_produit from produit where id_partenaire = 31";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete
@@ -399,7 +399,7 @@ public function selectEvent()
             $donnees = array(":score"=>$tab['score'],":commentaire"=>$tab['commentaire'],":id_note"=>$id_note);
             $insert = $this->unPdo->prepare($requete);
             $insert->execute($donnees);
-            var_dump($requete);
+            
     }
 }
 }

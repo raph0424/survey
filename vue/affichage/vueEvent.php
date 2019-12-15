@@ -86,7 +86,7 @@
                                                                                 <form class="form-group" action="" method="post">
                                                                                     <td><input type="hidden" name="id_event" value ="<?php echo $unResultat['id_event']?>"></td>
                                                                                     <td><input type="hidden" name="id_personne" value ="<?php echo $_SESSION['id_personne']?>"></td>
-                                                                                    <td><input data-toggle="modal" id="#ignismyModal" type="submit" name="sub" class="btn btn-success btn-block"></td>
+                                                                                    <td><input data-toggle="modal" id="#ignismyModal" type="submit" name="sub" value = "Acheter place"class="btn btn-success btn-block"></td>
                                                                                 </form>
                                                                                 <?php }?>
                                                                                 <?php if(isset($_SESSION['id_partenaire'])){?>

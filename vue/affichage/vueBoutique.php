@@ -5,19 +5,21 @@
     <br>
     <div class="list-group">
         <?php foreach ($result1 as $Resultat) { ?> 
-        <?php if ($Resultat['id_partenaire'] == 5) {
+
+        <?php 
                 foreach ($resultp1 as $key) {
-                    $a = $key['COUNT(*)'];
+                    if ($Resultat['id_partenaire'] == 5) {
+                        $a = $key['nb_produit'];
                 }
             }
             foreach ($resultp2 as $keys) {
                 if ($Resultat['id_partenaire'] == 6) {
-                    $a = $keys['COUNT(*)'];
+                    $a = $keys['nb_produit'];
                 }
             }
             foreach ($resultp3 as $keyss) {
                 if ($Resultat['id_partenaire'] == 22) {
-                    $a = $keyss['COUNT(*)'];
+                    $a = $keyss['nb_produit'];
                 }
             }
                 ?>
@@ -126,7 +128,10 @@
                                                                                                     <td> <input class ='btn btn-primary' type="submit" name="ajouter" value="ajouter Promo"> </td>
                                                                                                 </tr>
                                                                                         </form>
-                                                                                        <?php } ?>
+                                                                                        <?php }
+                                                                                        else {
+                                                                                            $_SESSION['role'] == 'Role_USER';
+                                                                                        } ?>
                                                                                 <tr>
                                                                                     
                                                                                     <th>Produit</th>
