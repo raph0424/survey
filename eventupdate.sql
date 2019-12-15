@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 13 déc. 2019 à 19:43
+-- Généré le :  Dim 15 déc. 2019 à 20:36
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.3.1
 
@@ -47,22 +47,6 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `attribut`
---
-
-DROP TABLE IF EXISTS `attribut`;
-CREATE TABLE IF NOT EXISTS `attribut` (
-  `idattribut` int(11) NOT NULL AUTO_INCREMENT,
-  `designation` varchar(50) NOT NULL,
-  `valeur` varchar(50) NOT NULL,
-  `id_telephone` int(11) NOT NULL,
-  PRIMARY KEY (`idattribut`),
-  KEY `Attribut_produit_FK` (`id_telephone`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `event`
 --
 
@@ -80,14 +64,15 @@ CREATE TABLE IF NOT EXISTS `event` (
   `id_lieu` int(11) NOT NULL,
   PRIMARY KEY (`id_event`),
   KEY `event_lieu_FK` (`id_lieu`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `event`
 --
 
 INSERT INTO `event` (`id_event`, `designation`, `tarif`, `nbplaces`, `date_event`, `horaires`, `description`, `categorie`, `valid`, `id_lieu`) VALUES
-(7, 'Conference Samsung S10', 25, 50, '2019-12-27', '12:17', 'PrÃ©sentation du dernier samsung', 'event 4', 1, 1);
+(7, 'Conference Samsung S10', 25, 50, '2019-12-27', '12:17', 'PrÃ©sentation du dernier samsung', 'event 4', 1, 1),
+(8, 'Conference P20', 20, 100, '2019-12-16', '12:00', 'Sortie du nouveau P20', 'event 2', 1, 2);
 
 --
 -- Déclencheurs `event`
@@ -121,7 +106,14 @@ CREATE TABLE IF NOT EXISTS `inscrire` (
 --
 
 INSERT INTO `inscrire` (`id_event`, `id_personne`, `date_inscription`, `qualite`) VALUES
-(7, 3, '2019-12-13', 'influenceur');
+(7, 2, '2019-12-15', 'influenceur'),
+(7, 3, '2019-12-13', 'influenceur'),
+(7, 24, '2019-12-15', 'influenceur'),
+(7, 29, '2019-12-15', 'influenceur'),
+(8, 2, '2019-12-15', 'influenceur'),
+(8, 3, '2019-12-15', 'influenceur'),
+(8, 24, '2019-12-15', 'influenceur'),
+(8, 29, '2019-12-15', 'influenceur');
 
 -- --------------------------------------------------------
 
@@ -161,9 +153,21 @@ CREATE TABLE IF NOT EXISTS `note` (
   `id_personne` int(11) NOT NULL,
   `id_telephone` int(11) NOT NULL,
   PRIMARY KEY (`id_note`),
-  KEY `note_personne_FK` (`id_personne`),
-  KEY `note_Attribut0_FK` (`id_telephone`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  KEY `id_telephone` (`id_telephone`),
+  KEY `id_personne` (`id_personne`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `note`
+--
+
+INSERT INTO `note` (`id_note`, `auteur`, `score`, `commentaire`, `id_personne`, `id_telephone`) VALUES
+(2, 'kevin', 5, 'TrÃ¨s beau telephone !', 3, 12),
+(4, 'Julie', 3, 'Telephone parfait', 2, 14),
+(5, 'p', 5, 'Magnifique', 29, 14),
+(6, 'p', 4, 'Trop fort !', 29, 13),
+(7, 'camille', 1, 'La promotion est parfaite', 24, 12),
+(8, 'camille', 4, 'Bon rapport qualitÃ© prix', 24, 15);
 
 -- --------------------------------------------------------
 
@@ -179,17 +183,17 @@ CREATE TABLE IF NOT EXISTS `partenaire` (
   `nom_marque` varchar(50) NOT NULL,
   `date_debut` date NOT NULL,
   `adresse` varchar(500) NOT NULL,
+  `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_partenaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `partenaire`
 --
 
-INSERT INTO `partenaire` (`id_partenaire`, `accronyme`, `mdp`, `nom_marque`, `date_debut`, `adresse`) VALUES
-(5, 'SSG', '123456', 'Samsung', '2019-02-12', '44 Avenue des Champs Elysee'),
-(6, 'HW', '123456', 'Huawei', '2019-03-14', '5 rue des Lilas'),
-(22, 'ONP', '123456', 'ONE PLUS', '2019-12-13', '5 rue de Paris');
+INSERT INTO `partenaire` (`id_partenaire`, `accronyme`, `mdp`, `nom_marque`, `date_debut`, `adresse`, `role`) VALUES
+(5, 'SSG', '123456', 'Samsung', '2019-02-12', '44 Avenue des Champs Elysee', 'ROLE_PARTENAIRE'),
+(6, 'HW', '123456', 'Huawei', '2019-03-14', '5 rue des Lilas', 'ROLE_PARTENAIRE');
 
 --
 -- Déclencheurs `partenaire`
@@ -228,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `mdp` varchar(50) NOT NULL,
   `adresse` varchar(50) NOT NULL,
   PRIMARY KEY (`id_personne`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `personne`
@@ -247,7 +251,10 @@ INSERT INTO `personne` (`id_personne`, `mdp`, `adresse`) VALUES
 (24, '12345', '78 rue delrue'),
 (25, 'IUYTRE', '67 avenue loupe'),
 (26, '123456', '7 rue de charonne'),
-(27, '765432', '18 avene des champ elysee');
+(27, '765432', '18 avene des champ elysee'),
+(28, '12345', '& RUE DELMO'),
+(29, '123', '34rt'),
+(30, '123', 'Rue delrue');
 
 -- --------------------------------------------------------
 
@@ -268,14 +275,20 @@ CREATE TABLE IF NOT EXISTS `produit` (
   `id_partenaire` int(11) NOT NULL,
   PRIMARY KEY (`id_telephone`),
   KEY `produit_partenaire_FK` (`id_partenaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
 INSERT INTO `produit` (`id_telephone`, `designation`, `Prix`, `poids`, `taille`, `couleur`, `date_sortie`, `img`, `id_partenaire`) VALUES
-(12, 'Samsung S10', 900, 125, 40, 'noire', '2019-12-26', '/img/Produit/Samsung S10.jpg', 5);
+(5, 'Samsung S11', 1400, 150, 30, 'noire', '2019-12-19', '/img/Produit/Samsung S10.jpg', 5),
+(12, 'Samsung S10', 900, 125, 40, 'noire', '2019-12-26', '/img/Produit/Samsung S10.jpg', 5),
+(13, 'Samsung S10 +', 1100, 240, 30, 'noire', '2019-12-04', '/img/Produit/Samsung S10.jpg', 5),
+(14, 'P20', 700, 150, 25, 'argent', '2020-01-16', '/img/Produit/P20.jpg', 6),
+(15, 'Samsung S9', 600, 240, 30, 'noire', '2019-12-04', '/img/Produit/Samsung S10.jpg', 5),
+(16, 'P20 pro', 899, 150, 25, 'argent', '2020-01-16', '/img/Produit/P20.jpg', 6),
+(17, 'P30 pro', 1099, 150, 25, 'argent', '2020-01-16', '/img/Produit/P20.jpg', 6);
 
 -- --------------------------------------------------------
 
@@ -290,7 +303,14 @@ CREATE TABLE IF NOT EXISTS `promos` (
   `id_telephone` int(11) NOT NULL,
   PRIMARY KEY (`idpromo`),
   KEY `Attribut_produit_FK` (`id_telephone`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `promos`
+--
+
+INSERT INTO `promos` (`idpromo`, `valeur`, `id_telephone`) VALUES
+(1, 25, 12);
 
 -- --------------------------------------------------------
 
@@ -479,14 +499,18 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   PRIMARY KEY (`id_ticket`),
   KEY `ticket_personne_FK` (`id_personne`),
   KEY `ticket_partenaire0_FK` (`id_partenaire`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ticket`
 --
 
 INSERT INTO `ticket` (`id_ticket`, `auteur`, `email`, `objet`, `date`, `contenu`, `id_personne`, `id_partenaire`) VALUES
-(20, 'kevin', 'a@a.com', 'telephone', '2019-12-13', 'marche plus', 3, 5);
+(20, 'kevin', 'a@a.com', 'telephone', '2019-12-13', 'marche plus', 3, 5),
+(21, 'camille', 'p.p@com.fr', 'Soucis', '2019-12-15', 'J\'ai un soucis avec le tÃ©lÃ©pone', 24, 5),
+(22, 'camille', 'p.p@com.fr', 'probleme', '2019-12-15', 'Bonjour l\'ecran n\'affiche plus rien', 24, 6),
+(23, 'kevin', 'a@a.com', 'Alimentation', '2019-12-15', 'Mon tÃ©lÃ©phone ne charge plus', 3, 5),
+(24, 'kevin', 'a@a.com', 'tactile', '2019-12-15', 'Le tactile ne rÃ©pond plus', 3, 6);
 
 --
 -- Déclencheurs `ticket`
@@ -518,7 +542,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `code_postal` int(11) NOT NULL,
   `role` varchar(50) NOT NULL,
   PRIMARY KEY (`id_personne`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
@@ -531,8 +555,9 @@ INSERT INTO `user` (`id_personne`, `nom`, `prenom`, `email`, `mdp`, `telephone`,
 (4, 'Maria', 'RaphaÃ«l', 'R@gmail.com', 'Solas', 687907844, '1997-05-24', '5 rue des chaufourniers', 75019, 'ROLE_USER'),
 (21, 'testinsertid', 'test', 'test', 'test', 0, '1998-05-24', 'Tests', 0, 'ROLE_USER'),
 (23, 'Testrole', 'roletest', 'test@gmail.com', '123456', 687907899, '1997-05-24', 'Test', 75019, 'ROLE_USER'),
-(24, 'marie', 'camille', 'p.p@com', '12345', 87654321, '2019-12-24', '78 rue delrue', 34567, 'ROLE_USER'),
-(25, 'dupont', 'laurier', 'z@r.fr', 'IUYTRE', 8765432, '1975-11-12', '67 avenue loupe', 67894, 'ROLE_USER');
+(24, 'marie', 'camille', 'p.p@com.fr', '12345', 87654321, '2019-12-24', '78 rue delrue', 34567, 'ROLE_USER'),
+(25, 'dupont', 'laurier', 'z@r.fr', 'IUYTRE', 8765432, '1975-11-12', '67 avenue loupe', 67894, 'ROLE_USER'),
+(29, 'p', 'p', 'p@p.com', '123', 123, '2018-11-14', '34rt', 908909, 'ROLE_USER');
 
 --
 -- Déclencheurs `user`
@@ -640,12 +665,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Contraintes pour la table `attribut`
---
-ALTER TABLE `attribut`
-  ADD CONSTRAINT `Attribut_produit_FK` FOREIGN KEY (`id_telephone`) REFERENCES `produit` (`id_telephone`);
-
---
 -- Contraintes pour la table `event`
 --
 ALTER TABLE `event`
@@ -657,13 +676,6 @@ ALTER TABLE `event`
 ALTER TABLE `inscrire`
   ADD CONSTRAINT `inscrire_event_FK` FOREIGN KEY (`id_event`) REFERENCES `event` (`id_event`),
   ADD CONSTRAINT `inscrire_personne0_FK` FOREIGN KEY (`id_personne`) REFERENCES `user` (`id_personne`);
-
---
--- Contraintes pour la table `note`
---
-ALTER TABLE `note`
-  ADD CONSTRAINT `note_Attribut0_FK` FOREIGN KEY (`id_telephone`) REFERENCES `attribut` (`idattribut`),
-  ADD CONSTRAINT `note_personne_FK` FOREIGN KEY (`id_personne`) REFERENCES `user` (`id_personne`);
 
 --
 -- Contraintes pour la table `participer`
@@ -697,14 +709,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-CREATE TABLE IF NOT EXISTS note (
-  id_note int(11) NOT NULL AUTO_INCREMENT,
-  auteur varchar(50) NOT NULL,
-  score int(11) NOT NULL,
-  commentaire varchar(500) NOT NULL,
-  id_personne int(11) NOT NULL,
-  id_telephone int(11) NOT NULL,
-  PRIMARY KEY (id_note),
-  foreign key (id_telephone) references produit (id_telephone),
-  FOREIGN KEY (id_personne) references personne (id_personne)
-);
