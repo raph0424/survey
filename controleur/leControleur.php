@@ -65,6 +65,14 @@ class leControleur
     {
         return $this->unModele->selectPartenaire();
     }
+    public function select_Classement($idevent)
+    {
+        return $this->unModele->select_Classement($idevent);
+    }
+    public function select_Classement2()
+    {
+        return $this->unModele->select_Classement2();
+    }
     public function verifConPart($accronyme, $mdp)
     {
         // on peu controler les donnees 

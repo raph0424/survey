@@ -5,6 +5,8 @@ require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","eventupdate","root","");
 $result = $unControleur->selectEvent();
 $results = $unControleur->selectInscrire();
+
+
 if(isset($_POST["sub"]))
       {
          $envoi = array ("id_event"=>$_POST['id_event'], 

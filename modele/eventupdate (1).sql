@@ -690,3 +690,18 @@ CREATE TABLE IF NOT EXISTS `note` (
   `id_personne` int(11) NOT NULL,
   `id_telephone` int(11) NOT NULL
 ) 
+
+create table categorie(
+  id_cate int(5) not null AUTO_INCREMENT,
+  libelle varchar(50),
+  PRIMARY key (id_cate)
+);
+insert into categorie values (null,"Event 1"),
+(null,"event 2");
+
+create view select_classement as(
+SELECT c.libelle , e.id_event  FROM event e, categorie c WHERE e.classement = c.id_cate 
+);
+create view select_classement2 as(
+SELECT c.libelle as libelle FROM event e, categorie c WHERE e.classement = c.id_cate and c.id_cate = 2
+);

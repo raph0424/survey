@@ -317,7 +317,22 @@ public function selectEvent()
                         return $result;
                     }
                 }
-				
+                public function select_Classement($idevent)
+                {
+                    if ($this->unPdo != null) {
+                            // selection de toutes les données
+                            $requete = "SELECT * from select_classement where id_event = $idevent;";
+                            // preparation de la requete avant execution
+                            // $donnees = array(":telephone"=>$_SESSION['id_telephone']);
+                            $select = $this->unPdo->prepare($requete);
+                            // exection de la requete
+                            $select->execute();
+                            // extraction des données
+                            $result = $select->fetchAll();
+                            return $result;
+                           
+                        }
+                    }
 				public function selectlastPersonneid()
             {
                 if ($this->unPdo != null) {

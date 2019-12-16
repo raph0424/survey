@@ -24,9 +24,18 @@
                             if($unResultat['valid'] == 1){
                             $idmodal = 'modal-event-' . $unResultat['id_event'];
                             ?>
-
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
+                            <div class="card h-100">
+                                <h4>
+                                    <?php   
+                                    $idevent=  $unResultat['id_event'];
+                                    $result0 = $unControleur->select_Classement($idevent);
+                                    foreach($result0 as $res)
+                                    {
+                                        echo "<td>", $res['libelle'], "</td>";
+                                    }
+                                    ?>
+                                </h4>
                                     <a href="#" data-toggle="modal" data-target="#<?php echo $idmodal; ?>"><img class="card-img-top" src="../img/event/<?php echo $unResultat['designation']; ?>mini.jpg" alt=""></a>
                                     <div class="card-body">
                                         <h4 class="card-title">
@@ -37,6 +46,7 @@
                                         <?php
                                         echo "<td>", $unResultat['tarif'], "$ </td>";
                                         ?>
+
                                         <p class="card-text"></p>
                                         <div class="modal fade bannerformmodal modal-event" tabindex="-1" role="dialog" aria-labelledby="modal-event-label" aria-hidden="true" id="<?php echo $idmodal; ?>">
                                             <div class="modal-dialog modal-md">
