@@ -27,6 +27,21 @@ class leModele {
             return $resultat;
         }
     }
+	public function selectuser()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from user where :role = role;";
+            $donnees = array(":role"=>'ROLE_USER');                    
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute($donnees);
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+        }
+    }
     
     public function verifConPart($accronyme, $mdp)
     {
@@ -184,6 +199,21 @@ public function selectEvent()
     if ($this->unPdo != null) {
             // selection de toutes les données
             $requete = "select * from inscrire;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute();
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
+	public function selectInscrireid()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select id_event, id_personne from inscrire;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete

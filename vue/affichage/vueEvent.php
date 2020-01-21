@@ -91,7 +91,10 @@
                                                                             <tr>
                                                                                 <?php $id = $unResultat['id_event']; ?>
                                                                                 <td><a href="Vision<?php echo $unResultat['categorie'];?>.php?id=<?php echo $id?>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Visionnez cet événement !</a></td>
-                                                                                <td colspan="2" class="hidden-xs"></td>
+                                                                               <?php if(isset($_SESSION['accronyme'])) { ?>
+																			   <td><a href="Visionuser.php?id=<?php echo $id?>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Voir les influenceurs</a></td>
+																			   ?> <?php } ?>
+																			   <td colspan="2" class="hidden-xs"></td>
                                                                                 <?php if(isset($_SESSION['id_personne'])){?>
                                                                                 <form class="form-group" action="" method="post">
                                                                                     <td><input type="hidden" name="id_event" value ="<?php echo $unResultat['id_event']?>"></td>

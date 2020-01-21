@@ -17,6 +17,10 @@ class leControleur
     {
         return $this->unModele->selectEvent();
     }
+	public function selectuser()
+    {
+        return $this->unModele->selectuser();
+    }
 	public function selectlastPersonneid()
     {
         return $this->unModele->selectlastPersonneid();
@@ -44,6 +48,10 @@ class leControleur
     public function selectInscrire()
     {
         return $this->unModele->selectInscrire();
+    }
+	public function selectInscrireid()
+    {
+        return $this->unModele->selectInscrireid();
     }
     public function selectTicket()
     {
