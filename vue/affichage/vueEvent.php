@@ -32,7 +32,7 @@
                                     $result0 = $unControleur->selectCategorie($idevent);
                                     foreach($result0 as $res)
                                     {
-                                        echo "<td>", $res['categorie'], "</td>";
+                                        echo "<td>", "Type ", $res['categorie'], "</td>";
                                     }
                                     ?>
                                 </h4>
