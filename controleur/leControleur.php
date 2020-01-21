@@ -73,6 +73,10 @@ class leControleur
     {
         return $this->unModele->select_Classement2();
     }
+    public function selectCategorie($id_event)
+    {
+        return $this->unModele->selectCategorie($id_event);
+    }
     public function verifConPart($accronyme, $mdp)
     {
         // on peu controler les donnees 

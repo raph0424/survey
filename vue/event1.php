@@ -3,6 +3,7 @@ session_start();
       require_once("../controleur/leControleur.php");
       $unControleur = new leControleur("localhost","eventupdate","root","");
       $res = $unControleur->selectLieu();
+      $res1 = $unControleur->selectCategorie();
       if(isset($_POST["create"]))
       {
          $envoi = array ("designation"=>$_POST['designation'], 
