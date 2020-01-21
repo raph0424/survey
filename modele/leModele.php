@@ -436,6 +436,22 @@ public function selectEvent()
             return $result;
         }
     }
+    public function selectCategorie($id_event)
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from event where id_event = :id_event;";              
+            // preparation de la requete avant execution
+            $donnees = array(":id_event"=>$id_event);   
+
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute($donnees);
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+        }
+    }
     public function updateNote($tab, $id_note)
 {
     if($this->unPdo!=null)

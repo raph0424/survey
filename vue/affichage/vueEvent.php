@@ -29,10 +29,10 @@
                                 <h4>
                                     <?php   
                                     $idevent=  $unResultat['id_event'];
-                                    $result0 = $unControleur->select_Classement($idevent);
+                                    $result0 = $unControleur->selectCategorie($idevent);
                                     foreach($result0 as $res)
                                     {
-                                        echo "<td>", $res['libelle'], "</td>";
+                                        echo "<td>", $res['categorie'], "</td>";
                                     }
                                     ?>
                                 </h4>
