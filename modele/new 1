@@ -29,6 +29,7 @@ CREATE TABLE Watch_serie(
 	id_watch_serie int Auto_increment NOT NULL,
 	Date_visio Datetime NOT NULL,
 	Nb_episode_chain int (4) NOT NULL,
+	Nom_pltf Varchar(50) NOT NULL,
 	id_serie Int(4) NOT NULL,
 	id_user Int(4) NOT NULL
 	,CONSTRAINT Watch_serie_PK PRIMARY KEY (id_watch_serie)
@@ -39,12 +40,12 @@ CREATE TABLE Watch_serie(
 CREATE TABLE Watch_film(
 	id_watch_film int Auto_increment NOT NULL,
 	Date_visio Datetime NOT NULL,
+	Nom_pltf Varchar(50) NOT NULL,
 	id_film Int(4) NOT NULL,
 	id_user Int(4) NOT NULL
 	,CONSTRAINT Watch_film_PK PRIMARY KEY (id_watch_film)
 	,CONSTRAINT Watch_film_film_FK FOREIGN KEY (id_film) REFERENCES film(id_film)
 	,CONSTRAINT Watch_film_user_FK FOREIGN KEY (id_user) REFERENCES user(id_user)
-
 )ENGINE=InnoDB;
 
 

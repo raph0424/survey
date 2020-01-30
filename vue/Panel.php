@@ -5,22 +5,7 @@ require_once("../controleur/leControleur.php");
 $unControleur = new leControleur("localhost","survey","root","");
 $res = $unControleur->selectFilm();
 
-if (isset($_POST['insert'])){
-   $envois = array ("Nom_film"=> $_POST['nom_film']
-        );
-         $unControleur->insert("film",$envois); 
-         header('Location: film.php');
-}
 
-if (isset($_POST['Valider'])){
-   $envoi = array ("Date_visio"=> date("Y-m-d H:i:s"),
-         "id_film"=>(int)$_POST['idfilm'],
-		 "nom_pltf"=>$_POST['nompltf'],
-		 "id_user"=>(int)$_SESSION['id_user'],
-        );
-         $unControleur->insert("watch_film",$envoi); 
-         header('Location: ../index.php');
-}
   ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -52,12 +37,14 @@ if (isset($_POST['Valider'])){
     ?>
     </div>
   </header>
-<div>
-  <?php 
 
-      require_once("affichage/vueFilm.php");
-  ?>
-</div>
+<br><br><br><br><br><br><br><br>
+
+<center>
+<a href="vuePanelSerie.php"><img class="Serie" src="../img/logoSerie.png" width="300"></a>&nbsp&nbsp&nbsp&nbsp
+<a href="vuePanelFilm.php"><img class="Film" src="../img/logoFilm.png" width="300"></a>
+</center>
+<br><br><br><br><br><br><br><br>
 <footer id="footer">
 <div class="footer-top">
   <div class="container">

@@ -18,6 +18,7 @@ if (isset($_POST['Valider'])){
    $envoi = array ("Date_visio"=> date("Y-m-d H:i:s"),
          "id_serie"=>(int)$_POST['idserie'],
 		 "id_user"=>(int)$_SESSION['id_user'],
+		 "nom_pltf"=>$_POST['nompltf'],
 		 "Nb_episode_chain"=>(int)$_POST['nbepc']
         );
          $unControleur->insert("watch_serie",$envoi); 
@@ -107,7 +108,7 @@ if (isset($_POST['Valider'])){
         &copy; Copyright <strong>SDS</strong>.All Rights Reserved
       </div>
       <div class="credits">
-        Designed by<a href="">Raph</a>
+        Designed by<a href=""> Raph</a>
       </div>
     </div>
   </footer>

@@ -10,6 +10,7 @@ if(isset($_POST["Seconnecter"]))
         if (isset($resultat['login'])) {
             $_SESSION['id_user'] = $resultat['id_user'];
             $_SESSION['mdp'] = $resultat['mdp'];
+			$_SESSION['login'] = $resultat['login'];
             $_SESSION['prenom'] = $resultat['prenom'];
             header('location: ../index.php');
         } else {

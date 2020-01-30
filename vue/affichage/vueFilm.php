@@ -1,5 +1,12 @@
 <center>
 <div class="container-fluid">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
     <h2> J'ai regarder un film </h2>
     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
@@ -15,8 +22,19 @@
 					  ici
 					</button> </p>
 
-					<!-- Modal -->
-					
+				<div class="form-group">
+					<label for="nom_film" class="col-sm-4 control-label">Plateformes de visionnage:</label>
+					<select class="form-control" id="nompltf" name="nompltf">                
+						<option value="Netflix">Netflix</option>
+						<option value="PrimeVideo">PrimeVideo</option>
+						<option value="Disneyplus">Disney+</option>
+						<option value="AppleTvplus">AppleTv+</option>
+						<option value="Television">Télévision</option>
+						<option value="Cinema">Cinéma</option>
+						<option value="OCS">OCS</option>
+						<option value="Streaming_Illegal">Streaming Illégal</option>
+					</select>
+				</div>
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
                 <input class='btn btn-primary' type="submit" name="Valider" value="Valider">
@@ -24,6 +42,13 @@
         </div>
     </form>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+					<!-- Modal -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
