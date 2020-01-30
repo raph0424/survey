@@ -15,12 +15,12 @@ class leModele {
             echo $exp->getMessage();
         }
     }
-    public function verifCon($email, $mdp)
+    public function verifCon($login, $mdp)
     {
         if($this->unPdo!=null)
         {
-            $requete ="select * from user where email=:email and mdp=:mdp;";
-            $donnees = array(":email"=>$email,":mdp"=>$mdp);
+            $requete ="select * from user where login=:login and mdp=:mdp;";
+            $donnees = array(":login"=>$login,":mdp"=>$mdp);
             $select = $this->unPdo->prepare($requete);
             $select->execute($donnees);
             $resultat = $select->fetch();
@@ -199,6 +199,37 @@ public function selectEvent()
     if ($this->unPdo != null) {
             // selection de toutes les données
             $requete = "select * from inscrire;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute();
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
+	
+	public function selectFilm()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from film;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute();
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
+	public function selectSerie()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from serie;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete

@@ -88,30 +88,11 @@ body {
 <div id="login_page" class="login-page">
   <div class="form">
     <form id="register_form" method="POST" class="register-form">
-      <input type="text" name="nom" placeholder="Nom">
-      <input type="text" name="prenom" placeholder="Prénom">
-      <input type="text" name="email" placeholder="Adresse email" />
-      <input type="password" name="mdp" placeholder="password" />
-      <input type="text" name="telephone" placeholder="N° Télephone" />
-      <input type="date" name="date_naissance" placeholder="Votre date de naissance">
-      <input type="text" name="adresse" placeholder="Adresse">
-      <input type="text" name="code_postal" placeholder="Code postal">
-      <input type="submit" class="btn" name ="sinscrir" value="S'inscrire" />
-      <p class="message">
-          Désirez vous faire partie de nos partenaires ?
-        <a href="#">Inscrivez vous en tant que partenaire</a>
-      </p>
-    </form>
-    <form id="login_form" action="#" method="POST" class="login-form">
-      <input name="accronyme" id="acronyme" type="text" placeholder="Acronyme de l'entreprise" />
-      <input name="nom_marque" id="nom_marque" type="text" placeholder="Nom de votre Marque" />
+      <input name="Prenom" id="Prenom" type="text" placeholder="Prenom" />
+      <input name="login" id="login" type="text" placeholder="Login" />
       <input name="mdp" id="password" type="password" placeholder="password" />
-      <input type="text"  id="adresse" name="adresse" placeholder="Adresse">
-      <input id="btnLg" type="submit" class="btn" name ="sinscrire" value="S'inscrire" />
-      <p class="message">
-        Voulez vous créer un simple compte utilisateur ?
-        <a href="#">Aller au formulaire d'inscription</a>
-      </p>
+      <input type="date"  id="date_naiss" name="date_naiss" placeholder="date de naissance">
+      <input type="submit" class="btn" name ="sinscrir" value="S'inscrire" />
     </form>
   </div>
 </div>

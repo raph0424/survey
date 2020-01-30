@@ -1,47 +1,27 @@
   <?php
 session_start();
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","eventupdate","root","");
+$unControleur = new leControleur("localhost","survey","root","");
 if(isset($_POST["Seconnecter"]))
 {
-    $email = $_POST['email'];
-    $mdp = $_POST['mdp'];  
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $resultat = $unControleur->verifCon($email, $mdp);
-        if (isset($resultat['nom'])) {
-            $_SESSION['id_personne'] = $resultat['id_personne'];
+    $login = $_POST['login'];
+    $mdp = $_POST['mdp'];
+        $resultat = $unControleur->verifCon($login, $mdp);
+        if (isset($resultat['login'])) {
+            $_SESSION['id_user'] = $resultat['id_user'];
             $_SESSION['mdp'] = $resultat['mdp'];
-            $_SESSION['email'] = $resultat['email'];
-            $_SESSION['nom'] = $resultat['nom'];
             $_SESSION['prenom'] = $resultat['prenom'];
-            $_SESSION['role'] = $resultat['role'];
             header('location: ../index.php');
         } else {
             echo" Connexion impossible ! Veuillez vérifier vos identifiants !";
         }
-    } else {
-        $accronyme = $email;
-        $resultat = $unControleur->verifConPart($accronyme, $mdp);
-        //var_dump($resultat);
-        if (isset($resultat['nom_marque'])) {
-            $_SESSION['id_partenaire'] = $resultat['id_partenaire'];
-            $_SESSION['accronyme'] = $resultat['accronyme'];
-            $_SESSION['mdp'] = $resultat['mdp'];
-            $_SESSION['nom_marque'] = $resultat['nom_marque'];
-            $_SESSION['adresse'] = $resultat['adresse'];
-            $_SESSION['role'] = $resultat['role'];
-            header('location: ../index.php');
-        } else {
-            echo" Connexion impossible ! Veuillez vérifier vos identifiants !";
-        }
-    }
   }             
   ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Orange Event</title>
+  <title>Survey</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -59,7 +39,7 @@ if(isset($_POST["Seconnecter"]))
   <header id="header">
     <div class="container">
       <div id="logo" class="pull-left">
-        <a href="#intro" class="scrollto"><img src="../img/logo.png" alt="" title=""></a>
+        <a href="../index.php" class="scrollto"><img src="../img/logo.png" alt="" title=""></a>
       </div>
     <?php
     require_once("NavBar.php");
@@ -71,54 +51,13 @@ if(isset($_POST["Seconnecter"]))
       require_once("formulaire/formConnexion.php");
   ?>
 </div>
-<footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 footer-info">
-            <img src="img/logo.png" alt="TheEvenet">
-            <p>Notre Groupe est l’héritier d’une histoire plurielle, riche de défis relevés, d'innovations audacieuses et d'une solidarité forte entre les femmes et les hommes qui ont partagé cette dynamique. Orange, héritier de France Télécom, porte les valeurs d’un groupe mondial d’origine française, fier de ses racines, mais aussi fier de ses conquêtes à l’échelle du monde. Une épopée à découvrir à travers 30 moments forts et 130 dates clés qui constituent la mémoire de notre entreprise, d’hier à aujourd’hui.</p>
-          </div>
-          <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Liens utiles</h4>
-            <ul>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Accueil</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">A propos</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Liens utiles</h4>
-            <ul>
-            <li><i class="fa fa-angle-right"></i> <a href="#">Accueil</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">A propos</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contactez nous</h4>
-            <p>
-              6 Place d'Alleray <br>
-              Paris, P 75015<br>
-              FRANCE <br>
-              <strong>Téléphone:</strong>06.47.38.99.23<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-            <div class="social-links">
-              <a href="https://twitter.com/orange?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="https://www.facebook.com/Orange.France/" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="https://www.instagram.com/orange/" class="instagram"><i class="fa fa-instagram"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<footer id="footer1" style="position: absolute; bottom: 0; width:100%;">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Orange</strong>. All Rights Reserved
+        &copy; Copyright <strong>SDS</strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Designed by <a href="https://www.cfa-insta.fr">Cfa insta</a>
+        Designed by Raph</a>
       </div>
     </div>
   </footer>
@@ -134,5 +73,6 @@ if(isset($_POST["Seconnecter"]))
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="contactform/contactform.js"></script>
   <script src="js/main.js"></script>
+  
 </body>
 </html>

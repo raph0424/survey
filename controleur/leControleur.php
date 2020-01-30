@@ -8,10 +8,10 @@ class leControleur
         //instanciation de la class modele
         $this->unModele = new leModele($server,$bdd,$user,$mdp);
     }
-    public function verifCon($email, $mdp)
+    public function verifCon($login, $mdp)
     {
         // on peu controler les donnees 
-        return $this->unModele->verifCon($email, $mdp);
+        return $this->unModele->verifCon($login, $mdp);
     }
     public function selectEvent()
     {
@@ -20,6 +20,14 @@ class leControleur
 	public function selectuser()
     {
         return $this->unModele->selectuser();
+    }
+	public function selectFilm()
+    {
+        return $this->unModele->selectFilm();
+    }
+	public function selectSerie()
+    {
+        return $this->unModele->selectSerie();
     }
 	public function selectlastPersonneid()
     {
