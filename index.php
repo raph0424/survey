@@ -8,6 +8,15 @@ if(isset($_SESSION['mdp']))
       $signe = '';
       $serie = 'vue/serie.php';
       $film = 'vue/film.php';
+	  if($_SESSION['login'] == "Admin")
+	  {
+		  $np = 'Statistiques';
+		  $panel = 'vue/panel.php';
+	  }
+	  else{
+		  $panel = '';
+		  $np = '';
+	  }
     }
     else
     {
@@ -17,10 +26,14 @@ if(isset($_SESSION['mdp']))
       $signe = 'Inscription';
 	  $serie = 'vue/connexion.php';
       $film = 'vue/connexion.php';
+	  $panel = '';
+	  $np = '';
+
     }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 <head>
   <meta charset="utf-8">
   <title>Sacha Survey</title>
@@ -48,6 +61,7 @@ if(isset($_SESSION['mdp']))
           <li class="menu-active"><a href="index.php">Accueil</a></li>
           <li><a href="<?php echo $film; ?>">J'ai regardé un Film</a></li>
           <li><a href="<?php echo $serie; ?>">J'ai regardé une Série</a></li>
+		  <li><a href="<?php echo $panel; ?>"><?php echo $np; ?></a></li>
           <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
           <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
           
@@ -93,5 +107,18 @@ if(isset($_SESSION['mdp']))
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="contactform/contactform.js"></script>
   <script src="js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#925959"
+    },
+    "button": {
+      "background": "#f1d600"
+    }
+  }
+});
+</script>
 </body>
 </html>

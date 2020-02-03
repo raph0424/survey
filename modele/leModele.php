@@ -31,18 +31,17 @@ class leModele {
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from user where :role = role;";
-            $donnees = array(":role"=>'ROLE_USER');                    
+            $requete = "select * from user;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete
-            $select->execute($donnees);
+            $select->execute();
             // extraction des données
             $result = $select->fetchAll();
             return $result;
+            
         }
     }
-    
     public function verifConPart($accronyme, $mdp)
     {
         if($this->unPdo!=null)
@@ -240,6 +239,36 @@ public function selectEvent()
             
         }
     }
+	public function selectwatchFilm()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from watch_film;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute();
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
+	public function selectwatchSerie()
+    {
+    if ($this->unPdo != null) {
+            // selection de toutes les données
+            $requete = "select * from watch_serie;";
+            // preparation de la requete avant execution
+            $select = $this->unPdo->prepare($requete);
+            // exection de la requete
+            $select->execute();
+            // extraction des données
+            $result = $select->fetchAll();
+            return $result;
+            
+        }
+    }
 	public function selectInscrireid()
     {
     if ($this->unPdo != null) {
@@ -255,67 +284,6 @@ public function selectEvent()
             
         }
     }
-    public function selectPromos()
-    {
-    if ($this->unPdo != null) {
-            // selection de toutes les données
-            $requete = "select * from Select_promos;";
-            // preparation de la requete avant execution
-            $select = $this->unPdo->prepare($requete);
-            // exection de la requete
-            $select->execute();
-            // extraction des données
-            $result = $select->fetchAll();
-            return $result;
-            
-        }
-    }
-    public function countProduit1()
-    {
-    if ($this->unPdo != null) {
-            // selection de toutes les données
-            $requete = "select count(*) as nb_produit from produit where id_partenaire = 5";
-            // preparation de la requete avant execution
-            $select = $this->unPdo->prepare($requete);
-            // exection de la requete
-            $select->execute();
-            // extraction des données
-            $result = $select->fetchAll();
-            return $result;
-            
-        }
-    }
-    public function countProduit2()
-    {
-    if ($this->unPdo != null) {
-            // selection de toutes les données
-            $requete = "select count(*) as nb_produit from produit where id_partenaire = 6";
-            // preparation de la requete avant execution
-            $select = $this->unPdo->prepare($requete);
-            // exection de la requete
-            $select->execute();
-            // extraction des données
-            $result = $select->fetchAll();
-            return $result;
-            
-        }
-    }
-    public function countProduit3()
-    {
-    if ($this->unPdo != null) {
-            // selection de toutes les données
-            $requete = "select count(*) as nb_produit from produit where id_partenaire = 31";
-            // preparation de la requete avant execution
-            $select = $this->unPdo->prepare($requete);
-            // exection de la requete
-            $select->execute();
-            // extraction des données
-            $result = $select->fetchAll();
-            return $result;
-            
-        }
-    }
-    
     
     public function selectPartenaire()
 {

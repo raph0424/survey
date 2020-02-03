@@ -29,6 +29,14 @@ class leControleur
     {
         return $this->unModele->selectSerie();
     }
+	public function selectwatchFilm()
+    {
+        return $this->unModele->selectwatchFilm();
+    }
+	public function selectwatchSerie()
+    {
+        return $this->unModele->selectwatchSerie();
+    }
 	public function selectlastPersonneid()
     {
         return $this->unModele->selectlastPersonneid();

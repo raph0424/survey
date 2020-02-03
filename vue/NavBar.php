@@ -7,6 +7,15 @@ if (isset($_SESSION['mdp']))
       $signe = '';
       $serie = 'serie.php';
       $film = 'film.php';
+	  if($_SESSION['login'] == "Admin")
+	  {
+		  $np = 'Statistiques';
+		  $panel = 'panel.php';
+	  }
+	  else{
+		  $panel = '';
+		  $np = '';
+	  }
     }
     else
     {
@@ -16,6 +25,8 @@ if (isset($_SESSION['mdp']))
       $signe = 'Inscription';
 	  $serie = 'connexion.php';
       $film = 'connexion.php';
+	  $panel = '';
+	  $np = '';
 }
 ?>
 
@@ -24,6 +35,7 @@ if (isset($_SESSION['mdp']))
           <li class="menu-active"><a href="../index.php">Accueil</a></li>
           <li><a href="<?php echo $film; ?>">J'ai regardé un Film</a></li>
           <li><a href="<?php echo $serie; ?>">J'ai regardé une Série</a></li>
+		  <li><a href="<?php echo $panel; ?>"><?php echo $np; ?></a></li>
           <li><a href="<?php echo $linkCon; ?>"><?php echo $connec; ?></a></li>
           <li><a href="<?php echo $sign; ?>"><?php echo $signe; ?></a></li>
           
