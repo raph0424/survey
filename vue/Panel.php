@@ -2,7 +2,7 @@
 session_start();
 //sleep(10);
 require_once("../controleur/leControleur.php");
-$unControleur = new leControleur("localhost","survey","root","");
+$unControleur = new leControleur("eu-cdbr-west-02.cleardb.net","survey","bea67d61987f37","4a1d15ba");
 $res = $unControleur->selectFilm();
 
 
