@@ -11,7 +11,7 @@ if(isset($_SESSION['mdp']))
 	  if($_SESSION['login'] == "Admin")
 	  {
 		  $np = 'Statistiques';
-		  $panel = 'vue/panel1.php';
+		  $panel = 'vue/Panel1.php';
 	  }
 	  else{
 		  $panel = '';
