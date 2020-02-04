@@ -38,6 +38,13 @@ $res = $unControleur->selectFilm();
     </div>
   </header>
 
+	<br><br><br><br><br><br><br><br>
+
+<center>
+<a href="vuePanelSerie.php"><img class="Serie" src="../img/logoSerie.png" width="300"></a>&nbsp&nbsp&nbsp&nbsp
+<a href="vuePanelFilm.php"><img class="Film" src="../img/logoFilm.png" width="300"></a>
+</center>
+<br><br><br><br><br><br><br><br>
 
 <footer id="footer">
 <div class="footer-top">
