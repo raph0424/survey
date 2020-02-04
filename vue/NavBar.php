@@ -10,7 +10,7 @@ if (isset($_SESSION['mdp']))
 	  if($_SESSION['login'] == "Admin")
 	  {
 		  $np = 'Statistiques';
-		  $panel = 'panel1.php';
+		  $panel = 'Panel1.php';
 	  }
 	  else{
 		  $panel = '';
