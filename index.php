@@ -73,7 +73,8 @@ if(isset($_SESSION['mdp']))
   <section id="intro">
     <div class="intro-container wow fadeIn">
       <h1 class="mb-4 pb-0"><span>Sacha de Siran</span></h1>
-      <p class="mb-4 pb-0">Sondage</p>
+      <p class="mb-4 pb-0">Merci de m'aider pour mon mémoire ! 
+Il suffit de se connecter sur ce site à chaque fois que vous regardez un film/série en streaming et de le renseigner ici ainsi que la plateforme que vous avez utilisé (légale ou non).</p>
        <!-- <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video"
         data-autoplay="true"></a> -->
     </div>
