@@ -7,7 +7,7 @@
 <br>
 <br>
 
-    <h2> J'ai regarder un film </h2>
+    <h2> J'ai regardé un film </h2>
     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="idfilm" class="col-sm-4 control-label">Nom du film</label>
