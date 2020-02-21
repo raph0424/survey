@@ -30,7 +30,6 @@
 						<option value="Disneyplus">Disney+</option>
 						<option value="AppleTvplus">AppleTv+</option>
 						<option value="Television">Télévision</option>
-						<option value="Cinema">Cinéma</option>
 						<option value="OCS">OCS</option>
 						<option value="Streaming_Illegal">Streaming Illégal</option>
 					</select>
