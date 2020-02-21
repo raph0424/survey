@@ -228,7 +228,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from serie order by name asc;";
+            $requete = "select * from serie order by nom_serie asc;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete
