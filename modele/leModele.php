@@ -213,7 +213,7 @@ public function selectEvent()
     {
     if ($this->unPdo != null) {
             // selection de toutes les données
-            $requete = "select * from film;";
+            $requete = "select * from film order by nom_film asc;";
             // preparation de la requete avant execution
             $select = $this->unPdo->prepare($requete);
             // exection de la requete
